@@ -1,62 +1,301 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import {
+  Shield,
+  Lock,
+  Zap,
+  BarChart3,
+  Database,
+  Code2,
+  ArrowRight,
+  Github,
+} from "lucide-react";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Navigation Bar */}
+      <nav className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Shield className="h-8 w-8 text-primary" />
+            <span className="text-xl font-bold text-primary">PrivacyMetrics</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="#features"
+              className="text-sm text-muted-foreground hover:text-foreground transition"
+            >
+              Features
+            </a>
+            <a
+              href="#why"
+              className="text-sm text-muted-foreground hover:text-foreground transition"
+            >
+              Why Us
+            </a>
+            <Link to="/dashboard">
+              <Button variant="outline" size="sm">
+                Demo
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
+              Analytics that respect your
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                {" "}
+                privacy
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Track what matters most without sacrificing user privacy. Simple,
+              powerful, and completely privacy-focused analytics for modern web
+              applications.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/dashboard">
+                <Button size="lg" className="w-full sm:w-auto">
+                  View Demo Dashboard
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  <Github className="mr-2 h-4 w-4" />
+                  GitHub
+                </Button>
+              </a>
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg aspect-square flex items-center justify-center">
+            <BarChart3 className="h-32 w-32 text-primary/30" />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section
+        id="features"
+        className="bg-secondary/30 border-y border-border py-20 sm:py-32"
+      >
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              Powerful analytics, zero compromises
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Everything you need to understand your users, without tracking them
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Shield,
+                title: "Privacy-First",
+                description:
+                  "No cookies, no tracking pixels, no fingerprinting. Just clean analytics.",
+              },
+              {
+                icon: Lock,
+                title: "Self-Hosted",
+                description:
+                  "Keep your data on your servers. Full control over analytics data.",
+              },
+              {
+                icon: Zap,
+                title: "Lightweight",
+                description:
+                  "Minimal performance impact. Only ~2KB of JavaScript to load.",
+              },
+              {
+                icon: BarChart3,
+                title: "Simple UI",
+                description:
+                  "Beautiful, intuitive dashboard. No learning curve required.",
+              },
+              {
+                icon: Code2,
+                title: "API Access",
+                description:
+                  "Custom integration with our comprehensive REST API.",
+              },
+              {
+                icon: Database,
+                title: "Open Source",
+                description:
+                  "Transparent, community-driven development with full source code.",
+              },
+            ].map((feature, idx) => (
+              <div
+                key={idx}
+                className="bg-background border border-border rounded-lg p-6 hover:border-primary transition"
+              >
+                <feature.icon className="h-12 w-12 text-primary mb-4" />
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section
+        id="why"
+        className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32"
+      >
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              PrivacyMetrics vs Google Analytics
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  label: "Data Ownership",
+                  value: "Full control over your data",
+                },
+                {
+                  label: "Privacy",
+                  value: "GDPR & CCPA compliant by default",
+                },
+                {
+                  label: "Setup Time",
+                  value: "Minutes instead of hours",
+                },
+                {
+                  label: "Performance",
+                  value: "Zero impact on site speed",
+                },
+              ].map((item, idx) => (
+                <div key={idx}>
+                  <p className="font-semibold text-primary mb-1">
+                    {item.label}
+                  </p>
+                  <p className="text-muted-foreground">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg aspect-square flex items-center justify-center">
+            <Lock className="h-32 w-32 text-accent/30" />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-primary text-primary-foreground py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            Ready to get started?
+          </h2>
+          <p className="text-lg mb-8 opacity-90">
+            Explore our demo dashboard to see how PrivacyMetrics works
+          </p>
+          <Link to="/dashboard">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            >
+              Launch Demo Dashboard
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border bg-secondary/30 py-12">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Shield className="h-6 w-6 text-primary" />
+                <span className="font-bold text-primary">PrivacyMetrics</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Privacy-focused analytics for the modern web
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Documentation
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Community</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Discord
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground transition">
+                    Twitter
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
+            <p>&copy; 2024 PrivacyMetrics. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
