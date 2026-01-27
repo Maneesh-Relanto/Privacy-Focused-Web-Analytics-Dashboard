@@ -7,25 +7,30 @@ The project has been organized to keep the root directory clean while maintainin
 ## Why Some Config Files Stay at Root
 
 ### Auto-Discovery Requirement
+
 Certain tools expect configuration files to be at the project root for auto-discovery:
 
 **PostCSS** (`postcss.config.js`):
+
 - PostCSS runs from the root and automatically discovers `postcss.config.js` at the root level
 - It then loads Tailwind plugin from the discovered config
 - Moving this to a subfolder breaks the auto-discovery chain
 
 **Tailwind** (`tailwind.config.ts`):
+
 - PostCSS looks for `tailwind.config.ts` in the root directory
 - While technically you can specify a path in postcss config, this adds unnecessary complexity
 - Keeping it at root ensures reliable auto-discovery by PostCSS
 
 ### Files Organized in `/config`
+
 These files are moved to `/config` because they're **explicitly referenced** in commands:
 
 - **vite.config.ts**: Explicitly passed via `--config config/vite.config.ts` in npm scripts
 - **vite.config.server.ts**: Explicitly passed via `--config config/vite.config.server.ts` in npm scripts
 
 ### Files Remaining at Root
+
 These must stay at root for proper tool integration:
 
 - **tailwind.config.ts**: Auto-discovered by PostCSS
@@ -48,6 +53,7 @@ By explicitly specifying the config file path, we can keep Vite configs organize
 ## File Count Reduction
 
 ### Root Directory Files (kept minimal)
+
 - Configuration files that require auto-discovery: 4 files
   - `tailwind.config.ts`
   - `postcss.config.js`
@@ -63,11 +69,13 @@ By explicitly specifying the config file path, we can keep Vite configs organize
   - `.env`, `.gitignore`, `.npmrc`, `.prettierrc`, etc.
 
 ### `/config` Directory
+
 - Build config files: 2 files
   - `vite.config.ts`
   - `vite.config.server.ts`
 
 ### Result
+
 Root directory is significantly cleaner with core build configs organized in `/config` while maintaining full functionality.
 
 ## Best Practices Applied
@@ -81,6 +89,7 @@ Root directory is significantly cleaner with core build configs organized in `/c
 ## Future Expansion
 
 If the project grows and more Vite plugins are added:
+
 - Keep additional build configs in `/config`
 - Create feature-specific sub-configs if needed (e.g., `/config/vite/`)
 - Continue using explicit `--config` paths in npm scripts
@@ -88,11 +97,13 @@ If the project grows and more Vite plugins are added:
 ## Troubleshooting
 
 If Tailwind CSS styles aren't loading:
+
 1. Verify `tailwind.config.ts` is in the root directory
 2. Verify `postcss.config.js` is in the root directory
 3. Check that `content` path in `tailwind.config.ts` correctly points to client files: `["./client/**/*.{ts,tsx}"]`
 4. Restart the dev server: `pnpm dev`
 
 If Shadcn/ui components can't be added:
+
 1. Verify `components.json` is in the root directory
 2. Verify paths in `components.json` point to correct locations

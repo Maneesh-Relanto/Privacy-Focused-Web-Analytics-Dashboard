@@ -73,7 +73,9 @@ project-root/
 ## Key Directories
 
 ### `/config`
+
 Vite build configuration files. These are explicitly passed to Vite via the `--config` flag:
+
 - **vite.config.ts**: Client development and build configuration
   ```bash
   vite --config config/vite.config.ts
@@ -84,6 +86,7 @@ Vite build configuration files. These are explicitly passed to Vite via the `--c
   ```
 
 ### Root Level - Configuration Files
+
 The following configuration files remain at the project root because they require **auto-discovery** by build tools:
 
 - **tailwind.config.ts**: Tailwind CSS design tokens and customizations
@@ -101,7 +104,9 @@ The following configuration files remain at the project root because they requir
   - Auto-discovered by Netlify during deployment
 
 ### `/client`
+
 React Single Page Application (SPA) with TypeScript.
+
 - **pages/**: Route components (each page is a route)
 - **components/**: Reusable React components
   - **ui/**: Pre-built Radix UI components styled with Tailwind
@@ -111,23 +116,30 @@ React Single Page Application (SPA) with TypeScript.
 - **global.css**: Global styles and CSS variables for theming
 
 ### `/server`
+
 Express.js backend API server.
+
 - Integrated with Vite dev server (single port)
 - Handles API routes and server-side logic
 - Supports serverless deployment with Netlify functions
 
 ### `/shared`
+
 TypeScript interfaces and types shared between client and server.
+
 - Type-safe API communication between frontend and backend
 
 ### `/docs`
+
 Project documentation.
+
 - **FUSION_STARTER.md**: Template and tech stack documentation
 - **PROJECT_STRUCTURE.md**: This file
 
 ## Build & Development
 
 ### Scripts
+
 ```bash
 pnpm dev              # Start development server (client + server on port 8080)
 pnpm build            # Build both client and server for production
@@ -140,6 +152,7 @@ pnpm typecheck        # Validate TypeScript types
 ```
 
 ### Configuration Paths
+
 - Vite configuration is located in `/config/vite.config.ts`
 - Tailwind configuration is in `/config/tailwind.config.ts`
 - TypeScript configuration in `tsconfig.json` references config files in `/config`
@@ -158,7 +171,9 @@ pnpm typecheck        # Validate TypeScript types
 ## Deployment
 
 ### Netlify
+
 The project is configured for Netlify deployment:
+
 - Client builds to `dist/spa`
 - Server functions deploy to `netlify/functions`
 - Configuration in `/config/netlify.toml`
