@@ -73,10 +73,14 @@ project-root/
 ## Key Directories
 
 ### `/config`
-All build and configuration files are centralized here for a clean root folder.
+Vite build configuration files. These are explicitly passed to Vite via the `--config` flag.
 - **vite.config.ts**: Client development and build configuration
-- **vite.config.server.ts**: Server build configuration
-- **tailwind.config.ts**: Tailwind CSS design tokens and customizations
+- **vite.config.server.ts**: Server build configuration for Node.js output
+
+### Root Level Configuration Files
+Some configuration files must remain at the root for proper auto-discovery by build tools:
+- **tailwind.config.ts**: Tailwind CSS design tokens and customizations (auto-discovered by PostCSS)
+- **postcss.config.js**: PostCSS configuration (processes Tailwind at build time)
 - **components.json**: Shadcn/ui component generator configuration
 - **netlify.toml**: Netlify deployment build and function configuration
 
