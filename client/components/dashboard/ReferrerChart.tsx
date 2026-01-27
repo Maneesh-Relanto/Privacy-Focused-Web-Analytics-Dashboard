@@ -1,4 +1,12 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const referrerData = [
   { source: "google.com", views: 3200 },
@@ -21,8 +29,17 @@ export function ReferrerChart() {
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={referrerData} layout="vertical">
         <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
-        <XAxis type="number" stroke={colors.text} style={{ fontSize: "12px" }} />
-        <YAxis type="category" dataKey="source" stroke={colors.text} style={{ fontSize: "12px" }} />
+        <XAxis
+          type="number"
+          stroke={colors.text}
+          style={{ fontSize: "12px" }}
+        />
+        <YAxis
+          type="category"
+          dataKey="source"
+          stroke={colors.text}
+          style={{ fontSize: "12px" }}
+        />
         <Tooltip
           contentStyle={{
             backgroundColor: isDark ? "#1e293b" : "#ffffff",

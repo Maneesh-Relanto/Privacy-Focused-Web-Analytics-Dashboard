@@ -31,7 +31,8 @@ export function MetricCard({
   color = "blue",
   invertTrend = false,
 }: MetricCardProps) {
-  const isTrendPositive = (trend > 0 && !invertTrend) || (trend < 0 && invertTrend);
+  const isTrendPositive =
+    (trend > 0 && !invertTrend) || (trend < 0 && invertTrend);
   const TrendIcon = isTrendPositive ? TrendingUp : TrendingDown;
 
   return (
@@ -48,7 +49,9 @@ export function MetricCard({
           <div
             className={cn(
               "flex items-center gap-1 text-xs font-semibold",
-              isTrendPositive ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+              isTrendPositive
+                ? "text-green-600 dark:text-green-400"
+                : "text-red-600 dark:text-red-400",
             )}
           >
             <TrendIcon className="h-3 w-3" />

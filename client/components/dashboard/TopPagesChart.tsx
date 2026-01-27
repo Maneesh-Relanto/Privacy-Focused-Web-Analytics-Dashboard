@@ -1,4 +1,12 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const topPagesData = [
   { page: "/home", views: 4200, users: 2400 },
@@ -21,7 +29,11 @@ export function TopPagesChart() {
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={topPagesData}>
         <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
-        <XAxis dataKey="page" stroke={colors.text} style={{ fontSize: "12px" }} />
+        <XAxis
+          dataKey="page"
+          stroke={colors.text}
+          style={{ fontSize: "12px" }}
+        />
         <YAxis stroke={colors.text} style={{ fontSize: "12px" }} />
         <Tooltip
           contentStyle={{

@@ -19,7 +19,9 @@ export default function Index() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Shield className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-primary">PrivacyMetrics</span>
+            <span className="text-xl font-bold text-primary">
+              PrivacyMetrics
+            </span>
           </div>
           <div className="flex items-center gap-4">
             <a
@@ -71,7 +73,11 @@ export default function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </Button>
@@ -95,7 +101,8 @@ export default function Index() {
               Powerful analytics, zero compromises
             </h2>
             <p className="text-xl text-muted-foreground">
-              Everything you need to understand your users, without tracking them
+              Everything you need to understand your users, without tracking
+              them
             </p>
           </div>
 

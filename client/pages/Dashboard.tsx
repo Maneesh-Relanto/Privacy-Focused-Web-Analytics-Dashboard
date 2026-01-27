@@ -125,11 +125,7 @@ export default function Dashboard() {
                 />
               </div>
             </div>
-            <Button
-              variant="outline"
-              className="w-full justify-start"
-              asChild
-            >
+            <Button variant="outline" className="w-full justify-start" asChild>
               <Link to="/">
                 <LogOut className="mr-2 h-4 w-4" />
                 Back to Home
@@ -169,7 +165,9 @@ export default function Dashboard() {
                 >
                   <RefreshCw
                     className="h-4 w-4"
-                    style={isLoading ? { animation: "spin 1s linear infinite" } : {}}
+                    style={
+                      isLoading ? { animation: "spin 1s linear infinite" } : {}
+                    }
                   />
                 </Button>
               </div>
@@ -298,7 +296,10 @@ export default function Dashboard() {
                         { country: "Germany", views: "5,421", pct: 12 },
                         { country: "France", views: "6,021", pct: 13 },
                       ].map((item, idx) => (
-                        <div key={idx} className="flex items-center justify-between">
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between"
+                        >
                           <div className="flex items-center gap-2 flex-1">
                             <MapPin className="h-4 w-4 text-primary" />
                             <span className="text-sm font-medium">
