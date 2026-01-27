@@ -6,13 +6,9 @@ This document outlines the organized structure of the Privacy-Focused Web Analyt
 
 ```
 project-root/
-├── config/                          # Build and configuration files
+├── config/                          # Build configuration (Vite)
 │   ├── vite.config.ts               # Vite client build configuration
-│   ├── vite.config.server.ts        # Vite server build configuration
-│   ├── tailwind.config.ts           # Tailwind CSS theme configuration
-│   ├── postcss.config.js            # PostCSS configuration
-│   ├── components.json              # Shadcn/ui components configuration
-│   └── netlify.toml                 # Netlify deployment configuration
+│   └── vite.config.server.ts        # Vite server build configuration
 │
 ├── docs/                            # Documentation
 │   ├── FUSION_STARTER.md            # Fusion Starter template documentation
