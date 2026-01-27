@@ -73,16 +73,32 @@ project-root/
 ## Key Directories
 
 ### `/config`
-Vite build configuration files. These are explicitly passed to Vite via the `--config` flag.
+Vite build configuration files. These are explicitly passed to Vite via the `--config` flag:
 - **vite.config.ts**: Client development and build configuration
+  ```bash
+  vite --config config/vite.config.ts
+  ```
 - **vite.config.server.ts**: Server build configuration for Node.js output
+  ```bash
+  vite build --config config/vite.config.server.ts
+  ```
 
-### Root Level Configuration Files
-Some configuration files must remain at the root for proper auto-discovery by build tools:
-- **tailwind.config.ts**: Tailwind CSS design tokens and customizations (auto-discovered by PostCSS)
-- **postcss.config.js**: PostCSS configuration (processes Tailwind at build time)
+### Root Level - Configuration Files
+The following configuration files remain at the project root because they require **auto-discovery** by build tools:
+
+- **tailwind.config.ts**: Tailwind CSS design tokens and customizations
+  - Auto-discovered and loaded by PostCSS
+  - Must be at root for PostCSS to find it
+
+- **postcss.config.js**: PostCSS configuration
+  - Auto-discovered by Vite and build tools
+  - Processes Tailwind CSS at build time
+
 - **components.json**: Shadcn/ui component generator configuration
-- **netlify.toml**: Netlify deployment build and function configuration
+  - Expected at project root by the CLI tool
+
+- **netlify.toml**: Netlify deployment configuration
+  - Auto-discovered by Netlify during deployment
 
 ### `/client`
 React Single Page Application (SPA) with TypeScript.
