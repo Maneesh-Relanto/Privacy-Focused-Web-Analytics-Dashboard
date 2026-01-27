@@ -62,6 +62,10 @@ project-root/
 ├── package.json                     # Project dependencies and scripts
 ├── pnpm-lock.yaml                   # Lock file for pnpm
 ├── tsconfig.json                    # TypeScript configuration
+├── tailwind.config.ts               # Tailwind CSS theme (auto-discovered by PostCSS)
+├── postcss.config.js                # PostCSS configuration
+├── components.json                  # Shadcn/ui components configuration
+├── netlify.toml                     # Netlify deployment configuration
 └── .gitignore                       # Git ignore rules
 
 ```
