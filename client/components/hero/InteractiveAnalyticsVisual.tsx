@@ -124,8 +124,8 @@ export function InteractiveAnalyticsVisual() {
       </div>
 
       {/* Pie Chart */}
-      <div className="flex flex-col items-center justify-center">
-        <h3 className="text-white font-semibold mb-4">Distribution</h3>
+      <div className="flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
+        <h3 className="text-gray-900 font-bold text-lg mb-4">Distribution</h3>
         <svg width="120" height="120" viewBox="-60 -60 120 120">
           {(() => {
             let startAngle = 0;
@@ -141,28 +141,28 @@ export function InteractiveAnalyticsVisual() {
                   key={`pie-${idx}`}
                   d={path}
                   fill={colors[idx]}
-                  opacity="0.8"
-                  className="transition-opacity hover:opacity-100"
+                  opacity="1"
+                  className="transition-opacity hover:opacity-80"
                 />
               );
             });
           })()}
 
           {/* Center circle for donut effect */}
-          <circle cx="0" cy="0" r="20" fill="#1e293b" />
+          <circle cx="0" cy="0" r="20" fill="#ffffff" />
         </svg>
-        <div className="text-xs text-gray-400 mt-4 space-y-1">
+        <div className="text-xs text-gray-700 mt-4 space-y-1">
           <div>
             <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Mobile: {percentages[0].toFixed(0)}%
+            <span className="font-semibold">Mobile: {percentages[0].toFixed(0)}%</span>
           </div>
           <div>
             <span className="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-            Desktop: {percentages[1].toFixed(0)}%
+            <span className="font-semibold">Desktop: {percentages[1].toFixed(0)}%</span>
           </div>
           <div>
             <span className="inline-block w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
-            Tablet: {percentages[2].toFixed(0)}%
+            <span className="font-semibold">Tablet: {percentages[2].toFixed(0)}%</span>
           </div>
         </div>
       </div>
