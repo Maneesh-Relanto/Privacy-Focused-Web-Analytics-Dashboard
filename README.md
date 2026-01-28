@@ -265,14 +265,67 @@ MIT License - See [LICENSE](./LICENSE) file for details
 
 ---
 
-## 🔗 Resources
+## 🔗 Resources & Links
 
-- **Documentation**: [/docs](./docs) - Technical documentation
-- **Getting Started**: [GETTING_STARTED.md](./GETTING_STARTED.md) - Setup instructions
-- **Integration Guide**: [FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) - API integration
+### Documentation
+- **[📚 Documentation Index](./docs/INDEX.md)** - Master guide for navigating all documentation
+- **[/docs](./docs)** - All technical documentation files
+- **[📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Complete setup and usage guide
+
+### Community & Links
+- **[GitHub Repository](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard)** - Source code
+- **[GitHub Pages](https://maneesh-relanto.github.io/Privacy-Focused-Web-Analytics-Dashboard/)** - Live landing page
+- **License**: [MIT](./LICENSE)
+
+### Development
+- **[🚀 Quick Start](#-quick-start)** - Installation and first steps
+- **[🛠️ Available Commands](#-available-commands)** - npm scripts
+- **[🏗️ Project Structure](#-project-structure)** - Codebase organization
+
+---
+
+## 📋 Complete Documentation Links
+
+### Essential Reading
+```
+1. README.md (this file) ← You are here
+2. docs/INDEX.md (documentation roadmap)
+3. docs/DEVELOPER_GUIDE.md (setup & usage)
+4. docs/API_DOCUMENTATION.md (API reference)
+```
+
+### By Role
+- **👨‍💼 Project Managers**: Start with [docs/INDEX.md](./docs/INDEX.md)
+- **👨‍💻 Backend Developers**: [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) → [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)
+- **🎨 Frontend Developers**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) → [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)
+- **⚙️ DevOps Engineers**: [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md) → [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md)
+
+### All Documents
+- [docs/INDEX.md](./docs/INDEX.md) - Documentation index & roadmap
+- [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) - Complete developer guide
+- [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) - API reference
+- [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) - Backend setup
+- [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) - Project architecture
+- [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) - Frontend integration
+- [docs/WEBSITE_MANAGEMENT_GUIDE.md](./docs/WEBSITE_MANAGEMENT_GUIDE.md) - Website operations
+- [docs/QUICK_START_AUTHENTICATION.md](./docs/QUICK_START_AUTHENTICATION.md) - Auth quick start
+- [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md) - GitHub Pages deployment
+- [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md) - Code quality setup
+- [docs/FILE_ORGANIZATION_NOTES.md](./docs/FILE_ORGANIZATION_NOTES.md) - File structure notes
+- [docs/FUSION_STARTER.md](./docs/FUSION_STARTER.md) - Fusion starter template reference
+
+---
+
+## 🔄 Navigation Tips
+
+- **Lost?** → Check [docs/INDEX.md](./docs/INDEX.md) for guidance
+- **Want to get started?** → Read [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)
+- **Need API help?** → See [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)
+- **Setting up backend?** → Follow [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md)
+- **Need to deploy?** → Use [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md)
 
 ---
 
 **Created as an open-source project**
 
-_A clean, modern dashboard for analytics data._
+_A clean, modern, privacy-focused analytics dashboard. Start with the [📚 Documentation Index](./docs/INDEX.md)._
