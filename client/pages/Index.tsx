@@ -89,7 +89,7 @@ export default function Index() {
       </section>
 
       {/* Visualization Section 1: Animated Dashboard Preview */}
-      <section className="bg-slate-50 dark:bg-slate-950 border-y border-border py-20 sm:py-32">
+      <section className="bg-gradient-to-br from-blue-50 to-cyan-50 py-20 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
