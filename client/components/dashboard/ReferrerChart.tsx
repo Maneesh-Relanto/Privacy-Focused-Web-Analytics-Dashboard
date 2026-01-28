@@ -45,7 +45,7 @@ export function ReferrerChart({ data }: ReferrerChartProps) {
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={referrerData} layout="vertical">
+      <BarChart data={chartData} layout="vertical">
         <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
         <XAxis
           type="number"
