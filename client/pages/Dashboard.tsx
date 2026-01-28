@@ -300,7 +300,7 @@ export default function Dashboard() {
                       <CardTitle>Top Pages</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <TopPagesChart />
+                      <TopPagesChart data={dashboardData?.topPages?.pages} />
                     </CardContent>
                   </Card>
 
@@ -310,7 +310,7 @@ export default function Dashboard() {
                       <CardTitle>Top Referrers</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ReferrerChart />
+                      <ReferrerChart data={dashboardData?.referrers?.referrers} />
                     </CardContent>
                   </Card>
                 </div>
