@@ -14,7 +14,9 @@ const queryClient = new QueryClient();
 
 const App = () => {
   // Determine basename based on environment
-  const basename = import.meta.env.PROD ? "/Privacy-Focused-Web-Analytics-Dashboard/" : "/";
+  const basename = import.meta.env.PROD
+    ? "/Privacy-Focused-Web-Analytics-Dashboard/"
+    : "/";
 
   return (
     <QueryClientProvider client={queryClient}>
