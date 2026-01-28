@@ -226,7 +226,10 @@ pnpm start
 
 ## 📚 Documentation
 
-Detailed documentation is available in the `/docs` folder:
+Start here for setup and deployment:
+- **[GETTING_STARTED.md](./GETTING_STARTED.md)** - Step-by-step setup guide for development and production
+
+Technical documentation is available in the `/docs` folder:
 
 - **[FUSION_STARTER.md](./docs/FUSION_STARTER.md)** - Technical architecture and setup
 - **[PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md)** - How the code is organized
