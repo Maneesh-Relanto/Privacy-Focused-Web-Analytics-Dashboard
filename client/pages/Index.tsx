@@ -151,7 +151,7 @@ export default function Index() {
       {/* Features Section */}
       <section
         id="features"
-        className="bg-secondary/30 border-y border-border py-20 sm:py-32"
+        className="bg-gradient-to-br from-gray-50 to-gray-100 py-20 sm:py-32"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
