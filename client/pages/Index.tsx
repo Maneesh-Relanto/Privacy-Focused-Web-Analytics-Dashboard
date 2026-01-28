@@ -158,49 +158,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section
-        id="why"
-        className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32"
-      >
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              PrivacyMetrics vs Google Analytics
-            </h2>
-            <div className="space-y-6">
-              {[
-                {
-                  label: "Data Ownership",
-                  value: "Full control over your data",
-                },
-                {
-                  label: "Privacy",
-                  value: "GDPR & CCPA compliant by default",
-                },
-                {
-                  label: "Setup Time",
-                  value: "Minutes instead of hours",
-                },
-                {
-                  label: "Performance",
-                  value: "Zero impact on site speed",
-                },
-              ].map((item, idx) => (
-                <div key={idx}>
-                  <p className="font-semibold text-primary mb-1">
-                    {item.label}
-                  </p>
-                  <p className="text-muted-foreground">{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-lg aspect-square flex items-center justify-center">
-            <Lock className="h-32 w-32 text-accent/30" />
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="bg-primary text-primary-foreground py-16 sm:py-20">
