@@ -1,5 +1,7 @@
 # Code Quality Scanning Guide
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[GitHub Pages Deployment](./GITHUB_PAGES_DEPLOYMENT.md)** | **[Backend Setup](./BACKEND_SETUP_GUIDE.md)**
+
 This document outlines all available options for code scanning, quality checks, and security analysis for the Privacy-Focused Web Analytics Dashboard.
 
 ---
