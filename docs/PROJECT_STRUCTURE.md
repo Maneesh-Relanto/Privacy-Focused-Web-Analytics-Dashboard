@@ -1,5 +1,7 @@
 # Project Structure
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Developer Guide](./DEVELOPER_GUIDE.md)** | **[Integration Guide](./FRONTEND_BACKEND_INTEGRATION_GUIDE.md)**
+
 This document outlines the organized structure of the Privacy-Focused Web Analytics Dashboard project.
 
 ## Directory Layout
