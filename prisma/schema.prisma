@@ -17,7 +17,7 @@ model User {
   email     String    @unique
   password  String    // bcrypt hashed password
   name      String?
-  apiKey    String?   @unique @db.VarChar(255)
+  apiKey    String?   @unique
   apiKeyHash String?   @unique // hash of API key for lookups
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -35,7 +35,7 @@ model Website {
   userId    String
   name      String    // e.g., "My Blog", "Company Site"
   domain    String    @unique // e.g., "myblog.com"
-  trackingCode String @unique @db.VarChar(50) // unique identifier for tracking script
+  trackingCode String @unique // unique identifier for tracking script
   publicUrl String?   // public dashboard URL if shared
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -65,8 +65,8 @@ model Event {
   referrer  String?
   timestamp DateTime  @default(now())
   
-  // Flexible event properties (JSONB)
-  properties Json?     // store custom event data
+  // Flexible event properties (stored as JSON string in SQLite)
+  properties String?   // store custom event data as JSON string
   
   website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
   session   Session?  @relation(fields: [sessionId], references: [id], onDelete: SetNull)
@@ -166,8 +166,8 @@ model AggregatedMetrics {
   desktopViews Int    @default(0)
   tabletViews Int     @default(0)
   
-  // Top traffic sources (stored as JSON)
-  topReferrers Json?  // [{referrer, count}, ...]
+  // Top traffic sources (stored as JSON string)
+  topReferrers String?  // [{referrer, count}, ...] stored as JSON string
   
   website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
@@ -195,8 +195,8 @@ model PageAnalytics {
   bounceRate Float?
   exitRate  Float?
   
-  // Top referrers for this page
-  topReferrers Json?  // [{referrer, count}, ...]
+  // Top referrers for this page (stored as JSON string)
+  topReferrers String?  // [{referrer, count}, ...] stored as JSON string
   
   website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
   createdAt DateTime  @default(now())
