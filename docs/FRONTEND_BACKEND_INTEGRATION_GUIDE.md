@@ -1,5 +1,7 @@
 # Frontend-Backend Integration Guide
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Project Structure](./PROJECT_STRUCTURE.md)** | **[API Docs](./API_DOCUMENTATION.md)**
+
 ## 📊 Overview
 
 This guide explains how the frontend Dashboard connects to the backend API to display real data instead of hardcoded mock values.
