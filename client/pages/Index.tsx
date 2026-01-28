@@ -225,82 +225,9 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-secondary/30 py-12">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Shield className="h-6 w-6 text-primary" />
-                <span className="font-bold text-primary">PrivacyMetrics</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Privacy-focused analytics for the modern web
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Documentation
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Cookie Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Community</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Discord
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition">
-                    Twitter
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 PrivacyMetrics. All rights reserved.</p>
-          </div>
+      <footer className="border-t border-border bg-secondary/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-muted-foreground">
+          <p>&copy; 2024 PrivacyMetrics. Open source under MIT license.</p>
         </div>
       </footer>
     </div>
