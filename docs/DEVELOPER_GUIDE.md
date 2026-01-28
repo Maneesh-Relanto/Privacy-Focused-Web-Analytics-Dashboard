@@ -1,5 +1,9 @@
 # Developer Guide: Privacy-Focused Web Analytics Dashboard
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Quick Start Auth](./QUICK_START_AUTHENTICATION.md)** | **[API Docs](./API_DOCUMENTATION.md)**
+
+---
+
 ## Overview
 
 This is a self-hosted web analytics dashboard designed with privacy in mind. Developers can use this to collect and view analytics data from their websites without relying on third-party services like Google Analytics.
