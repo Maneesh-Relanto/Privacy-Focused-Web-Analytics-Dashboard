@@ -1,5 +1,7 @@
 # Documentation Structure Summary
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Developer Guide](./DEVELOPER_GUIDE.md)**
+
 ## Overview
 
 We have created a comprehensive, interconnected documentation system for the Privacy-Focused Web Analytics Dashboard. All documents link to each other, making it easy for developers to navigate and find information.
