@@ -1,5 +1,7 @@
 # File Organization Strategy
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Project Structure](./PROJECT_STRUCTURE.md)**
+
 ## Overview
 
 The project has been organized to keep the root directory clean while maintaining functionality and proper tool auto-discovery.
