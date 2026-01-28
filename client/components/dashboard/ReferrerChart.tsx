@@ -8,15 +8,33 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const referrerData = [
-  { source: "google.com", views: 3200 },
-  { source: "github.com", views: 2100 },
-  { source: "twitter.com", views: 1800 },
-  { source: "reddit.com", views: 1200 },
-  { source: "direct", views: 900 },
+interface Referrer {
+  source: string;
+  visits: number;
+}
+
+interface ReferrerChartProps {
+  data?: Referrer[];
+}
+
+const defaultReferrerData = [
+  { source: "google.com", visits: 3200 },
+  { source: "github.com", visits: 2100 },
+  { source: "twitter.com", visits: 1800 },
+  { source: "reddit.com", visits: 1200 },
+  { source: "direct", visits: 900 },
 ];
 
-export function ReferrerChart() {
+export function ReferrerChart({ data }: ReferrerChartProps) {
+  const chartData = data
+    ? data.map((referrer) => ({
+        source: referrer.source,
+        views: referrer.visits,
+      }))
+    : defaultReferrerData.map((referrer) => ({
+        source: referrer.source,
+        views: referrer.visits,
+      }));
   const isDark = document.documentElement.classList.contains("dark");
 
   const colors = {
