@@ -4,6 +4,7 @@ import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import authRoutes from "./routes/auth";
 import dashboardRoutes from "./routes/dashboard";
+import websiteRoutes from "./routes/websites";
 import { authMiddleware } from "./middleware/auth";
 
 export function createServer() {
@@ -28,6 +29,9 @@ export function createServer() {
 
   // Dashboard routes (protected)
   app.use("/api/v1/dashboard", dashboardRoutes);
+
+  // Websites routes (protected)
+  app.use("/api/v1/websites", websiteRoutes);
 
   // Protected routes example
   app.get("/api/v1/protected", authMiddleware, (_req, res) => {
