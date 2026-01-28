@@ -416,10 +416,9 @@ PrivacyMetrics is built on the shoulders of giants:
 
 ## 📞 Support & Community
 
-- 💬 **Discussions**: Ask questions in [GitHub Discussions](https://github.com)
-- 🐛 **Bug Reports**: [Create an issue](https://github.com)
-- 💡 **Feature Ideas**: [Share your thoughts](https://github.com)
-- 📧 **Email**: support@privacymetrics.io
+- 💬 **Discussions**: Ask questions in GitHub Discussions
+- 🐛 **Bug Reports**: Create an issue on GitHub
+- 💡 **Feature Ideas**: Share your thoughts in discussions
 
 ---
 
