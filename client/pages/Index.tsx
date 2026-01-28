@@ -30,12 +30,6 @@ export default function Index() {
             >
               Features
             </a>
-            <a
-              href="#why"
-              className="text-sm text-muted-foreground hover:text-foreground transition"
-            >
-              Why Us
-            </a>
             <Link to="/dashboard">
               <Button variant="outline" size="sm">
                 Demo
