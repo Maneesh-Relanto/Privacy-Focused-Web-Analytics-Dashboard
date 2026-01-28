@@ -81,8 +81,8 @@ export function InteractiveAnalyticsVisual() {
                 y1={`${(i * 100) / 4}%`}
                 x2="100%"
                 y2={`${(i * 100) / 4}%`}
-                stroke="rgb(100, 116, 139)"
-                strokeOpacity="0.2"
+                stroke="rgb(59, 130, 246)"
+                strokeOpacity="0.1"
               />
             ))}
 
