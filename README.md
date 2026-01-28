@@ -300,36 +300,6 @@ pnpm format.fix       # Format code with Prettier
 
 ---
 
-## 🗺️ Roadmap
-
-### Phase 1 ✅ (Current)
-
-- [x] Modern landing page
-- [x] Feature-rich demo dashboard
-- [x] Real-time metrics
-- [x] Beautiful charts and visualizations
-- [x] Dark mode support
-- [x] Responsive design
-
-### Phase 2 (Coming Soon)
-
-- [ ] Database integration (PostgreSQL/MySQL)
-- [ ] Real data ingestion from websites
-- [ ] Authentication & multiple users
-- [ ] Custom events & properties
-- [ ] API documentation & SDKs
-- [ ] Alert system
-
-### Phase 3 (Future)
-
-- [ ] Managed hosting option
-- [ ] Team collaboration features
-- [ ] Advanced segmentation
-- [ ] Predictive analytics
-- [ ] Multi-tenant support
-
----
-
 ## 💡 Getting Started with Development
 
 ### Setting Up Your Environment
@@ -391,11 +361,9 @@ This means:
 
 ## 🔗 Links & Resources
 
-- **Website**: [privacymetrics.io](https://privacymetrics.io)
-- **GitHub**: [github.com/PrivacyMetrics](https://github.com)
-- **Documentation**: [/docs](./docs)
-- **Issues**: [GitHub Issues](https://github.com)
-- **Discussions**: [GitHub Discussions](https://github.com)
+- **Documentation**: [/docs](./docs) - Technical docs and architecture
+- **Issues**: [GitHub Issues](#) - Report bugs or request features
+- **Discussions**: [GitHub Discussions](#) - Ask questions and get help
 
 ### Learn More
 
