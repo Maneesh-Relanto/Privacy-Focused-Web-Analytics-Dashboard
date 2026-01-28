@@ -104,7 +104,7 @@ export default function Index() {
       </section>
 
       {/* Visualization Section 2: Animated Chart */}
-      <section className="py-20 sm:py-32">
+      <section className="bg-gradient-to-br from-white to-gray-50 py-20 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -119,7 +119,7 @@ export default function Index() {
       </section>
 
       {/* Visualization Section 3: Floating Metric Cards */}
-      <section className="bg-slate-50 dark:bg-slate-950 border-y border-border py-20 sm:py-32">
+      <section className="bg-gradient-to-br from-purple-50 to-pink-50 py-20 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -134,7 +134,7 @@ export default function Index() {
       </section>
 
       {/* Visualization Section 4: Interactive Analytics */}
-      <section className="py-20 sm:py-32">
+      <section className="bg-gradient-to-br from-green-50 to-emerald-50 py-20 sm:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
