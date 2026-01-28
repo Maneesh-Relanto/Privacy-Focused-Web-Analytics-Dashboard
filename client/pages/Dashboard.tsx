@@ -264,7 +264,9 @@ export default function Dashboard() {
                       <CardTitle>Page Views Over Time</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <PageViewsChart />
+                      <PageViewsChart
+                        data={dashboardData?.pageViewsChart?.data}
+                      />
                     </CardContent>
                   </Card>
 
@@ -274,7 +276,10 @@ export default function Dashboard() {
                       <CardTitle>Visitors Over Time</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <PageViewsChart variant="visitors" />
+                      <PageViewsChart
+                        variant="visitors"
+                        data={dashboardData?.visitorsChart?.data}
+                      />
                     </CardContent>
                   </Card>
                 </div>
