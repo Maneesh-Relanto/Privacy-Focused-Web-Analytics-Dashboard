@@ -250,104 +250,128 @@ export default function Dashboard() {
               </div>
 
               {/* Charts Section */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Page Views Over Time */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Page Views Over Time</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <PageViewsChart />
-                  </CardContent>
-                </Card>
+              {loading ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Page Views Over Time */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Page Views Over Time</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <PageViewsChart />
+                    </CardContent>
+                  </Card>
 
-                {/* Visitors Over Time */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Visitors Over Time</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <PageViewsChart variant="visitors" />
-                  </CardContent>
-                </Card>
-              </div>
+                  {/* Visitors Over Time */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Visitors Over Time</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <PageViewsChart variant="visitors" />
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
 
               {/* Second Row Charts */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Top Pages */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Top Pages</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <TopPagesChart />
-                  </CardContent>
-                </Card>
+              {loading ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Top Pages */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Top Pages</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <TopPagesChart />
+                    </CardContent>
+                  </Card>
 
-                {/* Top Referrers */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Top Referrers</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ReferrerChart />
-                  </CardContent>
-                </Card>
-              </div>
+                  {/* Top Referrers */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Top Referrers</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ReferrerChart />
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
 
               {/* Device Distribution and Geographic */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Device Distribution */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Device Distribution</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <DeviceDistributionChart />
-                  </CardContent>
-                </Card>
+              {loading ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Device Distribution */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Device Distribution</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <DeviceDistributionChart />
+                    </CardContent>
+                  </Card>
 
-                {/* Geographic */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Top Locations</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      {[
-                        { country: "United States", views: "18,432", pct: 41 },
-                        { country: "Canada", views: "8,234", pct: 18 },
-                        { country: "United Kingdom", views: "7,123", pct: 16 },
-                        { country: "Germany", views: "5,421", pct: 12 },
-                        { country: "France", views: "6,021", pct: 13 },
-                      ].map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center justify-between"
-                        >
-                          <div className="flex items-center gap-2 flex-1">
-                            <MapPin className="h-4 w-4 text-primary" />
-                            <span className="text-sm font-medium">
-                              {item.country}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-primary"
-                                style={{ width: `${item.pct}%` }}
-                              />
+                  {/* Geographic */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Top Locations</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {dashboardData?.locations ? (
+                        <div className="space-y-3">
+                          {dashboardData.locations.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center justify-between"
+                            >
+                              <div className="flex items-center gap-2 flex-1">
+                                <MapPin className="h-4 w-4 text-primary" />
+                                <span className="text-sm font-medium">
+                                  {item.country}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-primary"
+                                    style={{ width: `${item.percentage}%` }}
+                                  />
+                                </div>
+                                <span className="text-xs text-muted-foreground w-12 text-right">
+                                  {item.views.toLocaleString()}
+                                </span>
+                              </div>
                             </div>
-                            <span className="text-xs text-muted-foreground w-12 text-right">
-                              {item.views}
-                            </span>
-                          </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                      ) : (
+                        <div className="text-center text-muted-foreground">
+                          No location data available
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
             </div>
           </div>
         </div>
