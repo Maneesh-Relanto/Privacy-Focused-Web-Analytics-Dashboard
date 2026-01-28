@@ -114,14 +114,57 @@ pnpm dev
 
 ---
 
-## 📚 Documentation
+## 📚 Documentation Hub
 
-Technical documentation and guides:
+### 🎯 Start Here (Choose Your Path)
 
-- **[GETTING_STARTED.md](./GETTING_STARTED.md)** - Detailed setup and development guide
-- **[FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)** - How frontend and backend communicate
-- **[PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md)** - Code organization and architecture
-- **[FILE_ORGANIZATION_NOTES.md](./docs/FILE_ORGANIZATION_NOTES.md)** - Configuration and file layout
+**New to this project?** Start with one of these based on your role:
+
+| Role | Start With | Then Read | Time |
+|------|-----------|-----------|------|
+| **Complete Beginner** | [📖 Developer Guide](./docs/DEVELOPER_GUIDE.md) | [🚀 Quick Start Auth](./docs/QUICK_START_AUTHENTICATION.md) | 30 min |
+| **Backend Developer** | [🗄️ Backend Setup](./docs/BACKEND_SETUP_GUIDE.md) | [📡 API Docs](./docs/API_DOCUMENTATION.md) | 45 min |
+| **Frontend Developer** | [📁 Project Structure](./docs/PROJECT_STRUCTURE.md) | [🔗 Integration Guide](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | 40 min |
+| **DevOps/Deployment** | [🚀 GitHub Pages](./docs/GITHUB_PAGES_DEPLOYMENT.md) | [🔍 Code Quality](./docs/CODE_QUALITY_SCANNING_GUIDE.md) | 30 min |
+
+### 📖 Full Documentation Index
+
+#### **Getting Started**
+- **[📚 Documentation Index](./docs/INDEX.md)** - Master navigation guide for all documentation
+- **[📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Complete setup, API usage, integration examples
+- **[🚀 Quick Start - Authentication](./docs/QUICK_START_AUTHENTICATION.md)** - 5-minute auth setup
+
+#### **API & Backend**
+- **[📡 API Documentation](./docs/API_DOCUMENTATION.md)** - Complete API reference with all endpoints
+- **[🗄️ Backend Setup Guide](./docs/BACKEND_SETUP_GUIDE.md)** - Database and Express.js configuration
+- **[🌐 Website Management Guide](./docs/WEBSITE_MANAGEMENT_GUIDE.md)** - Website CRUD operations and examples
+
+#### **Frontend & Architecture**
+- **[📁 Project Structure](./docs/PROJECT_STRUCTURE.md)** - Folder organization and code architecture
+- **[🔗 Frontend-Backend Integration](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)** - How frontend connects to backend API
+
+#### **Deployment & Infrastructure**
+- **[🚀 GitHub Pages Deployment](./docs/GITHUB_PAGES_DEPLOYMENT.md)** - Deploy landing page to GitHub Pages
+- **[🔍 Code Quality Scanning](./docs/CODE_QUALITY_SCANNING_GUIDE.md)** - SonarCloud and code quality setup
+
+#### **Reference & Notes**
+- **[📝 File Organization Notes](./docs/FILE_ORGANIZATION_NOTES.md)** - Notes about file structure and organization
+- **[📚 Fusion Starter Notes](./docs/FUSION_STARTER.md)** - Original Fusion starter template reference
+
+### 🔍 Quick Document Overview
+
+| Document | Purpose | Best For |
+|----------|---------|----------|
+| [docs/INDEX.md](./docs/INDEX.md) | Navigation hub for all docs | Finding what to read |
+| [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) | Complete setup & usage guide | Getting up and running |
+| [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) | All API endpoints & examples | API integration |
+| [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) | Database & server setup | Backend developers |
+| [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) | Code organization & architecture | Understanding codebase |
+| [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Frontend-API integration | Frontend developers |
+| [docs/WEBSITE_MANAGEMENT_GUIDE.md](./docs/WEBSITE_MANAGEMENT_GUIDE.md) | Website CRUD with examples | Website operations |
+| [docs/QUICK_START_AUTHENTICATION.md](./docs/QUICK_START_AUTHENTICATION.md) | Fast auth setup | Quick testing |
+| [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md) | Deploy to GitHub Pages | Landing page deployment |
+| [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md) | Code quality setup | DevOps & CI/CD |
 
 ---
 
