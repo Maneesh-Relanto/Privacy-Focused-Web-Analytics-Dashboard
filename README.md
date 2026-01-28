@@ -367,10 +367,10 @@ This means:
 
 ### Learn More
 
-- [Privacy by Design](https://en.wikipedia.org/wiki/Privacy_by_design)
-- [GDPR Requirements](https://gdpr-info.eu/)
-- [CCPA Compliance](https://oag.ca.gov/privacy/ccpa)
-- [Web Analytics Without Cookies](https://privacywarriors.com/)
+- Privacy by Design principles
+- GDPR compliance requirements
+- CCPA (California Consumer Privacy Act)
+- Privacy-respecting analytics best practices
 
 ---
 
