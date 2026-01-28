@@ -1,5 +1,7 @@
 # API Documentation - Authentication Endpoints
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Developer Guide](./DEVELOPER_GUIDE.md)** | **[Website Management](./WEBSITE_MANAGEMENT_GUIDE.md)**
+
 **Base URL**: `http://localhost:3000/api/v1`
 
 ---
