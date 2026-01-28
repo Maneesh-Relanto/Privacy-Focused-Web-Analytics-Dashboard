@@ -91,11 +91,10 @@ export default function Index() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Powerful analytics, zero compromises
+              Built for developers and privacy
             </h2>
             <p className="text-xl text-muted-foreground">
-              Everything you need to understand your users, without tracking
-              them
+              Modern dashboard with secure authentication, clean design, and full source code transparency
             </p>
           </div>
 
