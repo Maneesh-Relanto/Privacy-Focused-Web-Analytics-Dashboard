@@ -408,9 +408,9 @@ PrivacyMetrics is built on the shoulders of giants:
 
 **A:** Yes! That's the entire point. Deploy anywhere that runs Node.js.
 
-### Q: What databases do you support?
+### Q: What databases will be supported?
 
-**A:** Currently optimized for PostgreSQL, with MySQL and SQLite support coming soon.
+**A:** Database integration is currently in development. We're designing the system to be database-agnostic and will support PostgreSQL, MySQL, and SQLite.
 
 ---
 
