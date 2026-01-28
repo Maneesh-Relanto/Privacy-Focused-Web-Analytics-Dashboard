@@ -10,6 +10,10 @@ import {
   ArrowRight,
   Github,
 } from "lucide-react";
+import { AnimatedDashboardPreview } from "@/components/hero/AnimatedDashboardPreview";
+import { AnimatedChartVisualization } from "@/components/hero/AnimatedChartVisualization";
+import { FloatingMetricCards } from "@/components/hero/FloatingMetricCards";
+import { InteractiveAnalyticsVisual } from "@/components/hero/InteractiveAnalyticsVisual";
 
 export default function Index() {
   return (
