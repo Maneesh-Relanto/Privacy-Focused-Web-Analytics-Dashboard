@@ -46,7 +46,7 @@ export function TopPagesChart({ data }: TopPagesChartProps) {
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={topPagesData}>
+      <BarChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
         <XAxis
           dataKey="page"
