@@ -2,6 +2,10 @@
 
 Welcome! This is your roadmap to understanding and using the Privacy-Focused Web Analytics Dashboard MVP.
 
+**[← Back to README](../README.md)** | **[View All Docs](#-complete-documentation-guide)**
+
+---
+
 ---
 
 ## 📚 Documentation Overview
