@@ -25,11 +25,11 @@ export function AnimatedChartVisualization() {
   const maxValue = 100;
 
   return (
-    <div className="w-full h-80 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg p-8 flex flex-col">
+    <div className="w-full h-80 bg-white rounded-2xl p-8 flex flex-col shadow-lg border border-gray-100">
       {/* Header */}
       <div className="mb-8">
-        <h3 className="text-white font-semibold mb-2">Page Views Trend</h3>
-        <p className="text-gray-400 text-sm">Last 7 days performance</p>
+        <h3 className="text-gray-900 font-bold text-lg mb-2">Page Views Trend</h3>
+        <p className="text-gray-500 text-sm">Last 7 days performance</p>
       </div>
 
       {/* Chart */}
@@ -38,15 +38,15 @@ export function AnimatedChartVisualization() {
           const height = (animatedValues[idx] / maxValue) * 100;
           return (
             <div key={idx} className="flex flex-col items-center gap-2 flex-1">
-              <div className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t transition-all duration-75" style={{ height: `${height}%` }}></div>
-              <span className="text-xs text-gray-400">{day}</span>
+              <div className="w-full bg-gradient-to-t from-blue-600 via-cyan-500 to-blue-400 rounded-lg transition-all duration-75 hover:shadow-md" style={{ height: `${height}%` }}></div>
+              <span className="text-xs text-gray-600 font-medium">{day}</span>
             </div>
           );
         })}
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between text-xs text-gray-400 mt-6 pt-6 border-t border-gray-700">
+      <div className="flex justify-between text-xs text-gray-500 mt-6 pt-6 border-t border-gray-200">
         <span>0</span>
         <span>50</span>
         <span>100</span>
