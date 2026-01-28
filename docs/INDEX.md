@@ -120,6 +120,7 @@ We have created comprehensive documentation to help you get started. Below is th
 |----------|---------|
 | [FILE_ORGANIZATION_NOTES.md](FILE_ORGANIZATION_NOTES.md) | Notes about file structure |
 | [FUSION_STARTER.md](FUSION_STARTER.md) | Original Fusion starter template notes |
+| [DOCUMENTATION_STRUCTURE.md](DOCUMENTATION_STRUCTURE.md) | Complete documentation map and navigation guide |
 
 ---
 
