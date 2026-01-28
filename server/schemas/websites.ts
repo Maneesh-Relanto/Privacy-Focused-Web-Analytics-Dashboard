@@ -10,7 +10,10 @@ export const createWebsiteSchema = z.object({
     .min(1, "Domain is required")
     .url("Invalid domain URL")
     .max(255, "Domain must be less than 255 characters"),
-  description: z.string().max(1000, "Description must be less than 1000 characters").optional(),
+  description: z
+    .string()
+    .max(1000, "Description must be less than 1000 characters")
+    .optional(),
 });
 
 export const updateWebsiteSchema = z.object({
@@ -25,7 +28,10 @@ export const updateWebsiteSchema = z.object({
     .url("Invalid domain URL")
     .max(255, "Domain must be less than 255 characters")
     .optional(),
-  description: z.string().max(1000, "Description must be less than 1000 characters").optional(),
+  description: z
+    .string()
+    .max(1000, "Description must be less than 1000 characters")
+    .optional(),
 });
 
 export type CreateWebsiteRequest = z.infer<typeof createWebsiteSchema>;

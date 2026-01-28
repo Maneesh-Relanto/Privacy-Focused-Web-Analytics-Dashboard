@@ -32,7 +32,8 @@ router.post(
         return;
       }
 
-      const { name, domain, description }: CreateWebsiteRequest = validation.data;
+      const { name, domain, description }: CreateWebsiteRequest =
+        validation.data;
       const userId = req.user?.userId;
 
       if (!userId) {
@@ -88,7 +89,7 @@ router.post(
         message: "Failed to create website",
       });
     }
-  }
+  },
 );
 
 /**
@@ -135,7 +136,7 @@ router.get(
         message: "Failed to fetch websites",
       });
     }
-  }
+  },
 );
 
 /**
@@ -190,7 +191,7 @@ router.get(
         message: "Failed to fetch website",
       });
     }
-  }
+  },
 );
 
 /**
@@ -266,7 +267,10 @@ router.put(
         data: {
           name: updateData.name || website.name,
           domain: updateData.domain || website.domain,
-          description: updateData.description !== undefined ? updateData.description : website.description,
+          description:
+            updateData.description !== undefined
+              ? updateData.description
+              : website.description,
         },
       });
 
@@ -287,7 +291,7 @@ router.put(
         message: "Failed to update website",
       });
     }
-  }
+  },
 );
 
 /**
@@ -341,7 +345,7 @@ router.delete(
         message: "Failed to delete website",
       });
     }
-  }
+  },
 );
 
 export default router;

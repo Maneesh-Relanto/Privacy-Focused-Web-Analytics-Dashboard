@@ -289,6 +289,7 @@ Each website is automatically assigned a unique tracking code when created. This
 **Example**: `pm-a7x9k2-1706425600000`
 
 You can use the tracking code in your website to:
+
 - Initialize the tracking script
 - Submit events to the analytics API
 - Validate incoming analytics data on the backend
