@@ -33,12 +33,12 @@ export function AnimatedChartVisualization() {
       </div>
 
       {/* Chart */}
-      <div className="flex items-end justify-around flex-1 gap-3 px-4">
+      <div className="flex items-end justify-around flex-1 gap-3 px-4 h-full">
         {days.map((day, idx) => {
           const height = (animatedValues[idx] / maxValue) * 100;
           return (
-            <div key={idx} className="flex flex-col items-center gap-2 flex-1">
-              <div className="w-full bg-gradient-to-t from-blue-600 via-cyan-500 to-blue-400 rounded-lg transition-all duration-75 hover:shadow-md" style={{ height: `${height}%` }}></div>
+            <div key={idx} className="flex flex-col items-center gap-2 flex-1 h-full">
+              <div className="w-full bg-gradient-to-t from-blue-600 via-cyan-500 to-blue-400 rounded-lg transition-all duration-75 hover:shadow-md flex-1" style={{ height: `${height}%` }}></div>
               <span className="text-xs text-gray-600 font-medium">{day}</span>
             </div>
           );
