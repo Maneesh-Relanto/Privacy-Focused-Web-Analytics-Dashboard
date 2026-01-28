@@ -1,6 +1,8 @@
 # Backend Setup Guide - Phase 1 Week 1
 
-This guide walks you through setting up the authentication backend with PostgreSQL and Prisma ORM.
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Quick Start](./QUICK_START_AUTHENTICATION.md)** | **[API Docs](./API_DOCUMENTATION.md)**
+
+This guide walks you through setting up the authentication backend with SQLite and Prisma ORM.
 
 ---
 
