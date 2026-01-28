@@ -17,7 +17,7 @@ PrivacyMetrics exists to solve a critical problem in the web analytics space: **
 
 ### The Problem We Solve
 
-Traditional analytics platforms like Google Analytics require:
+Many traditional analytics platforms require:
 
 - ❌ Tracking users across multiple sites
 - ❌ Storing personal identifiable information (PII)
@@ -44,7 +44,7 @@ Traditional analytics platforms like Google Analytics require:
 
 ### 1. **Privacy First, Not an Afterthought**
 
-Unlike Google Analytics, we **never collect PII**. No cookies, no tracking pixels, no fingerprinting. Just clean, privacy-respecting analytics.
+Unlike most analytics platforms in the market, we **never collect PII**. No cookies, no tracking pixels, no fingerprinting. Just clean, privacy-respecting analytics.
 
 ```
 Traditional Analytics:
@@ -67,13 +67,13 @@ Your analytics stay on **your servers**. No third-party vendor access. No data e
 
 **Only 2KB** of JavaScript vs 100KB+ for traditional solutions.
 
-| Feature           | PrivacyMetrics | Google Analytics |
-| ----------------- | -------------- | ---------------- |
-| Script Size       | 2KB            | 100KB+           |
-| First Load Impact | Minimal        | Noticeable       |
-| CLS Impact        | None           | Potential        |
-| Privacy Compliant | Yes            | Requires Config  |
-| Self-Hosted       | Yes            | No               |
+| Feature           | PrivacyMetrics | Traditional Solutions |
+| ----------------- | -------------- | --------------------- |
+| Script Size       | 2KB            | 100KB+                |
+| First Load Impact | Minimal        | Noticeable            |
+| CLS Impact        | None           | Potential             |
+| Privacy Compliant | Yes            | Requires Configuration |
+| Self-Hosted       | Yes            | No                    |
 
 ### 4. **Compliance Built In**
 
@@ -424,9 +424,9 @@ PrivacyMetrics is built on the shoulders of giants:
 
 **A:** Yes! It's open source and MIT licensed. You can self-host for free. We also offer a managed hosting option for those who prefer it.
 
-### Q: Can I use it alongside Google Analytics?
+### Q: Can I use it alongside other analytics tools?
 
-**A:** Absolutely. Many projects use both. PrivacyMetrics gives you privacy-focused metrics while GA provides different insights.
+**A:** Absolutely. Many projects use multiple analytics platforms. PrivacyMetrics gives you privacy-focused metrics while complementing other analytics solutions.
 
 ### Q: How accurate are the analytics?
 
