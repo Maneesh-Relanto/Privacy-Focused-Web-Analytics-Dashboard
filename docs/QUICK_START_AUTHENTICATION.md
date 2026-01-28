@@ -1,5 +1,7 @@
 # Quick Start - Authentication API
 
+**[← Back to README](../README.md)** | **[Documentation Index](./INDEX.md)** | **[Backend Setup](./BACKEND_SETUP_GUIDE.md)** | **[API Docs](./API_DOCUMENTATION.md)**
+
 Get the authentication system up and running in 5 minutes.
 
 ---
