@@ -9,6 +9,8 @@ A development-stage analytics dashboard built with React, Express, and modern we
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react)](https://react.dev)
 [![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)](https://nodejs.org)
 
+**[📚 Documentation Index](#-documentation-hub)** | **[🚀 Quick Start](#-quick-start)** | **[🛠️ Tech Stack](#-tech-stack)**
+
 ---
 
 ## 📋 What This Project Is
