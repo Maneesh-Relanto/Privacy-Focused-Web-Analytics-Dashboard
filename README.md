@@ -114,6 +114,7 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 ### Metric Display
 
 The demo dashboard displays sample metrics including:
+
 - **Page Views**: Visual trends over time
 - **Unique Visitors**: Visitor count metrics
 - **Session Duration**: Time spent on site
@@ -232,6 +233,7 @@ For detailed setup instructions including production deployment, database setup,
 ## 📚 Documentation
 
 Start here for setup and deployment:
+
 - **[GETTING_STARTED.md](./GETTING_STARTED.md)** - Step-by-step setup guide for development and production
 
 Technical documentation is available in the `/docs` folder:

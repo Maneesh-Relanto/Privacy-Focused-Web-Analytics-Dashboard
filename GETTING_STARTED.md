@@ -59,6 +59,7 @@ pnpm install
 ```
 
 This command will:
+
 - Install all npm dependencies
 - Set up pre-commit hooks (if configured)
 - Prepare the development environment
@@ -72,6 +73,7 @@ pnpm typecheck
 ```
 
 This validates that TypeScript types are correct. If successful, you'll see:
+
 ```
 ✓ No type errors found
 ```
@@ -83,6 +85,7 @@ pnpm dev
 ```
 
 **Expected output**:
+
 ```
   VITE v7.1.2  ready in 369 ms
 
@@ -98,6 +101,7 @@ Open your browser and navigate to:
 - **Demo Dashboard**: http://localhost:8080/dashboard
 
 You should see:
+
 - A modern landing page with "PrivacyMetrics" branding
 - Navigation links (Features, Why Us, Demo)
 - A fully functional demo dashboard with charts and metrics
@@ -119,6 +123,7 @@ pnpm build
 ```
 
 This creates:
+
 - Client build in `dist/spa/`
 - Server build in `dist/server/`
 
@@ -133,11 +138,13 @@ The server will start on port 8080. Configure your reverse proxy (nginx, apache,
 #### 1.3 Deploy to Your Server
 
 1. Copy the entire project to your server:
+
    ```bash
    scp -r . user@your-server:/opt/privacy-metrics
    ```
 
 2. On your server, install and run:
+
    ```bash
    cd /opt/privacy-metrics
    pnpm install --prod  # Install only production dependencies
@@ -146,11 +153,12 @@ The server will start on port 8080. Configure your reverse proxy (nginx, apache,
    ```
 
 3. Configure a reverse proxy (nginx example):
+
    ```nginx
    server {
        listen 80;
        server_name analytics.yourdomain.com;
-   
+
        location / {
            proxy_pass http://localhost:8080;
            proxy_http_version 1.1;
@@ -188,7 +196,7 @@ Access the app at http://localhost:8080
 Create a `docker-compose.yml`:
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   privacy-metrics:
@@ -201,6 +209,7 @@ services:
 ```
 
 Run:
+
 ```bash
 docker-compose up -d
 ```
@@ -218,6 +227,7 @@ docker-compose up -d
 #### 3.2 Automatic Deployment
 
 Netlify automatically deploys when you push to `main` branch:
+
 - Build command: `pnpm build`
 - Publish directory: `dist/spa`
 
@@ -263,10 +273,11 @@ Tailwind colors are defined in `tailwind.config.ts`. To customize the theme:
 3. Restart dev server for changes to take effect
 
 Example:
+
 ```css
 :root {
-  --primary: 212 45% 35%;  /* Deep blue */
-  --accent: 268 85% 50%;   /* Vibrant purple */
+  --primary: 212 45% 35%; /* Deep blue */
+  --accent: 268 85% 50%; /* Vibrant purple */
 }
 ```
 
@@ -288,6 +299,7 @@ taskkill /PID <PID> /F
 ```
 
 Or run on a different port:
+
 ```bash
 PORT=3000 pnpm dev
 ```
@@ -375,6 +387,7 @@ pnpm dev
 **A:** Follow these steps:
 
 1. Create a new file in `client/pages/MyPage.tsx`:
+
 ```tsx
 export default function MyPage() {
   return <div>My Page Content</div>;
@@ -382,11 +395,12 @@ export default function MyPage() {
 ```
 
 2. Add route in `client/App.tsx`:
+
 ```tsx
 import MyPage from "./pages/MyPage";
 
 // In <Routes>:
-<Route path="/my-page" element={<MyPage />} />
+<Route path="/my-page" element={<MyPage />} />;
 ```
 
 3. Add navigation link in `client/pages/Index.tsx`
@@ -398,6 +412,7 @@ import MyPage from "./pages/MyPage";
 **A:** Follow these steps:
 
 1. Create route handler in `server/routes/my-endpoint.ts`:
+
 ```typescript
 import { RequestHandler } from "express";
 
@@ -407,6 +422,7 @@ export const handleMyEndpoint: RequestHandler = (req, res) => {
 ```
 
 2. Register in `server/index.ts`:
+
 ```typescript
 import { handleMyEndpoint } from "./routes/my-endpoint";
 
@@ -414,6 +430,7 @@ app.get("/api/my-endpoint", handleMyEndpoint);
 ```
 
 3. Call from React:
+
 ```typescript
 const response = await fetch("/api/my-endpoint");
 const data = await response.json();
@@ -447,6 +464,7 @@ PORT=8081 pnpm dev  # Instance 2
 ```
 
 With Docker:
+
 ```bash
 docker run -p 8080:8080 privacy-metrics:latest
 docker run -p 8081:8080 privacy-metrics:latest
@@ -468,30 +486,35 @@ pnpm start        # Run production server
 **A:** Node.js 22 LTS (Long Term Support) is recommended.
 
 Check compatibility:
+
 ```bash
 node --version  # Should be v22.x.x or higher
 ```
 
 ### Q: How do I set up a development team?
 
-**A:** 
+**A:**
 
 1. Each developer clones the repo:
+
    ```bash
    git clone <repository>
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    ```
 
 3. Create a feature branch:
+
    ```bash
    git checkout -b feature/my-feature
    ```
 
 4. Make changes and test locally:
+
    ```bash
    pnpm dev
    ```
