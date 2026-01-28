@@ -295,21 +295,6 @@ pnpm format.fix       # Format code with Prettier
 
 ---
 
-## 📈 Why Developers Are Choosing PrivacyMetrics
-
-> _"Finally, analytics that doesn't feel like we're spying on our users. PrivacyMetrics gives us the insights we need while respecting privacy."_ — Privacy-First Founder
-
-### The Developer Win
-
-- ✅ **No Compliance Headaches**: Built-in GDPR/CCPA compliance
-- ✅ **Full Transparency**: Open source, audit-friendly
-- ✅ **Lightweight**: Minimal performance impact
-- ✅ **Developer-Friendly**: TypeScript, REST API, good docs
-- ✅ **Cost-Effective**: Self-hosted or affordable managed hosting
-- ✅ **Future-Proof**: Own your data and code
-
----
-
 ## 💡 Getting Started with Development
 
 ### Setting Up Your Environment
@@ -421,14 +406,6 @@ PrivacyMetrics is built on the shoulders of giants:
 ### Q: What databases will be supported?
 
 **A:** Database integration is currently in development. We're designing the system to be database-agnostic and will support PostgreSQL, MySQL, and SQLite.
-
----
-
-## 📞 Support & Community
-
-- 💬 **Discussions**: Ask questions in GitHub Discussions
-- 🐛 **Bug Reports**: Create an issue on GitHub
-- 💡 **Feature Ideas**: Share your thoughts in discussions
 
 ---
 
