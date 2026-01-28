@@ -67,13 +67,13 @@ Your analytics stay on **your servers**. No third-party vendor access. No data e
 
 **Only 2KB** of JavaScript vs 100KB+ for traditional solutions.
 
-| Feature           | PrivacyMetrics | Traditional Solutions |
-| ----------------- | -------------- | --------------------- |
-| Script Size       | 2KB            | 100KB+                |
-| First Load Impact | Minimal        | Noticeable            |
-| CLS Impact        | None           | Potential             |
+| Feature           | PrivacyMetrics | Traditional Solutions  |
+| ----------------- | -------------- | ---------------------- |
+| Script Size       | 2KB            | 100KB+                 |
+| First Load Impact | Minimal        | Noticeable             |
+| CLS Impact        | None           | Potential              |
 | Privacy Compliant | Yes            | Requires Configuration |
-| Self-Hosted       | Yes            | No                    |
+| Self-Hosted       | Yes            | No                     |
 
 ### 4. **Compliance Built In**
 
