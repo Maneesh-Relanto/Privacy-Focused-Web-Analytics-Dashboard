@@ -162,12 +162,12 @@ export default function Dashboard() {
                   variant="outline"
                   size="icon"
                   onClick={handleRefresh}
-                  disabled={isLoading}
+                  disabled={loading}
                 >
                   <RefreshCw
                     className="h-4 w-4"
                     style={
-                      isLoading ? { animation: "spin 1s linear infinite" } : {}
+                      loading ? { animation: "spin 1s linear infinite" } : {}
                     }
                   />
                 </Button>
