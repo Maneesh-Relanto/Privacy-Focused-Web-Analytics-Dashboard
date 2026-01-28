@@ -186,6 +186,8 @@ Built with **production-ready** technologies:
 
 ## 🚀 Quick Start
 
+Get up and running in 5 minutes:
+
 ### 1. **Clone & Install**
 
 ```bash
@@ -194,33 +196,23 @@ cd privacy-metrics
 pnpm install
 ```
 
-### 2. **Development**
+### 2. **Start Development**
 
 ```bash
 pnpm dev
 # Runs on http://localhost:8080
 ```
 
-### 3. **View the Demo**
+### 3. **View the App**
 
-```
-Landing Page: http://localhost:8080/
-Dashboard:    http://localhost:8080/dashboard
-```
+- Landing Page: http://localhost:8080/
+- Dashboard: http://localhost:8080/dashboard
 
-### 4. **Build for Production**
+### Next Steps
 
-```bash
-pnpm build
-pnpm start
-```
+For detailed setup instructions including production deployment, database setup, Docker, and troubleshooting:
 
-### 5. **Deploy**
-
-- **Netlify**: Connect your GitHub repo, it deploys automatically
-- **Vercel**: One-click deployment
-- **Docker**: Build and run your own container
-- **Self-Hosted**: Deploy to any Node.js server
+👉 **[Read the Complete Getting Started Guide →](./GETTING_STARTED.md)**
 
 ---
 
