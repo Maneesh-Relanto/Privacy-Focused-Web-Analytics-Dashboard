@@ -71,8 +71,8 @@ export function InteractiveAnalyticsVisual() {
         <h3 className="text-gray-900 font-bold text-lg mb-4">
           Traffic Over Time
         </h3>
-        <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
-          <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+        <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 overflow-hidden">
+          <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
             {/* Grid lines */}
             {Array.from({ length: 5 }).map((_, i) => (
               <line
