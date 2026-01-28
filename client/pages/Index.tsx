@@ -44,16 +44,15 @@ export default function Index() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
-              Analytics that respect your
+              Privacy-focused analytics
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
                 {" "}
-                privacy
+                dashboard
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Track what matters most without sacrificing user privacy. Simple,
-              powerful, and completely privacy-focused analytics for modern web
-              applications.
+              A self-hosted analytics dashboard designed with privacy in mind.
+              View metrics, dive into data, and stay in control of your analytics infrastructure.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/dashboard">
