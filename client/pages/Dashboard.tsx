@@ -331,7 +331,7 @@ export default function Dashboard() {
                       <CardTitle>Device Distribution</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <DeviceDistributionChart />
+                      <DeviceDistributionChart data={dashboardData?.devices?.devices} />
                     </CardContent>
                   </Card>
 
