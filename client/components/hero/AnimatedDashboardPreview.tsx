@@ -64,12 +64,16 @@ export function AnimatedDashboardPreview() {
               }}
             >
               <div className="flex items-center justify-between mb-3">
-                <Icon className={`h-5 w-5 ${iconColors[metric.color as keyof typeof iconColors]}`} />
+                <Icon
+                  className={`h-5 w-5 ${iconColors[metric.color as keyof typeof iconColors]}`}
+                />
               </div>
               <div className="text-gray-600 text-xs font-semibold uppercase tracking-wide">
                 {metric.label}
               </div>
-              <div className={`${textColors[metric.color as keyof typeof textColors]} text-2xl font-bold mt-2`}>
+              <div
+                className={`${textColors[metric.color as keyof typeof textColors]} text-2xl font-bold mt-2`}
+              >
                 {metric.value}
               </div>
             </div>

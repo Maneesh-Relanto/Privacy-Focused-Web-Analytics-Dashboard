@@ -8,9 +8,7 @@ export function InteractiveAnalyticsVisual() {
   useEffect(() => {
     // Animate line chart
     const chartInterval = setInterval(() => {
-      setChartData((prev) =>
-        prev.map(() => Math.random() * 80 + 20)
-      );
+      setChartData((prev) => prev.map(() => Math.random() * 80 + 20));
     }, 3000);
 
     // Animate pie chart
@@ -50,7 +48,7 @@ export function InteractiveAnalyticsVisual() {
   const getArcPath = (
     startAngle: number,
     endAngle: number,
-    radius: number = 40
+    radius: number = 40,
   ) => {
     const start = {
       x: Math.cos((startAngle * Math.PI) / 180) * radius,
@@ -70,7 +68,9 @@ export function InteractiveAnalyticsVisual() {
     <div className="w-full h-80 bg-white rounded-2xl p-8 flex gap-8 shadow-lg border border-gray-100">
       {/* Line Chart */}
       <div className="flex-1 flex flex-col">
-        <h3 className="text-gray-900 font-bold text-lg mb-4">Traffic Over Time</h3>
+        <h3 className="text-gray-900 font-bold text-lg mb-4">
+          Traffic Over Time
+        </h3>
         <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
           <svg className="w-full h-full" preserveAspectRatio="none">
             {/* Grid lines */}
@@ -91,7 +91,7 @@ export function InteractiveAnalyticsVisual() {
               points={chartData
                 .map(
                   (val, idx) =>
-                    `${((idx / (chartData.length - 1)) * 100).toFixed(1)}% ${(100 - val).toFixed(1)}%`
+                    `${((idx / (chartData.length - 1)) * 100).toFixed(1)}% ${(100 - val).toFixed(1)}%`,
                 )
                 .join(" ")}
               fill="none"
@@ -154,15 +154,21 @@ export function InteractiveAnalyticsVisual() {
         <div className="text-xs text-gray-700 mt-4 space-y-1">
           <div>
             <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            <span className="font-semibold">Mobile: {percentages[0].toFixed(0)}%</span>
+            <span className="font-semibold">
+              Mobile: {percentages[0].toFixed(0)}%
+            </span>
           </div>
           <div>
             <span className="inline-block w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
-            <span className="font-semibold">Desktop: {percentages[1].toFixed(0)}%</span>
+            <span className="font-semibold">
+              Desktop: {percentages[1].toFixed(0)}%
+            </span>
           </div>
           <div>
             <span className="inline-block w-2 h-2 bg-pink-500 rounded-full mr-2"></span>
-            <span className="font-semibold">Tablet: {percentages[2].toFixed(0)}%</span>
+            <span className="font-semibold">
+              Tablet: {percentages[2].toFixed(0)}%
+            </span>
           </div>
         </div>
       </div>

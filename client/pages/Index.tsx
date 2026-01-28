@@ -96,7 +96,8 @@ export default function Index() {
               Dashboard Preview
             </h2>
             <p className="text-lg text-muted-foreground">
-              See your analytics metrics in real-time with an intuitive, clean interface
+              See your analytics metrics in real-time with an intuitive, clean
+              interface
             </p>
           </div>
           <AnimatedDashboardPreview />
@@ -141,7 +142,8 @@ export default function Index() {
               Multi-View Analytics
             </h2>
             <p className="text-lg text-muted-foreground">
-              Combine multiple chart types to understand your data comprehensively
+              Combine multiple chart types to understand your data
+              comprehensively
             </p>
           </div>
           <InteractiveAnalyticsVisual />

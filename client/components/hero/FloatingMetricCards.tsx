@@ -18,7 +18,7 @@ export function FloatingMetricCards() {
           x: pos.x + (Math.random() - 0.5) * 2,
           y: pos.y + (Math.random() - 0.5) * 2,
           rotation: pos.rotation + (Math.random() - 0.5) * 2,
-        }))
+        })),
       );
     }, 2000);
 
@@ -70,24 +70,28 @@ export function FloatingMetricCards() {
           const pos = positions[idx] || { x: 0, y: 0, rotation: 0 };
 
           const cardColorMap = {
-            'from-blue-500/20 to-blue-600/20': 'from-blue-100 to-cyan-100 border-blue-300',
-            'from-purple-500/20 to-purple-600/20': 'from-purple-100 to-pink-100 border-purple-300',
-            'from-green-500/20 to-green-600/20': 'from-green-100 to-emerald-100 border-green-300',
-            'from-orange-500/20 to-orange-600/20': 'from-orange-100 to-amber-100 border-orange-300',
+            "from-blue-500/20 to-blue-600/20":
+              "from-blue-100 to-cyan-100 border-blue-300",
+            "from-purple-500/20 to-purple-600/20":
+              "from-purple-100 to-pink-100 border-purple-300",
+            "from-green-500/20 to-green-600/20":
+              "from-green-100 to-emerald-100 border-green-300",
+            "from-orange-500/20 to-orange-600/20":
+              "from-orange-100 to-amber-100 border-orange-300",
           };
 
           const iconColorMap = {
-            'from-blue-500/20 to-blue-600/20': 'text-blue-600',
-            'from-purple-500/20 to-purple-600/20': 'text-purple-600',
-            'from-green-500/20 to-green-600/20': 'text-green-600',
-            'from-orange-500/20 to-orange-600/20': 'text-orange-600',
+            "from-blue-500/20 to-blue-600/20": "text-blue-600",
+            "from-purple-500/20 to-purple-600/20": "text-purple-600",
+            "from-green-500/20 to-green-600/20": "text-green-600",
+            "from-orange-500/20 to-orange-600/20": "text-orange-600",
           };
 
           const textColorMap = {
-            'from-blue-500/20 to-blue-600/20': 'text-blue-700',
-            'from-purple-500/20 to-purple-600/20': 'text-purple-700',
-            'from-green-500/20 to-green-600/20': 'text-green-700',
-            'from-orange-500/20 to-orange-600/20': 'text-orange-700',
+            "from-blue-500/20 to-blue-600/20": "text-blue-700",
+            "from-purple-500/20 to-purple-600/20": "text-purple-700",
+            "from-green-500/20 to-green-600/20": "text-green-700",
+            "from-orange-500/20 to-orange-600/20": "text-orange-700",
           };
 
           return (
@@ -100,10 +104,18 @@ export function FloatingMetricCards() {
                 transform: `translate(-50%, -50%) rotate(${pos.rotation}deg)`,
               }}
             >
-              <Icon className={`h-5 w-5 ${iconColorMap[card.color as keyof typeof iconColorMap]}`} />
+              <Icon
+                className={`h-5 w-5 ${iconColorMap[card.color as keyof typeof iconColorMap]}`}
+              />
               <div>
-                <div className="text-xs text-gray-600 font-semibold">{card.label}</div>
-                <div className={`text-lg font-bold ${textColorMap[card.color as keyof typeof textColorMap]}`}>{card.value}</div>
+                <div className="text-xs text-gray-600 font-semibold">
+                  {card.label}
+                </div>
+                <div
+                  className={`text-lg font-bold ${textColorMap[card.color as keyof typeof textColorMap]}`}
+                >
+                  {card.value}
+                </div>
               </div>
             </div>
           );
