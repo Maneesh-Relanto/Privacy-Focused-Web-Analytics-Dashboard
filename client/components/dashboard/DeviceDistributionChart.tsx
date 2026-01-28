@@ -43,7 +43,7 @@ export function DeviceDistributionChart({ data }: DeviceDistributionChartProps) 
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>
         <Pie
-          data={deviceData}
+          data={chartData}
           cx="50%"
           cy="50%"
           labelLine={false}
@@ -52,7 +52,7 @@ export function DeviceDistributionChart({ data }: DeviceDistributionChartProps) 
           fill="#8884d8"
           dataKey="value"
         >
-          {deviceData.map((entry, index) => (
+          {chartData.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.color} />
           ))}
         </Pie>
