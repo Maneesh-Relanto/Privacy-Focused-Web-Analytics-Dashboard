@@ -150,6 +150,7 @@ pnpm dev
 #### **Reference & Notes**
 - **[📝 File Organization Notes](./docs/FILE_ORGANIZATION_NOTES.md)** - Notes about file structure and organization
 - **[📚 Fusion Starter Notes](./docs/FUSION_STARTER.md)** - Original Fusion starter template reference
+- **[🗺️ Documentation Structure](./docs/DOCUMENTATION_STRUCTURE.md)** - Complete documentation map and navigation guide
 
 ### 🔍 Quick Document Overview
 
