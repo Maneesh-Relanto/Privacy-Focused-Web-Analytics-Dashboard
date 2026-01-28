@@ -1,9 +1,9 @@
-import { defineConfig } from '@prisma/internals';
+import { defineConfig } from "@prisma/internals";
 
 export default defineConfig({
   datasources: {
     db: {
-      fromEnvVar: 'DATABASE_URL',
+      fromEnvVar: "DATABASE_URL",
     },
   },
 });
