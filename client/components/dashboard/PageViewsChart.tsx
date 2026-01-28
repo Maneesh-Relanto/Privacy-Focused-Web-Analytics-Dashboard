@@ -30,7 +30,10 @@ const defaultPageViewsData = [
   { date: "Sun", views: 2100, visitors: 1000 },
 ];
 
-export function PageViewsChart({ variant = "pageviews", data }: PageViewsChartProps) {
+export function PageViewsChart({
+  variant = "pageviews",
+  data,
+}: PageViewsChartProps) {
   const chartData = data
     ? data.map((point) => ({
         date: point.date,

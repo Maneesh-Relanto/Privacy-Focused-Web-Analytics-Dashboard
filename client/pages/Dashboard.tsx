@@ -214,7 +214,9 @@ export default function Dashboard() {
                   <>
                     <MetricCard
                       title="Page Views"
-                      value={Math.round(dashboardData.metrics.pageViews).toLocaleString()}
+                      value={Math.round(
+                        dashboardData.metrics.pageViews,
+                      ).toLocaleString()}
                       icon={Eye}
                       trend={Math.round(dashboardData.metrics.pageViewsTrend)}
                       trendLabel="vs last period"
@@ -222,7 +224,9 @@ export default function Dashboard() {
                     />
                     <MetricCard
                       title="Unique Visitors"
-                      value={Math.round(dashboardData.metrics.uniqueVisitors).toLocaleString()}
+                      value={Math.round(
+                        dashboardData.metrics.uniqueVisitors,
+                      ).toLocaleString()}
                       icon={Users}
                       trend={Math.round(dashboardData.metrics.visitorsTrend)}
                       trendLabel="vs last period"
@@ -232,7 +236,9 @@ export default function Dashboard() {
                       title="Avg Session Duration"
                       value={`${Math.round(dashboardData.metrics.sessionDuration)}s`}
                       icon={Clock}
-                      trend={Math.round(dashboardData.metrics.sessionDurationTrend)}
+                      trend={Math.round(
+                        dashboardData.metrics.sessionDurationTrend,
+                      )}
                       trendLabel="vs last period"
                       color="green"
                     />
@@ -253,7 +259,10 @@ export default function Dashboard() {
               {loading ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {[1, 2].map((i) => (
-                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                    <div
+                      key={i}
+                      className="h-80 bg-muted rounded-lg animate-pulse"
+                    />
                   ))}
                 </div>
               ) : (
@@ -289,7 +298,10 @@ export default function Dashboard() {
               {loading ? (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {[1, 2].map((i) => (
-                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                    <div
+                      key={i}
+                      className="h-80 bg-muted rounded-lg animate-pulse"
+                    />
                   ))}
                 </div>
               ) : (
@@ -310,7 +322,9 @@ export default function Dashboard() {
                       <CardTitle>Top Referrers</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ReferrerChart data={dashboardData?.referrers?.referrers} />
+                      <ReferrerChart
+                        data={dashboardData?.referrers?.referrers}
+                      />
                     </CardContent>
                   </Card>
                 </div>
@@ -320,7 +334,10 @@ export default function Dashboard() {
               {loading ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[1, 2].map((i) => (
-                    <div key={i} className="h-80 bg-muted rounded-lg animate-pulse" />
+                    <div
+                      key={i}
+                      className="h-80 bg-muted rounded-lg animate-pulse"
+                    />
                   ))}
                 </div>
               ) : (
@@ -331,7 +348,9 @@ export default function Dashboard() {
                       <CardTitle>Device Distribution</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <DeviceDistributionChart data={dashboardData?.devices?.devices} />
+                      <DeviceDistributionChart
+                        data={dashboardData?.devices?.devices}
+                      />
                     </CardContent>
                   </Card>
 

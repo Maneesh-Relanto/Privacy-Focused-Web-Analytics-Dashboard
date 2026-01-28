@@ -29,7 +29,9 @@ const deviceColors: Record<string, string> = {
   tablet: "#10b981",
 };
 
-export function DeviceDistributionChart({ data }: DeviceDistributionChartProps) {
+export function DeviceDistributionChart({
+  data,
+}: DeviceDistributionChartProps) {
   const chartData = data
     ? data.map((device) => ({
         name: device.type.charAt(0).toUpperCase() + device.type.slice(1),
