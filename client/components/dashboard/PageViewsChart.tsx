@@ -10,11 +10,17 @@ import {
 } from "recharts";
 import { useTheme } from "@/hooks/useTheme";
 
-interface PageViewsChartProps {
-  variant?: "pageviews" | "visitors";
+interface ChartPoint {
+  date: string;
+  value: number;
 }
 
-const pageViewsData = [
+interface PageViewsChartProps {
+  variant?: "pageviews" | "visitors";
+  data?: ChartPoint[];
+}
+
+const defaultPageViewsData = [
   { date: "Mon", views: 2400, visitors: 1200 },
   { date: "Tue", views: 3210, visitors: 1500 },
   { date: "Wed", views: 2290, visitors: 1100 },
@@ -24,7 +30,14 @@ const pageViewsData = [
   { date: "Sun", views: 2100, visitors: 1000 },
 ];
 
-export function PageViewsChart({ variant = "pageviews" }: PageViewsChartProps) {
+export function PageViewsChart({ variant = "pageviews", data }: PageViewsChartProps) {
+  const chartData = data
+    ? data.map((point) => ({
+        date: point.date,
+        views: variant === "pageviews" ? point.value : undefined,
+        visitors: variant === "visitors" ? point.value : undefined,
+      }))
+    : defaultPageViewsData;
   const isDark = document.documentElement.classList.contains("dark");
 
   const colors = {
