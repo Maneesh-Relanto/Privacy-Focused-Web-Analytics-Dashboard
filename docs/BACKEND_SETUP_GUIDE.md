@@ -33,6 +33,7 @@ docker ps
 ```
 
 **Connection String for `.env`:**
+
 ```
 DATABASE_URL="postgresql://admin:password123@localhost:5432/analytics_db"
 ```
@@ -55,6 +56,7 @@ psql analytics_db -c "ALTER USER admin CREATEDB;"
 ```
 
 **Connection String for `.env`:**
+
 ```
 DATABASE_URL="postgresql://admin:password123@localhost:5432/analytics_db"
 ```
@@ -80,6 +82,7 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE analytics_db TO admin
 ```
 
 **Connection String for `.env`:**
+
 ```
 DATABASE_URL="postgresql://admin:password123@localhost:5432/analytics_db"
 ```
@@ -98,6 +101,7 @@ DATABASE_URL="postgresql://admin:password123@localhost:5432/analytics_db"
 3. pgAdmin will open after installation - you can use it to verify
 
 **Connection String for `.env`:**
+
 ```
 DATABASE_URL="postgresql://admin:password123@localhost:5432/analytics_db"
 ```
@@ -157,6 +161,7 @@ npx prisma db push --force-reset
 ```
 
 **What this does:**
+
 1. Creates all tables based on `prisma/schema.prisma`
 2. Generates Prisma Client for queries
 3. Creates `.prisma/migrations/` folder with migration history
@@ -182,36 +187,37 @@ npx prisma studio
 Create a test file `test-db.ts`:
 
 ```typescript
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
   // Test connection
-  const userCount = await prisma.user.count()
-  console.log(`✅ Connected to database. Users: ${userCount}`)
-  
+  const userCount = await prisma.user.count();
+  console.log(`✅ Connected to database. Users: ${userCount}`);
+
   // Create a test user
   const user = await prisma.user.create({
     data: {
-      email: 'test@example.com',
-      name: 'Test User',
-      password: 'hashed_password_here'
-    }
-  })
-  console.log('✅ Test user created:', user.id)
-  
+      email: "test@example.com",
+      name: "Test User",
+      password: "hashed_password_here",
+    },
+  });
+  console.log("✅ Test user created:", user.id);
+
   // Clean up
-  await prisma.user.delete({ where: { id: user.id } })
-  console.log('✅ Test user deleted')
+  await prisma.user.delete({ where: { id: user.id } });
+  console.log("✅ Test user deleted");
 }
 
 main()
   .catch(console.error)
-  .finally(() => prisma.$disconnect())
+  .finally(() => prisma.$disconnect());
 ```
 
 Run it:
+
 ```bash
 npx tsx test-db.ts
 ```
@@ -223,30 +229,37 @@ npx tsx test-db.ts
 Your database has these key tables:
 
 ### **users**
+
 - Stores user accounts
 - Fields: id, email, password, apiKey, createdAt, etc.
 
 ### **websites**
+
 - Tracks different domains users are monitoring
 - Fields: id, userId, domain, trackingCode, etc.
 
 ### **events**
+
 - Raw analytics events from websites
 - Fields: id, websiteId, eventType, pageUrl, timestamp, properties, etc.
 
 ### **sessions**
+
 - User sessions grouped by visitor
 - Fields: id, websiteId, startTime, endTime, duration, etc.
 
 ### **visitors**
+
 - Anonymous visitor profiles
 - Fields: id, websiteId, fingerprint, pageViews, etc.
 
 ### **aggregated_metrics**
+
 - Pre-calculated hourly/daily metrics for performance
 - Fields: id, websiteId, bucket, pageViews, uniqueVisitors, etc.
 
 ### **page_analytics**
+
 - Per-page statistics
 - Fields: id, websiteId, pageUrl, views, bounceRate, etc.
 
@@ -255,10 +268,13 @@ Your database has these key tables:
 ## Troubleshooting
 
 ### Connection Refused
+
 ```
 Error: connect ECONNREFUSED 127.0.0.1:5432
 ```
+
 **Solution**: Ensure PostgreSQL is running
+
 ```bash
 # macOS
 brew services list | grep postgresql
@@ -271,10 +287,13 @@ docker ps | grep postgres
 ```
 
 ### Database Already Exists
+
 ```
 error: database "analytics_db" already exists
 ```
+
 **Solution**: Drop and recreate
+
 ```bash
 # Remove the container (Docker)
 docker rm postgres-analytics
@@ -284,10 +303,13 @@ sudo -u postgres dropdb analytics_db
 ```
 
 ### Schema Mismatch
+
 ```
 Prisma schema out of sync with database
 ```
-**Solution**: 
+
+**Solution**:
+
 ```bash
 # Reset everything
 npx prisma migrate reset
@@ -297,10 +319,13 @@ npx prisma db push --force-reset
 ```
 
 ### Prisma Client Not Generated
+
 ```
 Cannot find module '@prisma/client'
 ```
+
 **Solution**:
+
 ```bash
 npm install @prisma/client
 npx prisma generate
@@ -352,10 +377,12 @@ npx prisma format
 ## Security Notes
 
 **For Development:**
+
 - Using default credentials in `.env` is fine
 - Keep `.env` in `.gitignore` (already done)
 
 **For Production:**
+
 - Use strong passwords: `pwgen 32 1` or generate with `openssl rand -base64 32`
 - Store credentials in environment variables or secrets manager
 - Use connection pooling (PgBouncer)
@@ -364,6 +391,7 @@ npx prisma format
 - Use read replicas for high availability
 
 **Connection String Format (Production):**
+
 ```
 postgresql://user:password@host:port/database?sslmode=require&schema=public
 ```

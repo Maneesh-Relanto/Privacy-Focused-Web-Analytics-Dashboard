@@ -1,12 +1,13 @@
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-key-change-in-production'
-const JWT_EXPIRY = process.env.JWT_EXPIRY || '7d'
+const JWT_SECRET =
+  process.env.JWT_SECRET || "dev-secret-key-change-in-production";
+const JWT_EXPIRY = process.env.JWT_EXPIRY || "7d";
 
 export interface JWTPayload {
-  userId: string
-  email: string
+  userId: string;
+  email: string;
 }
 
 /**
@@ -15,8 +16,8 @@ export interface JWTPayload {
  * @returns Hashed password
  */
 export async function hashPassword(password: string): Promise<string> {
-  const salt = await bcrypt.genSalt(10)
-  return bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
 }
 
 /**
@@ -25,8 +26,11 @@ export async function hashPassword(password: string): Promise<string> {
  * @param hash Bcrypt hash
  * @returns True if password matches
  */
-export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return bcrypt.compare(password, hash)
+export async function verifyPassword(
+  password: string,
+  hash: string,
+): Promise<boolean> {
+  return bcrypt.compare(password, hash);
 }
 
 /**
@@ -35,7 +39,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
  * @returns JWT token string
  */
 export function generateToken(payload: JWTPayload): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY })
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY });
 }
 
 /**
@@ -45,10 +49,10 @@ export function generateToken(payload: JWTPayload): string {
  */
 export function verifyToken(token: string): JWTPayload | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload
-    return decoded
+    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
+    return decoded;
   } catch (error) {
-    return null
+    return null;
   }
 }
 
@@ -58,12 +62,13 @@ export function verifyToken(token: string): JWTPayload | null {
  * @returns Random API key
  */
 export function generateApiKey(): string {
-  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  let result = 'pk_'
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let result = "pk_";
   for (let i = 0; i < 32; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length))
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return result
+  return result;
 }
 
 /**
@@ -72,8 +77,8 @@ export function generateApiKey(): string {
  * @returns Hashed API key
  */
 export async function hashApiKey(apiKey: string): Promise<string> {
-  const salt = await bcrypt.genSalt(10)
-  return bcrypt.hash(apiKey, salt)
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(apiKey, salt);
 }
 
 /**
@@ -82,8 +87,11 @@ export async function hashApiKey(apiKey: string): Promise<string> {
  * @param hash Bcrypt hash
  * @returns True if API key matches
  */
-export async function verifyApiKey(apiKey: string, hash: string): Promise<boolean> {
-  return bcrypt.compare(apiKey, hash)
+export async function verifyApiKey(
+  apiKey: string,
+  hash: string,
+): Promise<boolean> {
+  return bcrypt.compare(apiKey, hash);
 }
 
 /**
@@ -92,8 +100,8 @@ export async function verifyApiKey(apiKey: string, hash: string): Promise<boolea
  * @returns True if valid email
  */
 export function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 /**
@@ -103,16 +111,16 @@ export function isValidEmail(email: string): boolean {
  */
 export function validatePasswordStrength(password: string): string {
   if (password.length < 8) {
-    return 'Password must be at least 8 characters long'
+    return "Password must be at least 8 characters long";
   }
   if (!/[A-Z]/.test(password)) {
-    return 'Password must contain at least one uppercase letter'
+    return "Password must contain at least one uppercase letter";
   }
   if (!/[a-z]/.test(password)) {
-    return 'Password must contain at least one lowercase letter'
+    return "Password must contain at least one lowercase letter";
   }
   if (!/[0-9]/.test(password)) {
-    return 'Password must contain at least one number'
+    return "Password must contain at least one number";
   }
-  return ''
+  return "";
 }
