@@ -7,13 +7,36 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const deviceData = [
+interface DeviceStats {
+  type: "mobile" | "desktop" | "tablet";
+  count: number;
+  percentage: number;
+}
+
+interface DeviceDistributionChartProps {
+  data?: DeviceStats[];
+}
+
+const defaultDeviceData = [
   { name: "Mobile", value: 45, color: "#3b82f6" },
   { name: "Desktop", value: 40, color: "#a855f7" },
   { name: "Tablet", value: 15, color: "#10b981" },
 ];
 
-export function DeviceDistributionChart() {
+const deviceColors: Record<string, string> = {
+  mobile: "#3b82f6",
+  desktop: "#a855f7",
+  tablet: "#10b981",
+};
+
+export function DeviceDistributionChart({ data }: DeviceDistributionChartProps) {
+  const chartData = data
+    ? data.map((device) => ({
+        name: device.type.charAt(0).toUpperCase() + device.type.slice(1),
+        value: device.percentage,
+        color: deviceColors[device.type],
+      }))
+    : defaultDeviceData;
   const isDark = document.documentElement.classList.contains("dark");
 
   return (
