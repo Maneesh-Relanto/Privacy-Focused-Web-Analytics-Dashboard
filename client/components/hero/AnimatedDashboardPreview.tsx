@@ -16,13 +16,13 @@ export function AnimatedDashboardPreview() {
   ];
 
   return (
-    <div className="w-full h-80 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg p-8 flex flex-col">
+    <div className="w-full h-80 bg-white rounded-2xl p-8 flex flex-col shadow-lg border border-gray-100">
       {/* Dashboard Header */}
       <div className="flex items-center justify-between mb-8">
-        <h3 className="text-white font-semibold">Analytics Dashboard</h3>
+        <h3 className="text-gray-900 font-bold text-lg">Analytics Dashboard</h3>
         <div className="flex gap-2">
           <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-          <span className="text-xs text-gray-400">Live</span>
+          <span className="text-xs text-gray-500">Live</span>
         </div>
       </div>
 
@@ -31,16 +31,30 @@ export function AnimatedDashboardPreview() {
         {metrics.map((metric, idx) => {
           const Icon = metric.icon;
           const colorClasses = {
-            blue: "from-blue-500/20 to-blue-600/20",
-            purple: "from-purple-500/20 to-purple-600/20",
-            green: "from-green-500/20 to-green-600/20",
-            orange: "from-orange-500/20 to-orange-600/20",
+            blue: "from-blue-50 to-cyan-50 border-blue-200",
+            purple: "from-purple-50 to-pink-50 border-purple-200",
+            green: "from-green-50 to-emerald-50 border-green-200",
+            orange: "from-orange-50 to-amber-50 border-orange-200",
+          };
+
+          const iconColors = {
+            blue: "text-blue-600",
+            purple: "text-purple-600",
+            green: "text-green-600",
+            orange: "text-orange-600",
+          };
+
+          const textColors = {
+            blue: "text-blue-700",
+            purple: "text-purple-700",
+            green: "text-green-700",
+            orange: "text-orange-700",
           };
 
           return (
             <div
               key={idx}
-              className={`bg-gradient-to-br ${colorClasses[metric.color as keyof typeof colorClasses]} border border-gray-700 rounded-lg p-4 transition-all duration-500 transform ${
+              className={`bg-gradient-to-br ${colorClasses[metric.color as keyof typeof colorClasses]} border rounded-xl p-6 transition-all duration-500 transform hover:shadow-md ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -49,13 +63,13 @@ export function AnimatedDashboardPreview() {
                 transitionDelay: `${idx * 150}ms`,
               }}
             >
-              <div className="flex items-center justify-between mb-2">
-                <Icon className="h-4 w-4 text-gray-300" />
+              <div className="flex items-center justify-between mb-3">
+                <Icon className={`h-5 w-5 ${iconColors[metric.color as keyof typeof iconColors]}`} />
               </div>
-              <div className="text-gray-400 text-xs font-medium">
+              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wide">
                 {metric.label}
               </div>
-              <div className="text-white text-lg font-bold mt-1">
+              <div className={`${textColors[metric.color as keyof typeof textColors]} text-2xl font-bold mt-2`}>
                 {metric.value}
               </div>
             </div>
