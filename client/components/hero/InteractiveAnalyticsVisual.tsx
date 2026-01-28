@@ -67,11 +67,11 @@ export function InteractiveAnalyticsVisual() {
   };
 
   return (
-    <div className="w-full h-80 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg p-8 flex gap-8">
+    <div className="w-full h-80 bg-white rounded-2xl p-8 flex gap-8 shadow-lg border border-gray-100">
       {/* Line Chart */}
       <div className="flex-1 flex flex-col">
-        <h3 className="text-white font-semibold mb-4">Traffic Over Time</h3>
-        <div className="flex-1 relative bg-slate-800/50 rounded p-4">
+        <h3 className="text-gray-900 font-bold text-lg mb-4">Traffic Over Time</h3>
+        <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
           <svg className="w-full h-full" preserveAspectRatio="none">
             {/* Grid lines */}
             {Array.from({ length: 5 }).map((_, i) => (
