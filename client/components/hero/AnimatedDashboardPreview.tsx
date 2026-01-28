@@ -54,7 +54,7 @@ export function AnimatedDashboardPreview() {
           return (
             <div
               key={idx}
-              className={`bg-gradient-to-br ${colorClasses[metric.color as keyof typeof colorClasses]} border rounded-xl p-6 transition-all duration-500 transform hover:shadow-md ${
+              className={`bg-gradient-to-br ${colorClasses[metric.color as keyof typeof colorClasses]} border rounded-xl p-4 transition-all duration-500 transform hover:shadow-md ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -63,16 +63,14 @@ export function AnimatedDashboardPreview() {
                 transitionDelay: `${idx * 150}ms`,
               }}
             >
-              <div className="flex items-center justify-between mb-3">
-                <Icon
-                  className={`h-5 w-5 ${iconColors[metric.color as keyof typeof iconColors]}`}
-                />
-              </div>
-              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wide">
+              <Icon
+                className={`h-5 w-5 ${iconColors[metric.color as keyof typeof iconColors]} mb-2`}
+              />
+              <div className="text-gray-600 text-xs font-semibold uppercase tracking-wide leading-tight">
                 {metric.label}
               </div>
               <div
-                className={`${textColors[metric.color as keyof typeof textColors]} text-2xl font-bold mt-2`}
+                className={`${textColors[metric.color as keyof typeof textColors]} text-xl font-bold mt-1`}
               >
                 {metric.value}
               </div>
