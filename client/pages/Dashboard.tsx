@@ -178,51 +178,75 @@ export default function Dashboard() {
           {/* Dashboard Content */}
           <div className="flex-1 overflow-auto">
             <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
-              {/* Real-time Status */}
-              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-medium text-sm">
-                    Live (Updated 2 minutes ago)
+              {/* Error State */}
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+                  <span className="font-medium text-sm text-red-800">
+                    Error loading dashboard: {error}
                   </span>
                 </div>
-              </div>
+              )}
+
+              {/* Real-time Status */}
+              {!error && (
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
+                    <span className="font-medium text-sm">
+                      {loading ? "Loading data..." : "Live"}
+                    </span>
+                  </div>
+                </div>
+              )}
 
               {/* Metric Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <MetricCard
-                  title="Page Views"
-                  value="45,231"
-                  icon={Eye}
-                  trend={12}
-                  trendLabel="vs last period"
-                  color="blue"
-                />
-                <MetricCard
-                  title="Unique Visitors"
-                  value="12,847"
-                  icon={Users}
-                  trend={8}
-                  trendLabel="vs last period"
-                  color="purple"
-                />
-                <MetricCard
-                  title="Avg Session Duration"
-                  value="3m 42s"
-                  icon={Clock}
-                  trend={-2}
-                  trendLabel="vs last period"
-                  color="green"
-                />
-                <MetricCard
-                  title="Bounce Rate"
-                  value="32.4%"
-                  icon={TrendingUp}
-                  trend={5}
-                  trendLabel="vs last period"
-                  color="orange"
-                  invertTrend
-                />
+                {loading ? (
+                  <>
+                    {[1, 2, 3, 4].map((i) => (
+                      <div
+                        key={i}
+                        className="h-32 bg-muted rounded-lg animate-pulse"
+                      />
+                    ))}
+                  </>
+                ) : dashboardData?.metrics ? (
+                  <>
+                    <MetricCard
+                      title="Page Views"
+                      value={Math.round(dashboardData.metrics.pageViews).toLocaleString()}
+                      icon={Eye}
+                      trend={Math.round(dashboardData.metrics.pageViewsTrend)}
+                      trendLabel="vs last period"
+                      color="blue"
+                    />
+                    <MetricCard
+                      title="Unique Visitors"
+                      value={Math.round(dashboardData.metrics.uniqueVisitors).toLocaleString()}
+                      icon={Users}
+                      trend={Math.round(dashboardData.metrics.visitorsTrend)}
+                      trendLabel="vs last period"
+                      color="purple"
+                    />
+                    <MetricCard
+                      title="Avg Session Duration"
+                      value={`${Math.round(dashboardData.metrics.sessionDuration)}s`}
+                      icon={Clock}
+                      trend={Math.round(dashboardData.metrics.sessionDurationTrend)}
+                      trendLabel="vs last period"
+                      color="green"
+                    />
+                    <MetricCard
+                      title="Bounce Rate"
+                      value={`${dashboardData.metrics.bounceRate.toFixed(1)}%`}
+                      icon={TrendingUp}
+                      trend={Math.round(dashboardData.metrics.bounceRateTrend)}
+                      trendLabel="vs last period"
+                      color="orange"
+                      invertTrend
+                    />
+                  </>
+                ) : null}
               </div>
 
               {/* Charts Section */}
