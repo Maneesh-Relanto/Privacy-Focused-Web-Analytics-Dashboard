@@ -1,0 +1,208 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users table - for account management
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String    // bcrypt hashed password
+  name      String?
+  apiKey    String?   @unique @db.VarChar(255)
+  apiKeyHash String?   @unique // hash of API key for lookups
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isActive  Boolean   @default(true)
+  
+  websites  Website[]
+  sessions  Session[]
+
+  @@map("users")
+}
+
+// Websites table - tracks different domains
+model Website {
+  id        String    @id @default(cuid())
+  userId    String
+  name      String    // e.g., "My Blog", "Company Site"
+  domain    String    @unique // e.g., "myblog.com"
+  trackingCode String @unique @db.VarChar(50) // unique identifier for tracking script
+  publicUrl String?   // public dashboard URL if shared
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  isActive  Boolean   @default(true)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  events    Event[]
+  sessions  Session[]
+  visitors  Visitor[]
+  pageAnalytics PageAnalytics[]
+  aggregatedMetrics AggregatedMetrics[]
+
+  @@index([userId])
+  @@map("websites")
+}
+
+// Events table - raw event data
+model Event {
+  id        String    @id @default(cuid())
+  websiteId String
+  sessionId String?
+  visitorId String?
+  
+  // Event metadata
+  eventType String    // "pageview", "scroll", "click", etc.
+  pageUrl   String
+  referrer  String?
+  timestamp DateTime  @default(now())
+  
+  // Flexible event properties (JSONB)
+  properties Json?     // store custom event data
+  
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  session   Session?  @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  visitor   Visitor?  @relation(fields: [visitorId], references: [id], onDelete: SetNull)
+
+  @@index([websiteId])
+  @@index([sessionId])
+  @@index([visitorId])
+  @@index([timestamp])
+  @@index([pageUrl])
+  @@map("events")
+}
+
+// Sessions table - user session grouping
+model Session {
+  id        String    @id @default(cuid())
+  websiteId String
+  userId    String
+  visitorId String?
+  
+  // Session metadata
+  startTime DateTime  @default(now())
+  endTime   DateTime?
+  duration  Int?      // in seconds
+  pageCount Int       @default(0)
+  
+  // Device info
+  deviceType String?  // "mobile", "desktop", "tablet"
+  browser   String?
+  os        String?
+  
+  // Geo info
+  country   String?
+  city      String?
+  
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  visitor   Visitor?  @relation(fields: [visitorId], references: [id], onDelete: SetNull)
+  events    Event[]
+
+  @@index([websiteId])
+  @@index([userId])
+  @@index([visitorId])
+  @@index([startTime])
+  @@map("sessions")
+}
+
+// Visitors table - anonymous visitor profiles
+model Visitor {
+  id        String    @id @default(cuid())
+  websiteId String
+  
+  // Visitor fingerprint (hashed for privacy)
+  fingerprint String  // hash of: IP + User Agent + Accept-Language
+  
+  // Visitor metadata
+  firstSeen DateTime  @default(now())
+  lastSeen  DateTime  @updatedAt
+  
+  // Aggregated stats
+  pageViews Int       @default(0)
+  sessionCount Int    @default(0)
+  bounceCount Int     @default(0) // sessions with only 1 pageview
+  
+  // Geo info (from GeoIP)
+  country   String?
+  city      String?
+  
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  events    Event[]
+  sessions  Session[]
+
+  @@unique([websiteId, fingerprint])
+  @@index([websiteId])
+  @@index([firstSeen])
+  @@map("visitors")
+}
+
+// Aggregated Metrics table - pre-calculated hourly/daily metrics
+model AggregatedMetrics {
+  id        String    @id @default(cuid())
+  websiteId String
+  
+  // Time bucket (hourly or daily)
+  bucket    DateTime  // rounded to hour or day
+  period    String    // "hourly" or "daily"
+  
+  // Metrics
+  pageViews Int       @default(0)
+  uniqueVisitors Int  @default(0)
+  sessions  Int       @default(0)
+  bounceRate Float?   // percentage 0-100
+  avgSessionDuration Float? // in seconds
+  
+  // Device breakdown
+  mobileViews Int     @default(0)
+  desktopViews Int    @default(0)
+  tabletViews Int     @default(0)
+  
+  // Top traffic sources (stored as JSON)
+  topReferrers Json?  // [{referrer, count}, ...]
+  
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([websiteId, bucket, period])
+  @@index([websiteId])
+  @@index([bucket])
+  @@map("aggregated_metrics")
+}
+
+// Page Analytics table - per-page statistics
+model PageAnalytics {
+  id        String    @id @default(cuid())
+  websiteId String
+  
+  // Page info
+  pageUrl   String
+  pageTitle String?
+  
+  // Metrics
+  views     Int       @default(0)
+  uniqueVisitors Int  @default(0)
+  avgSessionDuration Float?
+  bounceRate Float?
+  exitRate  Float?
+  
+  // Top referrers for this page
+  topReferrers Json?  // [{referrer, count}, ...]
+  
+  website   Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([websiteId, pageUrl])
+  @@index([websiteId])
+  @@index([views])
+  @@map("page_analytics")
+}
