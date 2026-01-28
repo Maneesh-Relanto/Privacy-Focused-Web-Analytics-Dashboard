@@ -16,6 +16,7 @@
     "build:client": "vite build --config config/vite.config.ts",
     "build:server": "vite build --config config/vite.config.server.ts",
     "start": "node dist/server/node-build.mjs",
+    "deploy": "npm run build:client && node scripts/deploy.js",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc",
