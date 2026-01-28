@@ -72,33 +72,20 @@ export function InteractiveAnalyticsVisual() {
           Traffic Over Time
         </h3>
         <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4">
-          <svg className="w-full h-full" preserveAspectRatio="none">
+          <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
             {/* Grid lines */}
             {Array.from({ length: 5 }).map((_, i) => (
               <line
                 key={`grid-${i}`}
                 x1="0"
-                y1={`${(i * 100) / 4}%`}
-                x2="100%"
-                y2={`${(i * 100) / 4}%`}
+                y1={50 + i * 40}
+                x2="400"
+                y2={50 + i * 40}
                 stroke="rgb(59, 130, 246)"
                 strokeOpacity="0.1"
+                strokeWidth="1"
               />
             ))}
-
-            {/* Polyline chart */}
-            <polyline
-              points={chartData
-                .map(
-                  (val, idx) =>
-                    `${((idx / (chartData.length - 1)) * 100).toFixed(1)}% ${(100 - val).toFixed(1)}%`,
-                )
-                .join(" ")}
-              fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="2"
-              vectorEffect="non-scaling-stroke"
-            />
 
             {/* Gradient definition */}
             <defs>
@@ -108,17 +95,37 @@ export function InteractiveAnalyticsVisual() {
               </linearGradient>
             </defs>
 
+            {/* Polyline chart */}
+            <polyline
+              points={chartData
+                .map(
+                  (val, idx) => {
+                    const x = (idx / (chartData.length - 1)) * 380 + 10;
+                    const y = 150 - (val / 100) * 100;
+                    return `${x},${y}`;
+                  }
+                )
+                .join(" ")}
+              fill="none"
+              stroke="url(#gradient)"
+              strokeWidth="3"
+            />
+
             {/* Data points */}
-            {chartData.map((val, idx) => (
-              <circle
-                key={`point-${idx}`}
-                cx={`${(idx / (chartData.length - 1)) * 100}%`}
-                cy={`${100 - val}%`}
-                r="3"
-                fill="#3b82f6"
-                opacity="0.7"
-              />
-            ))}
+            {chartData.map((val, idx) => {
+              const x = (idx / (chartData.length - 1)) * 380 + 10;
+              const y = 150 - (val / 100) * 100;
+              return (
+                <circle
+                  key={`point-${idx}`}
+                  cx={x}
+                  cy={y}
+                  r="4"
+                  fill="#3b82f6"
+                  opacity="0.8"
+                />
+              );
+            })}
           </svg>
         </div>
       </div>
