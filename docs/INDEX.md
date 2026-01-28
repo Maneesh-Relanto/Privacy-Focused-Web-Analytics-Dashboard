@@ -273,5 +273,95 @@ If documentation is unclear:
 
 ---
 
-**Last Updated:** January 28, 2025  
+---
+
+## 🗺️ Documentation Structure Map
+
+```
+README.md (Start Here)
+├── docs/INDEX.md (This file - Navigation Hub)
+│
+├─ Quick Start Paths
+│  ├── docs/DEVELOPER_GUIDE.md → API_DOCUMENTATION.md → WEBSITE_MANAGEMENT_GUIDE.md
+│  ├── docs/BACKEND_SETUP_GUIDE.md → QUICK_START_AUTHENTICATION.md → API_DOCUMENTATION.md
+│  ├── docs/PROJECT_STRUCTURE.md → FRONTEND_BACKEND_INTEGRATION_GUIDE.md
+│  └── docs/GITHUB_PAGES_DEPLOYMENT.md → CODE_QUALITY_SCANNING_GUIDE.md
+│
+├─ Core Documentation
+│  ├── docs/DEVELOPER_GUIDE.md (Complete setup & usage)
+│  ├── docs/API_DOCUMENTATION.md (All endpoints)
+│  └── docs/PROJECT_STRUCTURE.md (Code organization)
+│
+├─ Backend & Setup
+│  ├── docs/BACKEND_SETUP_GUIDE.md (Database setup)
+│  ├── docs/QUICK_START_AUTHENTICATION.md (Fast auth)
+│  └── docs/WEBSITE_MANAGEMENT_GUIDE.md (Website CRUD)
+│
+├─ Frontend & Integration
+│  ├── docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md (API integration)
+│  └── docs/PROJECT_STRUCTURE.md (Frontend architecture)
+│
+├─ Deployment & Infrastructure
+│  ├── docs/GITHUB_PAGES_DEPLOYMENT.md (GitHub Pages)
+│  └── docs/CODE_QUALITY_SCANNING_GUIDE.md (Code quality)
+│
+└─ Reference
+   ├── docs/FILE_ORGANIZATION_NOTES.md (File structure)
+   └── docs/FUSION_STARTER.md (Template reference)
+```
+
+## 🔄 How Documents Link Together
+
+Each documentation file has **navigation links** at the top to:
+- Return to README.md
+- Access the Documentation Index (this file)
+- Jump to related guides
+- View previous/next relevant topics
+
+**Example:**
+```
+[← Back to README](../README.md) | [Documentation Index](./INDEX.md) | [Related Doc](./RELATED.md)
+```
+
+This makes it easy to:
+- Follow a learning path
+- Jump between related documents
+- Always know where you are
+- Quickly return to the main guide
+
+---
+
+## 🎓 Learning Paths with Direct Links
+
+### Path 1: Complete Beginner
+1. [README.md](../README.md) - Project overview (10 min)
+2. [docs/INDEX.md](./INDEX.md) - Where you are now (5 min)
+3. [docs/DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) - Full setup (30 min)
+4. [docs/API_DOCUMENTATION.md](./API_DOCUMENTATION.md) - API reference (15 min)
+**Total: ~1 hour to be fully operational**
+
+### Path 2: Backend Focus
+1. [docs/BACKEND_SETUP_GUIDE.md](./BACKEND_SETUP_GUIDE.md) - Database setup (20 min)
+2. [docs/QUICK_START_AUTHENTICATION.md](./QUICK_START_AUTHENTICATION.md) - Auth setup (10 min)
+3. [docs/API_DOCUMENTATION.md](./API_DOCUMENTATION.md) - All endpoints (20 min)
+4. [docs/WEBSITE_MANAGEMENT_GUIDE.md](./WEBSITE_MANAGEMENT_GUIDE.md) - CRUD ops (15 min)
+**Total: ~1 hour**
+
+### Path 3: Frontend Focus
+1. [docs/PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) - Code structure (15 min)
+2. [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./FRONTEND_BACKEND_INTEGRATION_GUIDE.md) - Integration (20 min)
+3. [docs/DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) - Full context (30 min)
+**Total: ~1 hour**
+
+### Path 4: DevOps/Deployment
+1. [docs/GITHUB_PAGES_DEPLOYMENT.md](./GITHUB_PAGES_DEPLOYMENT.md) - Deploy landing page (15 min)
+2. [docs/CODE_QUALITY_SCANNING_GUIDE.md](./CODE_QUALITY_SCANNING_GUIDE.md) - Code quality (20 min)
+3. [docs/DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) - Production section (15 min)
+**Total: ~50 minutes**
+
+---
+
+**Last Updated:** January 28, 2025
 **Project Status:** MVP Phase 1 (Core Features Implemented)
+
+**[← Back to README](../README.md)**
