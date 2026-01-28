@@ -18,6 +18,7 @@ PrivacyMetrics exists to solve a critical problem in the web analytics space: **
 ### The Problem We Solve
 
 Traditional analytics platforms like Google Analytics require:
+
 - ❌ Tracking users across multiple sites
 - ❌ Storing personal identifiable information (PII)
 - ❌ Complex compliance with GDPR, CCPA, and privacy regulations
@@ -28,6 +29,7 @@ Traditional analytics platforms like Google Analytics require:
 ### Our Vision
 
 **Developers deserve analytics that:**
+
 - ✅ Respects user privacy by default
 - ✅ Is privacy-compliant out of the box (GDPR, CCPA ready)
 - ✅ Can be self-hosted on your own infrastructure
@@ -41,6 +43,7 @@ Traditional analytics platforms like Google Analytics require:
 ## 🚀 Why PrivacyMetrics?
 
 ### 1. **Privacy First, Not an Afterthought**
+
 Unlike Google Analytics, we **never collect PII**. No cookies, no tracking pixels, no fingerprinting. Just clean, privacy-respecting analytics.
 
 ```
@@ -52,6 +55,7 @@ User → Minimal Event → Your Server → Anonymous Analytics → Complete Cont
 ```
 
 ### 2. **Complete Data Ownership**
+
 Your analytics stay on **your servers**. No third-party vendor access. No data exports for compliance. No surprise policy changes.
 
 - Host on your own infrastructure
@@ -60,17 +64,19 @@ Your analytics stay on **your servers**. No third-party vendor access. No data e
 - Full control over data retention and deletion
 
 ### 3. **Lightweight & Fast**
+
 **Only 2KB** of JavaScript vs 100KB+ for traditional solutions.
 
-| Feature | PrivacyMetrics | Google Analytics |
-|---------|---|---|
-| Script Size | 2KB | 100KB+ |
-| First Load Impact | Minimal | Noticeable |
-| CLS Impact | None | Potential |
-| Privacy Compliant | Yes | Requires Config |
-| Self-Hosted | Yes | No |
+| Feature           | PrivacyMetrics | Google Analytics |
+| ----------------- | -------------- | ---------------- |
+| Script Size       | 2KB            | 100KB+           |
+| First Load Impact | Minimal        | Noticeable       |
+| CLS Impact        | None           | Potential        |
+| Privacy Compliant | Yes            | Requires Config  |
+| Self-Hosted       | Yes            | No               |
 
 ### 4. **Compliance Built In**
+
 - ✅ GDPR compliant by default (no consent banner needed)
 - ✅ CCPA ready
 - ✅ No cross-site tracking
@@ -78,7 +84,9 @@ Your analytics stay on **your servers**. No third-party vendor access. No data e
 - ✅ Transparent data handling
 
 ### 5. **Beautiful, Intuitive Dashboard**
+
 Monitor all key metrics in a **single, clean interface**:
+
 - Real-time visitor counts
 - Page views and trends
 - Traffic sources
@@ -87,6 +95,7 @@ Monitor all key metrics in a **single, clean interface**:
 - Top pages and referrers
 
 ### 6. **Open Source**
+
 Fully transparent source code. No hidden tracking, no proprietary algorithms. Fork, modify, audit, and deploy with confidence.
 
 ---
@@ -94,6 +103,7 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 ## ✨ Key Features
 
 ### Analytics Metrics
+
 - **Page Views**: Track all page visits with real-time updates
 - **Unique Visitors**: Identify returning vs new visitors (privacy-respecting)
 - **Session Duration**: Understand user engagement
@@ -103,6 +113,7 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 - **Device Breakdown**: Responsive design insights
 
 ### Developer Experience
+
 - **REST API**: Integrate with your own tools
 - **Webhook Support**: Real-time event notifications
 - **Custom Events**: Track business-specific metrics
@@ -111,6 +122,7 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 - **Docker Ready**: One-command deployment
 
 ### Dashboard Features
+
 - 📊 **Real-time Updates**: See metrics as they happen
 - 🌙 **Dark Mode**: Easy on the eyes
 - 📱 **Responsive Design**: Works on all devices
@@ -124,6 +136,7 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 ## 📊 Use Cases
 
 ### 1. **Privacy-Conscious SaaS**
+
 Provide transparent analytics to your customers without compromising their privacy.
 
 ```
@@ -137,15 +150,19 @@ Your Customer's Websites
 ```
 
 ### 2. **Enterprise Analytics**
+
 Self-host on your own infrastructure for complete compliance with enterprise security policies.
 
 ### 3. **Indie Developers & Startups**
+
 Simple setup, affordable hosting, and full transparency. No vendor lock-in.
 
 ### 4. **GDPR/Privacy-Required Markets**
+
 Industries like healthcare, finance, and EU-based companies can now use analytics without legal headaches.
 
 ### 5. **Open Source Projects**
+
 Track usage of your open source projects without tracking users.
 
 ---
@@ -170,6 +187,7 @@ Built with **production-ready** technologies:
 ## 🚀 Quick Start
 
 ### 1. **Clone & Install**
+
 ```bash
 git clone <repository>
 cd privacy-metrics
@@ -177,24 +195,28 @@ pnpm install
 ```
 
 ### 2. **Development**
+
 ```bash
 pnpm dev
 # Runs on http://localhost:8080
 ```
 
 ### 3. **View the Demo**
+
 ```
 Landing Page: http://localhost:8080/
 Dashboard:    http://localhost:8080/dashboard
 ```
 
 ### 4. **Build for Production**
+
 ```bash
 pnpm build
 pnpm start
 ```
 
 ### 5. **Deploy**
+
 - **Netlify**: Connect your GitHub repo, it deploys automatically
 - **Vercel**: One-click deployment
 - **Docker**: Build and run your own container
@@ -237,6 +259,7 @@ pnpm format.fix       # Format code with Prettier
 ## 🔒 Privacy & Security
 
 ### What We Collect
+
 - **Anonymized Page Views**: Which pages are visited
 - **Session Information**: How long users stay
 - **Device Type**: Mobile, Desktop, Tablet
@@ -244,6 +267,7 @@ pnpm format.fix       # Format code with Prettier
 - **Traffic Source**: Referrer domain
 
 ### What We DON'T Collect
+
 - ❌ Personal identifiable information (names, emails)
 - ❌ Cookies or persistent identifiers
 - ❌ User profiles or fingerprints
@@ -252,6 +276,7 @@ pnpm format.fix       # Format code with Prettier
 - ❌ Sensitive personal data
 
 ### Security Features
+
 - 🔐 Self-hosted = Complete control
 - 🔑 API authentication built-in
 - 🛡️ HTTPS support
@@ -262,9 +287,10 @@ pnpm format.fix       # Format code with Prettier
 
 ## 📈 Why Developers Are Choosing PrivacyMetrics
 
-> *"Finally, analytics that doesn't feel like we're spying on our users. PrivacyMetrics gives us the insights we need while respecting privacy."* — Privacy-First Founder
+> _"Finally, analytics that doesn't feel like we're spying on our users. PrivacyMetrics gives us the insights we need while respecting privacy."_ — Privacy-First Founder
 
 ### The Developer Win
+
 - ✅ **No Compliance Headaches**: Built-in GDPR/CCPA compliance
 - ✅ **Full Transparency**: Open source, audit-friendly
 - ✅ **Lightweight**: Minimal performance impact
@@ -277,6 +303,7 @@ pnpm format.fix       # Format code with Prettier
 ## 🗺️ Roadmap
 
 ### Phase 1 ✅ (Current)
+
 - [x] Modern landing page
 - [x] Feature-rich demo dashboard
 - [x] Real-time metrics
@@ -285,6 +312,7 @@ pnpm format.fix       # Format code with Prettier
 - [x] Responsive design
 
 ### Phase 2 (Coming Soon)
+
 - [ ] Database integration (PostgreSQL/MySQL)
 - [ ] Real data ingestion from websites
 - [ ] Authentication & multiple users
@@ -293,6 +321,7 @@ pnpm format.fix       # Format code with Prettier
 - [ ] Alert system
 
 ### Phase 3 (Future)
+
 - [ ] Managed hosting option
 - [ ] Team collaboration features
 - [ ] Advanced segmentation
@@ -304,6 +333,7 @@ pnpm format.fix       # Format code with Prettier
 ## 💡 Getting Started with Development
 
 ### Setting Up Your Environment
+
 ```bash
 # Prerequisites
 - Node.js 22+
@@ -319,6 +349,7 @@ pnpm dev
 ```
 
 ### Project Structure
+
 ```
 ├── client/              # React SPA
 │   ├── pages/          # Route components
@@ -349,6 +380,7 @@ We believe in open source and community contributions! Here's how you can help:
 MIT License - See [LICENSE](./LICENSE) file for details
 
 This means:
+
 - ✅ Use commercially
 - ✅ Modify the code
 - ✅ Distribute
@@ -366,6 +398,7 @@ This means:
 - **Discussions**: [GitHub Discussions](https://github.com)
 
 ### Learn More
+
 - [Privacy by Design](https://en.wikipedia.org/wiki/Privacy_by_design)
 - [GDPR Requirements](https://gdpr-info.eu/)
 - [CCPA Compliance](https://oag.ca.gov/privacy/ccpa)
@@ -388,21 +421,27 @@ PrivacyMetrics is built on the shoulders of giants:
 ## ❓ FAQ
 
 ### Q: Is PrivacyMetrics completely free?
+
 **A:** Yes! It's open source and MIT licensed. You can self-host for free. We also offer a managed hosting option for those who prefer it.
 
 ### Q: Can I use it alongside Google Analytics?
+
 **A:** Absolutely. Many projects use both. PrivacyMetrics gives you privacy-focused metrics while GA provides different insights.
 
 ### Q: How accurate are the analytics?
+
 **A:** Very accurate for anonymized metrics. We don't track individuals, so we can't provide user-level data, but aggregate metrics are highly accurate.
 
 ### Q: Is it compliant with GDPR?
+
 **A:** Yes, out of the box. Since we don't collect personal data, GDPR consent isn't required.
 
 ### Q: Can I self-host it?
+
 **A:** Yes! That's the entire point. Deploy anywhere that runs Node.js.
 
 ### Q: What databases do you support?
+
 **A:** Currently optimized for PostgreSQL, with MySQL and SQLite support coming soon.
 
 ---
@@ -424,4 +463,4 @@ If you believe in privacy-first analytics, please give us a ⭐ on GitHub. It he
 
 **Made with ❤️ by the PrivacyMetrics team**
 
-*Because analytics should be transparent, not intrusive.*
+_Because analytics should be transparent, not intrusive._
