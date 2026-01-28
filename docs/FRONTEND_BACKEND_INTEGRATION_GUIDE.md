@@ -49,6 +49,7 @@ This guide explains how the frontend Dashboard connects to the backend API to di
 **Location**: `server/routes/dashboard.ts`
 
 Endpoints available:
+
 - `GET /api/v1/dashboard/metrics` - Aggregated metrics
 - `GET /api/v1/dashboard/chart-data` - Chart data (pageviews & visitors)
 - `GET /api/v1/dashboard/top-pages` - Top pages list
@@ -64,17 +65,19 @@ Endpoints available:
 **Location**: `client/hooks/useDashboardData.ts`
 
 Available hooks:
+
 ```typescript
-useDashboardData(dateRange)     // Fetch all data
-useDashboardMetrics(dateRange)  // Fetch metrics only
-useChartData(dateRange, type)   // Fetch chart data
-useTopPages()                    // Fetch top pages
-useReferrers()                   // Fetch referrers
-useDeviceDistribution()          // Fetch device data
-useTopLocations()                // Fetch location data
+useDashboardData(dateRange); // Fetch all data
+useDashboardMetrics(dateRange); // Fetch metrics only
+useChartData(dateRange, type); // Fetch chart data
+useTopPages(); // Fetch top pages
+useReferrers(); // Fetch referrers
+useDeviceDistribution(); // Fetch device data
+useTopLocations(); // Fetch location data
 ```
 
 Each hook returns:
+
 ```typescript
 {
   data: T | null,     // The fetched data
@@ -107,7 +110,7 @@ Dashboard routes mounted at `/api/v1/dashboard`
 ```typescript
 export default function Dashboard() {
   const [darkMode, setDarkMode] = useState(false)
-  
+
   return (
     <MetricCard
       title="Page Views"
@@ -127,18 +130,18 @@ import { useDashboardData } from "@/hooks/useDashboardData"
 export default function Dashboard() {
   const [darkMode, setDarkMode] = useState(false)
   const [dateRange, setDateRange] = useState("7d")
-  
+
   // Fetch data from API
   const { data, loading, error } = useDashboardData(dateRange)
-  
+
   if (loading) return <DashboardSkeleton />
   if (error) return <ErrorState message={error} />
   if (!data) return <EmptyState />
-  
+
   // Format metrics for display
   const pageViewsFormatted = Math.floor(data.metrics.pageViews).toLocaleString()
   const sessionDurationFormatted = formatSeconds(data.metrics.sessionDuration)
-  
+
   return (
     <MetricCard
       title="Page Views"
@@ -157,13 +160,13 @@ export default function Dashboard() {
 ### Step 1: Import the Hook
 
 ```typescript
-import { useDashboardData } from "@/hooks/useDashboardData"
+import { useDashboardData } from "@/hooks/useDashboardData";
 ```
 
 ### Step 2: Use the Hook in Component
 
 ```typescript
-const { data, loading, error } = useDashboardData(dateRange)
+const { data, loading, error } = useDashboardData(dateRange);
 ```
 
 ### Step 3: Add Loading State
@@ -264,6 +267,7 @@ curl http://localhost:3000/api/v1/dashboard/metrics \
 ```
 
 Should return:
+
 ```json
 {
   "pageViews": 45231,
@@ -378,6 +382,7 @@ Navigate to `/dashboard` - should display real data from API.
 
 **Problem**: Dashboard shows no data
 **Solution**: Backend might be returning null. Check:
+
 - Token is valid
 - User is authenticated
 - Database has data
