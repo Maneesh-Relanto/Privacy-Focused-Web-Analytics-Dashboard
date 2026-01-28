@@ -100,36 +100,49 @@ Fully transparent source code. No hidden tracking, no proprietary algorithms. Fo
 
 ---
 
-## ✨ Key Features
+## ✨ Current Features (Demo)
 
-### Analytics Metrics
+### Dashboard UI & Visualization
 
-- **Page Views**: Track all page visits with real-time updates
-- **Unique Visitors**: Identify returning vs new visitors (privacy-respecting)
-- **Session Duration**: Understand user engagement
-- **Bounce Rate**: Optimize landing pages
-- **Traffic Sources**: See where your users come from
-- **Geographic Data**: Understand global reach
-- **Device Breakdown**: Responsive design insights
+- 📊 **Dashboard Interface**: Modern, clean design with metric cards
+- 🌙 **Dark Mode**: Full dark mode support
+- 📱 **Responsive Design**: Works on desktop, tablet, and mobile
+- 📈 **Chart Visualizations**: Line charts, bar charts, pie charts
+- 🔍 **Date Range Filtering**: View data for different time periods
+- ⚡ **Fast Performance**: Optimized React components
 
-### Developer Experience
+### Metric Display
 
-- **REST API**: Integrate with your own tools
-- **Webhook Support**: Real-time event notifications
+The demo dashboard displays sample metrics including:
+- **Page Views**: Visual trends over time
+- **Unique Visitors**: Visitor count metrics
+- **Session Duration**: Time spent on site
+- **Bounce Rate**: User engagement metrics
+- **Traffic Sources**: Referrer breakdown
+- **Geographic Data**: Regional distribution
+- **Device Types**: Desktop, mobile, tablet breakdown
+- **Top Pages**: Popular page listings
+- **Referrer Sources**: Traffic source analysis
+
+### Development Features
+
+- **TypeScript**: Full type safety throughout
+- **React 18**: Modern component architecture
+- **Vite**: Lightning-fast development server
+- **Open Source**: MIT licensed, fully transparent code
+- **Docker Ready**: Easy containerization for deployment
+
+## 🚀 Coming Soon
+
+These features are currently in development:
+
+- **Real Data Collection**: Website tracking script and data ingestion
+- **REST API**: Programmatic access to analytics data
+- **Authentication**: User accounts and API keys
+- **Database Integration**: PostgreSQL, MySQL, SQLite support
 - **Custom Events**: Track business-specific metrics
-- **Data Export**: CSV and JSON exports
-- **TypeScript**: Full type safety
-- **Docker Ready**: One-command deployment
-
-### Dashboard Features
-
-- 📊 **Real-time Updates**: See metrics as they happen
-- 🌙 **Dark Mode**: Easy on the eyes
-- 📱 **Responsive Design**: Works on all devices
-- 📈 **Time-series Charts**: Understand trends
-- 🔍 **Date Filtering**: Analyze specific periods
-- 🎨 **Customizable**: Tailor to your brand
-- ⚡ **Fast**: Optimized performance
+- **Data Export**: CSV and JSON export functionality
+- **Webhook Support**: Real-time event notifications
 
 ---
 
