@@ -72,7 +72,11 @@ export function InteractiveAnalyticsVisual() {
           Traffic Over Time
         </h3>
         <div className="flex-1 relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 overflow-hidden">
-          <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 400 200"
+            preserveAspectRatio="xMidYMid slice"
+          >
             {/* Grid lines */}
             {Array.from({ length: 5 }).map((_, i) => (
               <line
@@ -98,13 +102,11 @@ export function InteractiveAnalyticsVisual() {
             {/* Polyline chart */}
             <polyline
               points={chartData
-                .map(
-                  (val, idx) => {
-                    const x = (idx / (chartData.length - 1)) * 380 + 10;
-                    const y = 150 - (val / 100) * 100;
-                    return `${x},${y}`;
-                  }
-                )
+                .map((val, idx) => {
+                  const x = (idx / (chartData.length - 1)) * 380 + 10;
+                  const y = 150 - (val / 100) * 100;
+                  return `${x},${y}`;
+                })
                 .join(" ")}
               fill="none"
               stroke="url(#gradient)"
