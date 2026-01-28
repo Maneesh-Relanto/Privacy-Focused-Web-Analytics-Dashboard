@@ -82,9 +82,69 @@ export default function Index() {
               </a>
             </div>
           </div>
-          <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg aspect-square flex items-center justify-center">
-            <BarChart3 className="h-32 w-32 text-primary/30" />
+          <div className="w-full">
+            <AnimatedDashboardPreview />
           </div>
+        </div>
+      </section>
+
+      {/* Visualization Section 1: Animated Dashboard Preview */}
+      <section className="bg-slate-50 dark:bg-slate-950 border-y border-border py-20 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Dashboard Preview
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See your analytics metrics in real-time with an intuitive, clean interface
+            </p>
+          </div>
+          <AnimatedDashboardPreview />
+        </div>
+      </section>
+
+      {/* Visualization Section 2: Animated Chart */}
+      <section className="py-20 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Visual Analytics
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Track trends and patterns with interactive, animated charts
+            </p>
+          </div>
+          <AnimatedChartVisualization />
+        </div>
+      </section>
+
+      {/* Visualization Section 3: Floating Metric Cards */}
+      <section className="bg-slate-50 dark:bg-slate-950 border-y border-border py-20 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Key Metrics at a Glance
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Floating cards showcase your most important analytics data
+            </p>
+          </div>
+          <FloatingMetricCards />
+        </div>
+      </section>
+
+      {/* Visualization Section 4: Interactive Analytics */}
+      <section className="py-20 sm:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Multi-View Analytics
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Combine multiple chart types to understand your data comprehensively
+            </p>
+          </div>
+          <InteractiveAnalyticsVisual />
         </div>
       </section>
 
