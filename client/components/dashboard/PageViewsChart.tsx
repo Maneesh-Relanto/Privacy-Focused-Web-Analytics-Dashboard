@@ -49,7 +49,7 @@ export function PageViewsChart({ variant = "pageviews", data }: PageViewsChartPr
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <LineChart data={pageViewsData}>
+      <LineChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
         <XAxis stroke={colors.text} style={{ fontSize: "12px" }} />
         <YAxis stroke={colors.text} style={{ fontSize: "12px" }} />
