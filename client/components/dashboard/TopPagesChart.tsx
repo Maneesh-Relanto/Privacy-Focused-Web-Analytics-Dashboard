@@ -8,15 +8,34 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const topPagesData = [
-  { page: "/home", views: 4200, users: 2400 },
-  { page: "/about", views: 3000, users: 1398 },
-  { page: "/pricing", views: 2800, users: 1321 },
-  { page: "/docs", views: 2400, users: 1200 },
-  { page: "/contact", views: 2210, users: 1100 },
+interface TopPage {
+  url: string;
+  views: number;
+  percentage: number;
+}
+
+interface TopPagesChartProps {
+  data?: TopPage[];
+}
+
+const defaultTopPagesData = [
+  { url: "/home", views: 4200, percentage: 42 },
+  { url: "/about", views: 3000, percentage: 30 },
+  { url: "/pricing", views: 2800, percentage: 28 },
+  { url: "/docs", views: 2400, percentage: 24 },
+  { url: "/contact", views: 2210, percentage: 22 },
 ];
 
-export function TopPagesChart() {
+export function TopPagesChart({ data }: TopPagesChartProps) {
+  const chartData = data
+    ? data.map((page) => ({
+        page: page.url,
+        views: page.views,
+      }))
+    : defaultTopPagesData.map((page) => ({
+        page: page.url,
+        views: page.views,
+      }));
   const isDark = document.documentElement.classList.contains("dark");
 
   const colors = {
