@@ -215,7 +215,7 @@ export default function Index() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="border-primary-foreground text-primary hover:bg-primary-foreground hover:text-primary-foreground"
             >
               Launch Demo Dashboard
               <ArrowRight className="ml-2 h-4 w-4" />
