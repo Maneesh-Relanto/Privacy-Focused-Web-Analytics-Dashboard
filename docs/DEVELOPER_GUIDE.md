@@ -11,12 +11,14 @@ This is a self-hosted web analytics dashboard designed with privacy in mind. Dev
 ## What's Currently Implemented (MVP Phase 1)
 
 ### ✅ Core Features
+
 - **User Authentication** - Register, login, API key generation
 - **Website Management** - Register multiple websites with unique tracking codes
 - **Dashboard Interface** - Beautiful UI to view analytics metrics
 - **Mock Data** - Sample dashboard endpoints returning analytics data
 
 ### ❌ Not Yet Implemented (Phase 2+)
+
 - Actual tracking script for websites
 - Real data collection and event storage
 - Metric aggregation and calculations
@@ -54,6 +56,7 @@ The app will be available at `http://localhost:8080`
 **Navigate to:** `http://localhost:8080/dashboard`
 
 **Register a new account:**
+
 ```bash
 curl -X POST http://localhost:3000/api/v1/auth/register \
   -H "Content-Type: application/json" \
@@ -64,6 +67,7 @@ curl -X POST http://localhost:3000/api/v1/auth/register \
 ```
 
 **Response:**
+
 ```json
 {
   "userId": "user123",
@@ -85,6 +89,7 @@ curl -X POST http://localhost:3000/api/v1/auth/login \
 ```
 
 **Response:**
+
 ```json
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIs...",
@@ -110,6 +115,7 @@ curl -X POST http://localhost:3000/api/v1/websites \
 ```
 
 **Response:**
+
 ```json
 {
   "id": "web_123",
@@ -132,6 +138,7 @@ curl http://localhost:3000/api/v1/websites \
 ```
 
 **Response:**
+
 ```json
 {
   "websites": [
@@ -151,6 +158,7 @@ curl http://localhost:3000/api/v1/websites \
 Navigate to `http://localhost:8080/dashboard` and log in with your credentials.
 
 The dashboard shows:
+
 - **Page Views** - Total number of page views
 - **Visitors** - Unique visitors count
 - **Duration** - Average session duration
@@ -164,6 +172,7 @@ The dashboard shows:
 ### Authentication Endpoints
 
 #### Register User
+
 - **Method:** `POST`
 - **URL:** `/api/v1/auth/register`
 - **Body:**
@@ -176,6 +185,7 @@ The dashboard shows:
 - **Response:** User object with `apiKey` and `accessToken`
 
 #### Login
+
 - **Method:** `POST`
 - **URL:** `/api/v1/auth/login`
 - **Body:**
@@ -188,6 +198,7 @@ The dashboard shows:
 - **Response:** `{ accessToken, userId }`
 
 #### Get Current User Profile
+
 - **Method:** `GET`
 - **URL:** `/api/v1/auth/me`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -196,6 +207,7 @@ The dashboard shows:
 ### Website Management Endpoints
 
 #### Create Website
+
 - **Method:** `POST`
 - **URL:** `/api/v1/websites`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -210,18 +222,21 @@ The dashboard shows:
 - **Response:** Website object with `trackingCode`
 
 #### List All Websites
+
 - **Method:** `GET`
 - **URL:** `/api/v1/websites`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 - **Response:** Array of website objects
 
 #### Get Website Details
+
 - **Method:** `GET`
 - **URL:** `/api/v1/websites/{websiteId}`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 - **Response:** Single website object
 
 #### Update Website
+
 - **Method:** `PUT`
 - **URL:** `/api/v1/websites/{websiteId}`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -235,6 +250,7 @@ The dashboard shows:
 - **Response:** Updated website object
 
 #### Delete Website
+
 - **Method:** `DELETE`
 - **URL:** `/api/v1/websites/{websiteId}`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -243,6 +259,7 @@ The dashboard shows:
 ### Dashboard Analytics Endpoints (Currently Mock Data)
 
 #### Get All Dashboard Data
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/all?dateRange=7d`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -250,31 +267,37 @@ The dashboard shows:
 - **Response:** Complete dashboard object with metrics and charts
 
 #### Get Metrics
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/metrics`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 
 #### Get Chart Data
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/chart-data`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 
 #### Get Top Pages
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/top-pages`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 
 #### Get Referrers
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/referrers`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 
 #### Get Device Distribution
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/devices`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
 
 #### Get Top Locations
+
 - **Method:** `GET`
 - **URL:** `/api/v1/dashboard/locations`
 - **Headers:** `Authorization: Bearer ACCESS_TOKEN`
@@ -367,6 +390,7 @@ pnpm run build:pages
 ### Deploy Landing Page to GitHub Pages
 
 1. Build the client:
+
    ```bash
    pnpm run build:pages
    ```
@@ -438,12 +462,14 @@ To make this fully functional, developers need to implement:
 ## Troubleshooting
 
 ### Port Already in Use
+
 ```bash
 # Change the port in .env
 PORT=3001
 ```
 
 ### Database Issues
+
 ```bash
 # Reset the database
 npx prisma migrate reset
@@ -453,6 +479,7 @@ npx prisma db seed
 ```
 
 ### Authentication Errors
+
 - Ensure you're sending the `Authorization: Bearer TOKEN` header
 - Check that your token hasn't expired
 - Re-login to get a fresh token
