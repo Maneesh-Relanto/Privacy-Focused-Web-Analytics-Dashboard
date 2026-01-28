@@ -1,5 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useDashboardData } from "@/hooks/useDashboardData";
+import type { DashboardMetrics } from "@shared/types/dashboard";
 import {
   Sidebar,
   SidebarContent,
@@ -45,11 +47,10 @@ import { ReferrerChart } from "@/components/dashboard/ReferrerChart";
 export default function Dashboard() {
   const [darkMode, setDarkMode] = useState(false);
   const [dateRange, setDateRange] = useState("7d");
-  const [isLoading, setIsLoading] = useState(false);
+  const { data: dashboardData, loading, error } = useDashboardData(dateRange);
 
   const handleRefresh = () => {
-    setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 1000);
+    window.location.reload();
   };
 
   // Simulate dark mode by adding/removing class
