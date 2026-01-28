@@ -52,7 +52,8 @@ export default function Index() {
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               A self-hosted analytics dashboard designed with privacy in mind.
-              View metrics, dive into data, and stay in control of your analytics infrastructure.
+              View metrics, dive into data, and stay in control of your
+              analytics infrastructure.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/dashboard">
@@ -94,7 +95,8 @@ export default function Index() {
               Built for developers and privacy
             </h2>
             <p className="text-xl text-muted-foreground">
-              Modern dashboard with secure authentication, clean design, and full source code transparency
+              Modern dashboard with secure authentication, clean design, and
+              full source code transparency
             </p>
           </div>
 
@@ -149,7 +151,6 @@ export default function Index() {
           </div>
         </div>
       </section>
-
 
       {/* CTA Section */}
       <section className="bg-primary text-primary-foreground py-16 sm:py-20">
