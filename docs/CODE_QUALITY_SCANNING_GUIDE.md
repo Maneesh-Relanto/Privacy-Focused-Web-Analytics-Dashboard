@@ -7,6 +7,7 @@ This document outlines all available options for code scanning, quality checks, 
 ## 1. Local Code Quality Checks (Already Configured)
 
 ### Quick Quality Check
+
 Run all quality checks locally before pushing:
 
 ```bash
@@ -14,6 +15,7 @@ npm run quality-check
 ```
 
 This command runs in sequence:
+
 1. **Type checking** (`npm run typecheck`) - TypeScript validation
 2. **Linting** (`npm run lint`) - Code style and best practices
 3. **Testing** (`npm run test`) - Unit tests with Vitest
@@ -22,30 +24,35 @@ This command runs in sequence:
 ### Individual Commands
 
 **Linting (ESLint):**
+
 ```bash
 npm run lint              # Check for issues
 npm run lint:fix          # Auto-fix issues
 ```
 
 **Type Checking:**
+
 ```bash
 npm run typecheck         # TypeScript validation
 ```
 
 **Testing:**
+
 ```bash
 npm run test              # Run unit tests
 ```
 
 **Code Formatting:**
+
 ```bash
 npm run format.fix        # Auto-format with Prettier
 ```
 
 ### ESLint Configuration
+
 - **File**: `.eslintrc.json`
 - **Ignores**: `.eslintignore`
-- **Plugins**: 
+- **Plugins**:
   - `@typescript-eslint` - TypeScript support
   - `react` - React best practices
   - `react-hooks` - React hooks linting
@@ -58,6 +65,7 @@ npm run format.fix        # Auto-format with Prettier
 **Best for**: Comprehensive code quality, security, and maintainability.
 
 ### Features
+
 - ✅ Automatic code analysis on every push/PR
 - ✅ Security vulnerability detection
 - ✅ Code smell and technical debt tracking
@@ -122,6 +130,7 @@ sonar.typescript.lcov.reportPaths=coverage/lcov.info
 ```
 
 ### Dashboard & Reports
+
 - **Public URL**: `https://sonarcloud.io/dashboard?id=YOUR_PROJECT_KEY`
 - View metrics: Code quality, maintainability, security, coverage
 
@@ -132,6 +141,7 @@ sonar.typescript.lcov.reportPaths=coverage/lcov.info
 **Best for**: Security vulnerability detection only.
 
 ### Features
+
 - ✅ Detects security vulnerabilities
 - ✅ Free for public repositories
 - ✅ Built into GitHub (no external account needed)
@@ -159,17 +169,20 @@ sonar.typescript.lcov.reportPaths=coverage/lcov.info
 **Best for**: Detecting vulnerable dependencies in `package.json`.
 
 ### Features
+
 - ✅ Identifies known vulnerabilities in dependencies
 - ✅ Free and open-source
 - ✅ Can run locally or in CI/CD
 
 ### Local Usage
+
 ```bash
 npm audit                 # Shows vulnerable dependencies
 npm audit fix             # Attempts to auto-fix
 ```
 
 ### GitHub Action Setup
+
 Create `.github/workflows/dependency-check.yml`:
 
 ```yaml
@@ -186,8 +199,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: dependency-check/Dependency-Check_Action@main
         with:
-          path: '.'
-          format: 'JSON'
+          path: "."
+          format: "JSON"
 ```
 
 ---
@@ -197,6 +210,7 @@ jobs:
 **Best for**: Code quality + security + performance.
 
 ### Features
+
 - ✅ Similar to SonarCloud
 - ✅ Free tier available
 - ✅ Analyzes: bugs, code smells, security, performance
@@ -204,6 +218,7 @@ jobs:
 - ✅ Auto-fix suggestions
 
 ### Setup
+
 1. Go to [deepsource.io](https://deepsource.io)
 2. Sign in with GitHub
 3. Activate your repository
@@ -216,12 +231,14 @@ jobs:
 **Best for**: Finding vulnerabilities in dependencies and code.
 
 ### Features
+
 - ✅ Dependency vulnerability detection
 - ✅ Code vulnerability detection
 - ✅ Auto-fix PRs
 - ✅ Free tier available
 
 ### Setup
+
 1. Go to [snyk.io](https://snyk.io)
 2. Sign in with GitHub
 3. Authorize and import repositories
@@ -234,16 +251,19 @@ jobs:
 For comprehensive coverage without paying anything, use this combination:
 
 ### Local (Run Before Pushing)
+
 ```bash
 npm run quality-check    # Type check + Lint + Test + Format
 ```
 
 ### GitHub Automated Scanning
+
 1. **SonarCloud** - General code quality + security
 2. **CodeQL** - Security vulnerabilities (if public)
 3. **npm audit** - Dependency vulnerabilities
 
 ### CI/CD Pipeline (GitHub Actions)
+
 - Run `npm run quality-check` on every PR
 - Run SonarCloud analysis
 - Run CodeQL analysis
@@ -271,16 +291,19 @@ npm run quality-check    # Type check + Lint + Test + Format
 ## Next Steps
 
 **Immediate (Today):**
+
 1. ✅ ESLint installed and configured
 2. Run `npm run quality-check` locally
 3. Fix any linting/type issues found
 
 **Short-term (This Week):**
+
 1. Setup SonarCloud for comprehensive analysis
 2. Enable GitHub CodeQL for security
 3. Add `npm audit` to CI/CD pipeline
 
 **Long-term:**
+
 1. Monitor SonarCloud dashboard for trends
 2. Maintain >80% code coverage
 3. Keep all vulnerabilities at 0
@@ -290,6 +313,7 @@ npm run quality-check    # Type check + Lint + Test + Format
 ## Troubleshooting
 
 ### ESLint Not Working?
+
 ```bash
 npm install --save-dev eslint @typescript-eslint/eslint-plugin \
   @typescript-eslint/parser eslint-config-prettier eslint-plugin-react \
@@ -297,11 +321,13 @@ npm install --save-dev eslint @typescript-eslint/eslint-plugin \
 ```
 
 ### TypeScript Issues?
+
 ```bash
 npm run typecheck  # More detailed error messages
 ```
 
 ### Dependencies Outdated?
+
 ```bash
 npm audit fix      # Auto-fix known vulnerabilities
 npm outdated       # See what can be updated
