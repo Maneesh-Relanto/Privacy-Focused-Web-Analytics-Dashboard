@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import authRoutes from "./routes/auth";
+import dashboardRoutes from "./routes/dashboard";
 import { authMiddleware } from "./middleware/auth";
 
 export function createServer() {
@@ -24,6 +25,9 @@ export function createServer() {
 
   // Authentication routes (public)
   app.use("/api/v1/auth", authRoutes);
+
+  // Dashboard routes (protected)
+  app.use("/api/v1/dashboard", dashboardRoutes);
 
   // Protected routes example
   app.get("/api/v1/protected", authMiddleware, (_req, res) => {
