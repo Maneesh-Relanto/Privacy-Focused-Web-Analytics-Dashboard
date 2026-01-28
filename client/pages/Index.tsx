@@ -103,40 +103,40 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Shield,
-                title: "Privacy-First",
-                description:
-                  "No cookies, no tracking pixels, no fingerprinting. Just clean analytics.",
-              },
-              {
                 icon: Lock,
                 title: "Self-Hosted",
                 description:
-                  "Keep your data on your servers. Full control over analytics data.",
-              },
-              {
-                icon: Zap,
-                title: "Lightweight",
-                description:
-                  "Minimal performance impact. Only ~2KB of JavaScript to load.",
+                  "Deploy on your own infrastructure. Complete control over your data.",
               },
               {
                 icon: BarChart3,
-                title: "Simple UI",
+                title: "Clean Dashboard",
                 description:
-                  "Beautiful, intuitive dashboard. No learning curve required.",
+                  "Beautiful, responsive interface for viewing analytics metrics.",
               },
               {
                 icon: Code2,
-                title: "API Access",
+                title: "Developer Friendly",
                 description:
-                  "Custom integration with our comprehensive REST API.",
+                  "Built with TypeScript and modern web technologies. Easy to customize.",
               },
               {
                 icon: Database,
+                title: "SQLite Database",
+                description:
+                  "Simple setup with SQLite. Ready for PostgreSQL/MySQL later.",
+              },
+              {
+                icon: Shield,
+                title: "Secure Auth",
+                description:
+                  "User authentication with JWT tokens and password hashing.",
+              },
+              {
+                icon: Zap,
                 title: "Open Source",
                 description:
-                  "Transparent, community-driven development with full source code.",
+                  "MIT licensed. Full transparency and community-driven development.",
               },
             ].map((feature, idx) => (
               <div
