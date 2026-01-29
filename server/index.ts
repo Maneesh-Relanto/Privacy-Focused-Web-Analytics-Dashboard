@@ -5,6 +5,7 @@ import { handleDemo } from "./routes/demo";
 import authRoutes from "./routes/auth";
 import dashboardRoutes from "./routes/dashboard";
 import websiteRoutes from "./routes/websites";
+import eventsRoutes from "./routes/events";
 import { authMiddleware } from "./middleware/auth";
 
 export function createServer() {
