@@ -120,57 +120,53 @@ pnpm dev
 
 **New to this project?** Start with one of these based on your role:
 
-| Role                   | Start With                                           | Then Read                                                            | Time   |
-| ---------------------- | ---------------------------------------------------- | -------------------------------------------------------------------- | ------ |
-| **Complete Beginner**  | [📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)      | [🚀 Quick Start Auth](./docs/QUICK_START_AUTHENTICATION.md)          | 30 min |
-| **Backend Developer**  | [🗄️ Backend Setup](./docs/BACKEND_SETUP_GUIDE.md)    | [📡 API Docs](./docs/API_DOCUMENTATION.md)                           | 45 min |
-| **Frontend Developer** | [📁 Project Structure](./docs/PROJECT_STRUCTURE.md)  | [🔗 Integration Guide](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | 40 min |
-| **DevOps/Deployment**  | [🚀 GitHub Pages](./docs/GITHUB_PAGES_DEPLOYMENT.md) | [🔍 Code Quality](./docs/CODE_QUALITY_SCANNING_GUIDE.md)             | 30 min |
+| Role | Start With | Then Read | Time |
+|------|-----------|-----------|------|
+| **Complete Beginner** | [📖 Developer Guide](./docs/DEVELOPER_GUIDE.md) | [🚀 Quick Start Auth](./docs/QUICK_START_AUTHENTICATION.md) | 30 min |
+| **Backend Developer** | [🗄️ Backend Setup](./docs/BACKEND_SETUP_GUIDE.md) | [📡 API Docs](./docs/API_DOCUMENTATION.md) | 45 min |
+| **Frontend Developer** | [📁 Project Structure](./docs/PROJECT_STRUCTURE.md) | [🔗 Integration Guide](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | 40 min |
+| **DevOps/Deployment** | [🚀 GitHub Pages](./docs/GITHUB_PAGES_DEPLOYMENT.md) | [🔍 Code Quality](./docs/CODE_QUALITY_SCANNING_GUIDE.md) | 30 min |
 
 ### 📖 Full Documentation Index
 
 #### **Getting Started**
-
 - **[📚 Documentation Index](./docs/INDEX.md)** - Master navigation guide for all documentation
 - **[📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Complete setup, API usage, integration examples
 - **[🚀 Quick Start - Authentication](./docs/QUICK_START_AUTHENTICATION.md)** - 5-minute auth setup
 
 #### **API & Backend**
-
 - **[📡 API Documentation](./docs/API_DOCUMENTATION.md)** - Complete API reference with all endpoints
+- **[📊 Event Collection Guide](./docs/EVENT_COLLECTION_GUIDE.md)** - Event tracking API and examples
 - **[🗄️ Backend Setup Guide](./docs/BACKEND_SETUP_GUIDE.md)** - Database and Express.js configuration
 - **[🌐 Website Management Guide](./docs/WEBSITE_MANAGEMENT_GUIDE.md)** - Website CRUD operations and examples
 
 #### **Frontend & Architecture**
-
 - **[📁 Project Structure](./docs/PROJECT_STRUCTURE.md)** - Folder organization and code architecture
 - **[🔗 Frontend-Backend Integration](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)** - How frontend connects to backend API
 
 #### **Deployment & Infrastructure**
-
 - **[🚀 GitHub Pages Deployment](./docs/GITHUB_PAGES_DEPLOYMENT.md)** - Deploy landing page to GitHub Pages
 - **[🔍 Code Quality Scanning](./docs/CODE_QUALITY_SCANNING_GUIDE.md)** - SonarCloud and code quality setup
 
 #### **Reference & Notes**
-
 - **[📝 File Organization Notes](./docs/FILE_ORGANIZATION_NOTES.md)** - Notes about file structure and organization
 - **[📚 Fusion Starter Notes](./docs/FUSION_STARTER.md)** - Original Fusion starter template reference
 - **[🗺️ Documentation Structure](./docs/DOCUMENTATION_STRUCTURE.md)** - Complete documentation map and navigation guide
 
 ### 🔍 Quick Document Overview
 
-| Document                                                                                   | Purpose                          | Best For                |
-| ------------------------------------------------------------------------------------------ | -------------------------------- | ----------------------- |
-| [docs/INDEX.md](./docs/INDEX.md)                                                           | Navigation hub for all docs      | Finding what to read    |
-| [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)                                       | Complete setup & usage guide     | Getting up and running  |
-| [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)                                   | All API endpoints & examples     | API integration         |
-| [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md)                               | Database & server setup          | Backend developers      |
-| [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md)                                   | Code organization & architecture | Understanding codebase  |
-| [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Frontend-API integration         | Frontend developers     |
-| [docs/WEBSITE_MANAGEMENT_GUIDE.md](./docs/WEBSITE_MANAGEMENT_GUIDE.md)                     | Website CRUD with examples       | Website operations      |
-| [docs/QUICK_START_AUTHENTICATION.md](./docs/QUICK_START_AUTHENTICATION.md)                 | Fast auth setup                  | Quick testing           |
-| [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md)                       | Deploy to GitHub Pages           | Landing page deployment |
-| [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md)               | Code quality setup               | DevOps & CI/CD          |
+| Document | Purpose | Best For |
+|----------|---------|----------|
+| [docs/INDEX.md](./docs/INDEX.md) | Navigation hub for all docs | Finding what to read |
+| [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) | Complete setup & usage guide | Getting up and running |
+| [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) | All API endpoints & examples | API integration |
+| [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) | Database & server setup | Backend developers |
+| [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) | Code organization & architecture | Understanding codebase |
+| [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Frontend-API integration | Frontend developers |
+| [docs/WEBSITE_MANAGEMENT_GUIDE.md](./docs/WEBSITE_MANAGEMENT_GUIDE.md) | Website CRUD with examples | Website operations |
+| [docs/QUICK_START_AUTHENTICATION.md](./docs/QUICK_START_AUTHENTICATION.md) | Fast auth setup | Quick testing |
+| [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md) | Deploy to GitHub Pages | Landing page deployment |
+| [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md) | Code quality setup | DevOps & CI/CD |
 
 ---
 
@@ -274,19 +270,16 @@ MIT License - See [LICENSE](./LICENSE) file for details
 ## 🔗 Resources & Links
 
 ### Documentation
-
 - **[📚 Documentation Index](./docs/INDEX.md)** - Master guide for navigating all documentation
 - **[/docs](./docs)** - All technical documentation files
 - **[📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Complete setup and usage guide
 
 ### Community & Links
-
 - **[GitHub Repository](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard)** - Source code
 - **[GitHub Pages](https://maneesh-relanto.github.io/Privacy-Focused-Web-Analytics-Dashboard/)** - Live landing page
 - **License**: [MIT](./LICENSE)
 
 ### Development
-
 - **[🚀 Quick Start](#-quick-start)** - Installation and first steps
 - **[🛠️ Available Commands](#-available-commands)** - npm scripts
 - **[🏗️ Project Structure](#-project-structure)** - Codebase organization
@@ -296,7 +289,6 @@ MIT License - See [LICENSE](./LICENSE) file for details
 ## 📋 Complete Documentation Links
 
 ### Essential Reading
-
 ```
 1. README.md (this file) ← You are here
 2. docs/INDEX.md (documentation roadmap)
@@ -305,14 +297,12 @@ MIT License - See [LICENSE](./LICENSE) file for details
 ```
 
 ### By Role
-
 - **👨‍💼 Project Managers**: Start with [docs/INDEX.md](./docs/INDEX.md)
 - **👨‍💻 Backend Developers**: [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) → [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md)
 - **🎨 Frontend Developers**: [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) → [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)
 - **⚙️ DevOps Engineers**: [docs/GITHUB_PAGES_DEPLOYMENT.md](./docs/GITHUB_PAGES_DEPLOYMENT.md) → [docs/CODE_QUALITY_SCANNING_GUIDE.md](./docs/CODE_QUALITY_SCANNING_GUIDE.md)
 
 ### All Documents
-
 - [docs/INDEX.md](./docs/INDEX.md) - Documentation index & roadmap
 - [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) - Complete developer guide
 - [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) - API reference
