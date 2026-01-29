@@ -10,8 +10,9 @@ export default function TrackerTest() {
   const [isTrackerLoaded, setIsTrackerLoaded] = useState(false);
 
   useEffect(() => {
-    // Initialize tracker with test tracking code
+    // Initialize tracker with test tracking code and API URL
     (window as any).TRACKER_CODE = trackingCode;
+    (window as any).TRACKER_API = '/api/v1/events';
     (window as any).TRACKER_DEBUG = true;
 
     // Load the tracker script
