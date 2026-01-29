@@ -147,14 +147,10 @@ router.post("/batch", async (req: Request, res: Response) => {
           data: {
             websiteId: website.id,
             eventType: eventData.eventType,
-            url: eventData.url,
+            pageUrl: eventData.url,
             referrer: eventData.referrer || null,
-            sessionId: eventData.sessionId,
-            visitorId: eventData.visitorId,
-            deviceType: eventData.deviceType || null,
-            browser: eventData.browser || null,
-            os: eventData.os || null,
-            location: eventData.location || null,
+            sessionId: eventData.sessionId || null,
+            visitorId: eventData.visitorId || null,
             properties: eventData.properties
               ? JSON.stringify(eventData.properties)
               : null,
@@ -165,8 +161,8 @@ router.post("/batch", async (req: Request, res: Response) => {
           id: event.id,
           websiteId: event.websiteId,
           eventType: event.eventType,
-          url: event.url,
-          createdAt: event.createdAt.toISOString(),
+          pageUrl: event.pageUrl,
+          timestamp: event.timestamp.toISOString(),
         });
       } catch (error) {
         errors.push({
