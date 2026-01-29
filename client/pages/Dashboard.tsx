@@ -47,7 +47,12 @@ import { ReferrerChart } from "@/components/dashboard/ReferrerChart";
 export default function Dashboard() {
   const [darkMode, setDarkMode] = useState(false);
   const [dateRange, setDateRange] = useState("7d");
-  const { data: dashboardData, loading, error } = useDashboardData(dateRange);
+
+  // Get websiteId from localStorage (set when user selects a website)
+  // In future, this could come from URL params or routing context
+  const websiteId = localStorage.getItem("selectedWebsiteId");
+
+  const { data: dashboardData, loading, error } = useDashboardData(dateRange, websiteId || undefined);
 
   const handleRefresh = () => {
     window.location.reload();
