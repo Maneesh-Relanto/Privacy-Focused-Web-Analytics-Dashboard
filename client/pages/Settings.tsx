@@ -165,6 +165,17 @@ tracker.track('custom', { action: 'signup' });`,
         {/* General Settings */}
         {activeTab === 'general' && (
           <div className="space-y-6">
+            {saveMessage && (
+              <div
+                className={`p-4 rounded-lg ${
+                  saveMessage.type === 'success'
+                    ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
+                    : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
+                }`}
+              >
+                {saveMessage.text}
+              </div>
+            )}
             <Card>
               <CardHeader>
                 <CardTitle>Website Information</CardTitle>
@@ -174,7 +185,10 @@ tracker.track('custom', { action: 'signup' });`,
                   <label className="block text-sm font-medium mb-2">Website Name</label>
                   <input
                     type="text"
-                    defaultValue={websiteName}
+                    value={generalSettings.websiteName}
+                    onChange={(e) =>
+                      setGeneralSettings({ ...generalSettings, websiteName: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-border rounded-md bg-background"
                     placeholder="My Website"
                   />
@@ -185,7 +199,10 @@ tracker.track('custom', { action: 'signup' });`,
                   <label className="block text-sm font-medium mb-2">Website Domain</label>
                   <input
                     type="text"
-                    defaultValue={websiteDomain}
+                    value={generalSettings.websiteDomain}
+                    onChange={(e) =>
+                      setGeneralSettings({ ...generalSettings, websiteDomain: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-border rounded-md bg-background"
                     placeholder="example.com"
                   />
@@ -197,10 +214,21 @@ tracker.track('custom', { action: 'signup' });`,
                     <p className="font-medium">Enable Tracking</p>
                     <p className="text-sm text-muted-foreground">Turn tracking on/off for this website</p>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch
+                    checked={generalSettings.trackingEnabled}
+                    onCheckedChange={(checked) =>
+                      setGeneralSettings({ ...generalSettings, trackingEnabled: checked })
+                    }
+                  />
                 </div>
 
-                <Button className="w-full">Save Changes</Button>
+                <Button
+                  className="w-full"
+                  onClick={saveGeneralSettings}
+                  disabled={isSaving}
+                >
+                  {isSaving ? 'Saving...' : 'Save Changes'}
+                </Button>
               </CardContent>
             </Card>
           </div>
