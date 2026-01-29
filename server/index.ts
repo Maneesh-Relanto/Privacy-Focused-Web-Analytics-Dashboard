@@ -34,6 +34,9 @@ export function createServer() {
   // Websites routes (protected)
   app.use("/api/v1/websites", websiteRoutes);
 
+  // Events routes (public - requires valid tracking code)
+  app.use("/api/v1/events", eventsRoutes);
+
   // Protected routes example
   app.get("/api/v1/protected", authMiddleware, (_req, res) => {
     res.json({ message: "This is a protected route" });
