@@ -24,6 +24,7 @@ We have created a comprehensive, interconnected documentation system for the Pri
 | -------------------------------------------------------------------- | ----------------------- | -------------- | -------------------------------------- |
 | **[BACKEND_SETUP_GUIDE.md](./BACKEND_SETUP_GUIDE.md)**               | Database & server setup | Backend devs   | ✅ Quick Start, API Docs, Code Quality |
 | **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)**                   | Complete API reference  | All developers | ✅ Developer Guide, Website Mgmt, Docs |
+| **[EVENT_COLLECTION_GUIDE.md](./EVENT_COLLECTION_GUIDE.md)**         | Event tracking API      | Backend devs   | ✅ API Docs, Website Mgmt              |
 | **[QUICK_START_AUTHENTICATION.md](./QUICK_START_AUTHENTICATION.md)** | Fast auth setup (5 min) | Backend devs   | ✅ Backend Setup, API Docs             |
 | **[WEBSITE_MANAGEMENT_GUIDE.md](./WEBSITE_MANAGEMENT_GUIDE.md)**     | Website CRUD operations | Backend devs   | ✅ API Docs, Developer Guide           |
 
