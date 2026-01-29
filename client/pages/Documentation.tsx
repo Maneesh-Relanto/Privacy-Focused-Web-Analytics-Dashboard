@@ -36,11 +36,11 @@ export default function Documentation() {
     },
     {
       question: 'Is PrivacyMetrics GDPR compliant?',
-      answer: 'Yes! PrivacyMetrics is designed to be GDPR compliant out of the box. We don\'t track individuals, don\'t use cookies by default, and provide full data retention controls. You can enable additional privacy features in Settings > Privacy tab.',
+      answer: 'Yes! PrivacyMetrics is designed to be GDPR compliant out of the box. We don\'t track individuals, don\'t use cookies by default, and provide full data retention controls. You can enable additional privacy features in Settings &gt; Privacy tab.',
     },
     {
       question: 'How long is data retained?',
-      answer: 'By default, event data is retained for 90 days. You can configure this in Settings > Privacy tab to keep data for 30 days, 60 days, 6 months, 1 year, or forever. Archived events are automatically deleted after the retention period.',
+      answer: 'By default, event data is retained for 90 days. You can configure this in Settings &gt; Privacy tab to keep data for 30 days, 60 days, 6 months, 1 year, or forever. Archived events are automatically deleted after the retention period.',
     },
     {
       question: 'Can I export my analytics data?',
@@ -52,7 +52,7 @@ export default function Documentation() {
     },
     {
       question: 'How do I troubleshoot tracking issues?',
-      answer: 'Use the testing tools: 1) Go to Settings > Tracking tab, 2) Click "Verify Tracking" to check if events are being collected, 3) Visit /test-admin to run automated tests, 4) Use /tracker-test to manually send test events.',
+      answer: 'Use the testing tools: 1) Go to Settings &gt; Tracking tab, 2) Click "Verify Tracking" to check if events are being collected, 3) Visit /test-admin to run automated tests, 4) Use /tracker-test to manually send test events.',
     },
   ];
 
@@ -114,7 +114,7 @@ export default function Documentation() {
                     </div>
                     <div>
                       <h3 className="font-semibold">Get Your Tracking Code</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Navigate to Settings > Tracking to get your unique tracking code.</p>
+                      <p className="text-sm text-muted-foreground mt-1">Navigate to Settings &gt; Tracking to get your unique tracking code.</p>
                     </div>
                   </li>
 
@@ -162,7 +162,7 @@ export default function Documentation() {
                     <ul className="text-sm text-muted-foreground space-y-2">
                       <li>✓ Page views</li>
                       <li>✓ Unique visitors</li>
-                      <li>✓ Device & browser info</li>
+                      <li>✓ Device &amp; browser info</li>
                       <li>✓ Referral source</li>
                       <li>✓ General location (country/city)</li>
                       <li>✓ Session duration</li>
@@ -196,7 +196,7 @@ export default function Documentation() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground">
-                  The tracking script is lightweight (<6KB gzipped) and includes:
+                  The tracking script is lightweight ({`<`}6KB gzipped) and includes:
                 </p>
 
                 <div className="space-y-3">
@@ -244,7 +244,7 @@ export default function Documentation() {
   https://api.privacymetrics.io/v1/events`)}
 
                 <p className="text-sm text-muted-foreground">
-                  Get your API key from Settings > API Configuration.
+                  Get your API key from Settings &gt; API Configuration.
                 </p>
               </CardContent>
             </Card>
@@ -571,7 +571,7 @@ function trackPurchase(amount, product) {
 
             <Card>
               <CardHeader>
-                <CardTitle>Privacy & Compliance</CardTitle>
+                <CardTitle>Privacy &amp; Compliance</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
