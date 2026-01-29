@@ -473,7 +473,13 @@ tracker.track('custom', { action: 'signup' });`,
                   </p>
                 </div>
 
-                <Button className="w-full">Save Privacy Settings</Button>
+                <Button
+                  className="w-full"
+                  onClick={savePrivacySettings}
+                  disabled={isSaving}
+                >
+                  {isSaving ? 'Saving...' : 'Save Privacy Settings'}
+                </Button>
               </CardContent>
             </Card>
 
