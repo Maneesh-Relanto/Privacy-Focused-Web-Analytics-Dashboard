@@ -52,7 +52,11 @@ export default function Dashboard() {
   // In future, this could come from URL params or routing context
   const websiteId = localStorage.getItem("selectedWebsiteId");
 
-  const { data: dashboardData, loading, error } = useDashboardData(dateRange, websiteId || undefined);
+  const {
+    data: dashboardData,
+    loading,
+    error,
+  } = useDashboardData(dateRange, websiteId || undefined);
 
   const handleRefresh = () => {
     window.location.reload();
