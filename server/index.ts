@@ -26,6 +26,9 @@ export function createServer() {
   // Demo route
   app.get("/api/demo", handleDemo);
 
+  // Seed routes (for development/testing)
+  app.use("/api/seed", seedRoutes);
+
   // Authentication routes (public)
   app.use("/api/v1/auth", authRoutes);
 
