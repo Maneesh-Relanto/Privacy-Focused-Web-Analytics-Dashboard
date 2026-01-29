@@ -235,7 +235,7 @@ router.get("/", async (req: Request, res: Response) => {
     // Get events
     const events = await prisma.event.findMany({
       where,
-      orderBy: { createdAt: "desc" },
+      orderBy: { timestamp: "desc" },
       take: Math.min(parseInt(limit as string) || 100, 1000), // Max 1000
       skip: parseInt(offset as string) || 0,
     });
@@ -247,15 +247,11 @@ router.get("/", async (req: Request, res: Response) => {
       events: events.map((event) => ({
         id: event.id,
         eventType: event.eventType,
-        url: event.url,
+        pageUrl: event.pageUrl,
         referrer: event.referrer,
         sessionId: event.sessionId,
         visitorId: event.visitorId,
-        deviceType: event.deviceType,
-        browser: event.browser,
-        os: event.os,
-        location: event.location,
-        createdAt: event.createdAt.toISOString(),
+        timestamp: event.timestamp.toISOString(),
       })),
       pagination: {
         total,
