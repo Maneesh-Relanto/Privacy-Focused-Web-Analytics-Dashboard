@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import type { DashboardMetrics } from "@shared/types/dashboard";
 import {
