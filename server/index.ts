@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth";
 import dashboardRoutes from "./routes/dashboard";
 import websiteRoutes from "./routes/websites";
 import eventsRoutes from "./routes/events";
+import seedRoutes from "./routes/seed";
 import { authMiddleware } from "./middleware/auth";
 
 export function createServer() {
