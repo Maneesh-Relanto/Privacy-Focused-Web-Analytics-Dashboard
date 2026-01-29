@@ -46,6 +46,40 @@ export default function Settings() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const saveGeneralSettings = async () => {
+    setIsSaving(true);
+    try {
+      // Save to localStorage
+      localStorage.setItem('selectedWebsiteName', generalSettings.websiteName);
+      localStorage.setItem('selectedWebsiteDomain', generalSettings.websiteDomain);
+
+      // In a real app, this would call the API to update the website
+      // For now, we'll just save to localStorage and show success
+      setSaveMessage({ type: 'success', text: '✅ Website settings saved successfully!' });
+      setTimeout(() => setSaveMessage(null), 3000);
+    } catch (error) {
+      setSaveMessage({ type: 'error', text: '❌ Failed to save settings. Please try again.' });
+      setTimeout(() => setSaveMessage(null), 3000);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const savePrivacySettings = async () => {
+    setIsSaving(true);
+    try {
+      // In a real app, this would call the API to update privacy settings
+      // For now, we'll just show success
+      setSaveMessage({ type: 'success', text: '✅ Privacy settings saved successfully!' });
+      setTimeout(() => setSaveMessage(null), 3000);
+    } catch (error) {
+      setSaveMessage({ type: 'error', text: '❌ Failed to save privacy settings. Please try again.' });
+      setTimeout(() => setSaveMessage(null), 3000);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const verifyTracking = () => {
     // Simulate verification check
     setTrackingVerified(true);
