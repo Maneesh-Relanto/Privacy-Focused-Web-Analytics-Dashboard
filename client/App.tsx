@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import TrackerTest from "./pages/tracker-test";
 import MetricsTester from "./pages/MetricsTester";
+import TestAdmin from "./pages/TestAdmin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
