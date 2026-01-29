@@ -1,0 +1,29 @@
+{
+  "name": "privacy-analytics-tests",
+  "version": "1.0.0",
+  "description": "Test suites for Privacy Analytics Dashboard",
+  "scripts": {
+    "test": "node --loader ts-node/esm ./scripts/index.ts",
+    "test:auth": "node --loader ts-node/esm ./scripts/auth.test.ts",
+    "test:events": "node --loader ts-node/esm ./scripts/events.test.ts",
+    "test:watch": "node --watch --loader ts-node/esm ./scripts/index.ts",
+    "test:ui": "echo 'Visit http://localhost:8080/test-admin in your browser'",
+    "test:reset": "echo 'Run POST http://localhost:8080/api/seed/reset to clear test data'"
+  },
+  "keywords": [
+    "analytics",
+    "testing",
+    "e2e",
+    "integration"
+  ],
+  "author": "Privacy Analytics Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}
