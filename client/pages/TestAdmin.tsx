@@ -273,6 +273,36 @@ export default function TestAdmin() {
           </div>
         </div>
 
+        {/* Test Summary */}
+        {summary && (
+          <div className={`rounded-lg p-6 mb-6 border ${
+            summary.failed === 0
+              ? 'bg-green-900/20 border-green-600'
+              : 'bg-orange-900/20 border-orange-600'
+          }`}>
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-2xl font-bold mb-2">
+                  {summary.failed === 0 ? '✅ All Tests Passed!' : '⚠️ Some Tests Failed'}
+                </h3>
+                <p className={summary.failed === 0 ? 'text-green-300' : 'text-orange-300'}>
+                  {summary.passed}/{summary.total} tests passed in {summary.duration}ms
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-4xl font-bold mb-2">
+                  <span className="text-green-400">{summary.passed}</span>
+                  <span className="text-slate-400 text-xl mx-2">/</span>
+                  <span className="text-slate-400">{summary.total}</span>
+                </div>
+                {summary.failed > 0 && (
+                  <p className="text-red-400 font-semibold">{summary.failed} failed</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Test Results */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {tests.map((test, index) => (
