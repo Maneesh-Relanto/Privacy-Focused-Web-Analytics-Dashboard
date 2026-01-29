@@ -137,6 +137,7 @@ pnpm dev
 #### **API & Backend**
 - **[📡 API Documentation](./docs/API_DOCUMENTATION.md)** - Complete API reference with all endpoints
 - **[📊 Event Collection Guide](./docs/EVENT_COLLECTION_GUIDE.md)** - Event tracking API and examples
+- **[📝 Tracking Script Guide](./docs/TRACKING_SCRIPT_GUIDE.md)** - Lightweight tracking script installation and usage
 - **[🗄️ Backend Setup Guide](./docs/BACKEND_SETUP_GUIDE.md)** - Database and Express.js configuration
 - **[🌐 Website Management Guide](./docs/WEBSITE_MANAGEMENT_GUIDE.md)** - Website CRUD operations and examples
 
