@@ -67,14 +67,10 @@ router.post("/", async (req: Request, res: Response) => {
       data: {
         websiteId: website.id,
         eventType: eventData.eventType,
-        url: eventData.url,
+        pageUrl: eventData.url,
         referrer: eventData.referrer || null,
-        sessionId: eventData.sessionId,
-        visitorId: eventData.visitorId,
-        deviceType: eventData.deviceType || null,
-        browser: eventData.browser || null,
-        os: eventData.os || null,
-        location: eventData.location || null,
+        sessionId: eventData.sessionId || null,
+        visitorId: eventData.visitorId || null,
         properties: eventData.properties ? JSON.stringify(eventData.properties) : null,
       },
     });
@@ -84,15 +80,11 @@ router.post("/", async (req: Request, res: Response) => {
       id: event.id,
       websiteId: event.websiteId,
       eventType: event.eventType,
-      url: event.url,
+      pageUrl: event.pageUrl,
       referrer: event.referrer,
       sessionId: event.sessionId,
       visitorId: event.visitorId,
-      deviceType: event.deviceType,
-      browser: event.browser,
-      os: event.os,
-      location: event.location,
-      createdAt: event.createdAt.toISOString(),
+      timestamp: event.timestamp.toISOString(),
     });
   } catch (error) {
     console.error("Error creating event:", error);
