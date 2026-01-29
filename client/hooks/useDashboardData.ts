@@ -4,7 +4,7 @@ import type { DashboardData, DashboardMetrics } from "@shared/types/dashboard";
 /**
  * Hook to fetch all dashboard data at once
  */
-export function useDashboardData(dateRange: string = "7d") {
+export function useDashboardData(dateRange: string = "7d", websiteId?: string) {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -21,8 +21,25 @@ export function useDashboardData(dateRange: string = "7d") {
           return;
         }
 
-        const response = await fetch(
-          `/api/v1/dashboard/all?dateRange=${dateRange}`,
+        // Get websiteId from parameter or localStorage (for testing)
+        const selectedWebsiteId = websiteId || localStorage.getItem("selectedWebsiteId");
+        if (!selectedWebsiteId) {
+          setError("No website selected");
+          return;
+        }
+
+        // Convert date range to days
+        const dayMap: { [key: string]: number } = {
+          "24h": 1,
+          "7d": 7,
+          "30d": 30,
+          "90d": 90,
+        };
+        const days = dayMap[dateRange] || 7;
+
+        // Fetch metrics
+        const metricsRes = await fetch(
+          `/api/v1/dashboard/metrics?websiteId=${selectedWebsiteId}&days=${days}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -30,12 +47,92 @@ export function useDashboardData(dateRange: string = "7d") {
           },
         );
 
-        if (!response.ok) {
+        // Fetch pageviews chart data
+        const pageviewsRes = await fetch(
+          `/api/v1/dashboard/pageviews?websiteId=${selectedWebsiteId}&days=${days}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        // Fetch top pages
+        const topPagesRes = await fetch(
+          `/api/v1/dashboard/top-pages?websiteId=${selectedWebsiteId}&days=${days}&limit=10`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        // Fetch referrers
+        const referrersRes = await fetch(
+          `/api/v1/dashboard/referrers?websiteId=${selectedWebsiteId}&days=${days}&limit=10`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        // Fetch devices
+        const devicesRes = await fetch(
+          `/api/v1/dashboard/devices?websiteId=${selectedWebsiteId}&days=${days}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+
+        if (!metricsRes.ok || !pageviewsRes.ok || !topPagesRes.ok || !referrersRes.ok || !devicesRes.ok) {
           throw new Error("Failed to fetch dashboard data");
         }
 
-        const result = await response.json();
-        setData(result);
+        const metricsData = await metricsRes.json();
+        const pageviewsData = await pageviewsRes.json();
+        const topPagesData = await topPagesRes.json();
+        const referrersData = await referrersRes.json();
+        const devicesData = await devicesRes.json();
+
+        // Map to dashboard format
+        const dashboardData: DashboardData = {
+          metrics: {
+            pageViews: metricsData.data?.pageViews || 0,
+            pageViewsTrend: metricsData.data?.pageViewsChange || 0,
+            uniqueVisitors: metricsData.data?.uniqueVisitors || 0,
+            visitorsTrend: metricsData.data?.uniqueVisitorsChange || 0,
+            sessions: metricsData.data?.sessions || 0,
+            sessionsTrend: metricsData.data?.sessionsChange || 0,
+            sessionDuration: metricsData.data?.avgSessionDuration || 0,
+            sessionDurationTrend: metricsData.data?.avgSessionDurationChange || 0,
+            bounceRate: metricsData.data?.bounceRate || 0,
+            bounceRateTrend: metricsData.data?.bounceRateChange || 0,
+          },
+          pageViewsChart: {
+            data: pageviewsData.data?.map((item: any) => ({
+              date: item.date,
+              pageviews: item.pageviews,
+            })) || [],
+          },
+          visitorsChart: {
+            data: pageviewsData.data?.map((item: any) => ({
+              date: item.date,
+              visitors: Math.round(item.pageviews * 0.7), // Estimate visitors from pageviews
+            })) || [],
+          },
+          topPages: {
+            pages: topPagesData.data || [],
+          },
+          referrers: {
+            data: referrersData.data || [],
+          },
+          devices: devicesData.data || {},
+        };
+
+        setData(dashboardData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -44,7 +141,7 @@ export function useDashboardData(dateRange: string = "7d") {
     };
 
     fetchData();
-  }, [dateRange]);
+  }, [dateRange, websiteId]);
 
   return { data, loading, error };
 }
