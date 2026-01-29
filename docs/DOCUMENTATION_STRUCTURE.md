@@ -26,6 +26,7 @@ We have created a comprehensive, interconnected documentation system for the Pri
 | **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)**                   | Complete API reference  | All developers | ✅ Developer Guide, Website Mgmt, Docs |
 | **[EVENT_COLLECTION_GUIDE.md](./EVENT_COLLECTION_GUIDE.md)**         | Event tracking API      | Backend devs   | ✅ API Docs, Website Mgmt              |
 | **[TRACKING_SCRIPT_GUIDE.md](./TRACKING_SCRIPT_GUIDE.md)**            | Tracking script setup   | Website owners | ✅ Event Collection, Developer Guide   |
+| **[REAL_DATA_INTEGRATION_GUIDE.md](./REAL_DATA_INTEGRATION_GUIDE.md)** | Real data integration | All developers | ✅ API Docs, Dashboard                 |
 | **[QUICK_START_AUTHENTICATION.md](./QUICK_START_AUTHENTICATION.md)** | Fast auth setup (5 min) | Backend devs   | ✅ Backend Setup, API Docs             |
 | **[WEBSITE_MANAGEMENT_GUIDE.md](./WEBSITE_MANAGEMENT_GUIDE.md)**     | Website CRUD operations | Backend devs   | ✅ API Docs, Developer Guide           |
 
