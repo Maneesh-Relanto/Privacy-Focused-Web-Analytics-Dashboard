@@ -19,17 +19,23 @@ export default function Settings() {
   const [showTrackingCode, setShowTrackingCode] = useState(false);
   const [trackingVerified, setTrackingVerified] = useState(false);
   const [activeTab, setActiveTab] = useState<'general' | 'tracking' | 'privacy' | 'api'>('general');
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Get website info from localStorage
+  const websiteId = localStorage.getItem('selectedWebsiteId');
+  const [generalSettings, setGeneralSettings] = useState({
+    websiteName: localStorage.getItem('selectedWebsiteName') || 'My Website',
+    websiteDomain: localStorage.getItem('selectedWebsiteDomain') || 'example.com',
+    trackingEnabled: true,
+  });
+
   const [privacySettings, setPrivacySettings] = useState({
     anonymizeIp: true,
     cookieConsent: false,
     gdprCompliant: true,
     dataRetention: '90', // days
   });
-
-  // Get website info from localStorage
-  const websiteId = localStorage.getItem('selectedWebsiteId');
-  const websiteName = localStorage.getItem('selectedWebsiteName') || 'My Website';
-  const websiteDomain = localStorage.getItem('selectedWebsiteDomain') || 'example.com';
 
   const trackingCode = websiteId || 'pm-xxxxxxxx-xxxxx';
   const apiUrl = window.location.origin;
