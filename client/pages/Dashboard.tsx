@@ -103,10 +103,10 @@ export default function Dashboard() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild className="text-base">
-                  <a href="#" className="flex items-center gap-2">
+                  <Link to="/settings" className="flex items-center gap-2">
                     <Settings className="h-5 w-5" />
                     <span>Settings</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
