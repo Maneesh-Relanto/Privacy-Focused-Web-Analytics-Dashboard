@@ -160,6 +160,7 @@ pnpm dev
 | [docs/INDEX.md](./docs/INDEX.md) | Navigation hub for all docs | Finding what to read |
 | [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) | Complete setup & usage guide | Getting up and running |
 | [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) | All API endpoints & examples | API integration |
+| [docs/EVENT_COLLECTION_GUIDE.md](./docs/EVENT_COLLECTION_GUIDE.md) | Event tracking API | Event collection |
 | [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) | Database & server setup | Backend developers |
 | [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) | Code organization & architecture | Understanding codebase |
 | [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Frontend-API integration | Frontend developers |
