@@ -105,6 +105,7 @@ We have created comprehensive documentation to help you get started. Below is th
 |----------|---------|----------|------|
 | [API_DOCUMENTATION.md](API_DOCUMENTATION.md) | Complete API reference | Backend/integration | 20 min |
 | [EVENT_COLLECTION_GUIDE.md](EVENT_COLLECTION_GUIDE.md) | Event tracking and collection | Backend/tracking | 20 min |
+| [TRACKING_SCRIPT_GUIDE.md](TRACKING_SCRIPT_GUIDE.md) | Lightweight tracking script installation | Website owners | 15 min |
 | [FRONTEND_BACKEND_INTEGRATION_GUIDE.md](FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Connecting frontend to backend | Frontend devs | 20 min |
 | [WEBSITE_MANAGEMENT_GUIDE.md](WEBSITE_MANAGEMENT_GUIDE.md) | Website CRUD operations | Backend devs | 15 min |
 
