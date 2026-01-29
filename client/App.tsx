@@ -29,6 +29,7 @@ export const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/tracker-test" element={<TrackerTest />} />
+            <Route path="/metrics-tester" element={<MetricsTester />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
