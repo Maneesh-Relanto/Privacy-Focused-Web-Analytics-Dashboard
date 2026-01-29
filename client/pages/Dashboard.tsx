@@ -115,10 +115,10 @@ export default function Dashboard() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild className="text-base">
-                  <a href="#" className="flex items-center gap-2">
+                  <Link to="/documentation" className="flex items-center gap-2">
                     <BookOpen className="h-5 w-5" />
                     <span>Documentation</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
