@@ -164,6 +164,13 @@ export default function TestAdmin() {
     const passed = testResults.filter((t) => t.status === 'success').length;
     const failed = testResults.filter((t) => t.status === 'failure' || t.status === 'error').length;
 
+    setSummary({
+      passed,
+      failed,
+      total: testResults.length,
+      duration: totalDuration,
+    });
+
     addLog(`\n✅ All tests completed in ${totalDuration}ms`, 'success');
     addLog(`Results: ${passed} passed, ${failed} failed`, passed === testResults.length ? 'success' : 'warning');
 
