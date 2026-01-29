@@ -2,23 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
 export default function TrackerTest() {
-  const [trackingCode, setTrackingCode] = useState('');
-  const [debugLog, setDebugLog] = useState<string[]>([]);
+  const [trackingCode, setTrackingCode] = useState('pm-test-tracker-123');
+  const [debugLog, setDebugLog] = useState<string[]>([
+    'Welcome to the Tracking Script Test Page!',
+    'Setting up test environment...',
+  ]);
   const [isTrackerLoaded, setIsTrackerLoaded] = useState(false);
 
   useEffect(() => {
+    // Initialize tracker with test tracking code
+    (window as any).TRACKER_CODE = trackingCode;
+    (window as any).TRACKER_DEBUG = true;
+
+    // Load the tracker script
+    const script = document.createElement('script');
+    script.src = '/tracker.js';
+    script.async = true;
+    script.onload = () => {
+      addLog('✅ Tracker script loaded');
+    };
+    script.onerror = () => {
+      addLog('❌ Error loading tracker script');
+    };
+    document.body.appendChild(script);
+
     // Check if tracker is loaded
     const checkTracker = setInterval(() => {
       if ((window as any).PivotMetrics) {
         setIsTrackerLoaded(true);
         clearInterval(checkTracker);
-        addLog('✅ Tracker loaded successfully');
+        addLog('✅ Tracker initialized successfully');
         addLog('Available functions: PivotMetrics.track(), PivotMetrics.flush()');
       }
     }, 100);
 
     return () => clearInterval(checkTracker);
-  }, []);
+  }, [trackingCode]);
 
   const addLog = (message: string) => {
     const timestamp = new Date().toLocaleTimeString();
