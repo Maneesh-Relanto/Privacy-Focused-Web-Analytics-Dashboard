@@ -32,6 +32,7 @@ export const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/documentation" element={<Documentation />} />
             <Route path="/tracker-test" element={<TrackerTest />} />
             <Route path="/metrics-tester" element={<MetricsTester />} />
             <Route path="/test-admin" element={<TestAdmin />} />
