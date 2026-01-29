@@ -144,6 +144,8 @@ README.md (Entry Point)
 ├─ Backend & API
 │  ├─ BACKEND_SETUP_GUIDE.md (Server Setup)
 │  ├─ API_DOCUMENTATION.md (All Endpoints)
+│  ├─ EVENT_COLLECTION_GUIDE.md (Event API)
+│  ├─ TRACKING_SCRIPT_GUIDE.md (Tracking Script)
 │  └─ WEBSITE_MANAGEMENT_GUIDE.md (Website CRUD)
 │
 ├─ Frontend & Architecture
