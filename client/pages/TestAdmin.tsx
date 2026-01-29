@@ -180,6 +180,7 @@ export default function TestAdmin() {
   const resetTests = () => {
     setTests((prev) => prev.map((t) => ({ ...t, status: 'pending', duration: 0, message: '' })));
     setLogs([]);
+    setSummary(null);
     addLog('Tests reset', 'info');
   };
 
