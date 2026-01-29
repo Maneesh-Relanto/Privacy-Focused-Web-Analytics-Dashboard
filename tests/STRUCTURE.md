@@ -42,15 +42,15 @@ tests/
 
 These Node.js scripts use the test utilities to verify functionality.
 
-| File | Tests | Purpose |
-|------|-------|---------|
-| **index.ts** | N/A | Orchestrates all test suites, generates reports |
-| **utils.ts** | N/A | Shared functions (API calls, setup, assertions) |
-| **auth.test.ts** | 7 | User registration, login, token validation |
-| **events.test.ts** | 9 | Event collection, batching, validation |
-| **websites.test.ts** | TBD | Website CRUD, tracking code generation |
-| **aggregation.test.ts** | TBD | Metric calculations, trend analysis |
-| **dashboard.test.ts** | TBD | Dashboard endpoints, data retrieval |
+| File                    | Tests | Purpose                                         |
+| ----------------------- | ----- | ----------------------------------------------- |
+| **index.ts**            | N/A   | Orchestrates all test suites, generates reports |
+| **utils.ts**            | N/A   | Shared functions (API calls, setup, assertions) |
+| **auth.test.ts**        | 7     | User registration, login, token validation      |
+| **events.test.ts**      | 9     | Event collection, batching, validation          |
+| **websites.test.ts**    | TBD   | Website CRUD, tracking code generation          |
+| **aggregation.test.ts** | TBD   | Metric calculations, trend analysis             |
+| **dashboard.test.ts**   | TBD   | Dashboard endpoints, data retrieval             |
 
 **Total Tests Implemented:** 16/40 (40% complete)
 
@@ -58,22 +58,22 @@ These Node.js scripts use the test utilities to verify functionality.
 
 Reusable test data that can be used in multiple test scripts.
 
-| File | Contains |
-|------|----------|
-| **fixtures.ts** | Sample users, websites, events, devices, locations |
-| **sample-events.json** | Real event payload examples |
-| **test-users.json** | Test user account examples |
+| File                   | Contains                                           |
+| ---------------------- | -------------------------------------------------- |
+| **fixtures.ts**        | Sample users, websites, events, devices, locations |
+| **sample-events.json** | Real event payload examples                        |
+| **test-users.json**    | Test user account examples                         |
 
 ### `ui/` - Web Testing Interface
 
 React components for the test admin dashboard at `/test-admin`
 
-| Component | Purpose |
-|-----------|---------|
-| **test-admin.tsx** | Main dashboard (Status: Ready) |
-| **TestRunner.tsx** | Run individual tests |
-| **EventTester.tsx** | Manually send events |
-| **ResultsViewer.tsx** | Display test results |
+| Component             | Purpose                        |
+| --------------------- | ------------------------------ |
+| **test-admin.tsx**    | Main dashboard (Status: Ready) |
+| **TestRunner.tsx**    | Run individual tests           |
+| **EventTester.tsx**   | Manually send events           |
+| **ResultsViewer.tsx** | Display test results           |
 
 ---
 
@@ -119,14 +119,18 @@ Exit with status code (0 = success, 1 = failure)
 ## 📦 Dependencies
 
 ### Test Script Dependencies
+
 Located in `/tests/package.json`:
+
 - `node-fetch` - HTTP requests (for Node.js tests)
 - `ts-node` - TypeScript execution
 - `@types/node` - Type definitions
 - `typescript` - TypeScript compiler
 
 ### Runtime Dependencies
+
 The test UI uses the existing project dependencies:
+
 - React 18 (already in main project)
 - Tailwind CSS (already in main project)
 - Radix UI Button component (already in main project)
@@ -136,6 +140,7 @@ The test UI uses the existing project dependencies:
 ## 🚀 How to Run Tests
 
 ### Method 1: Web UI (Easiest) ✅
+
 ```bash
 pnpm dev
 # Navigate to http://localhost:8080/test-admin
@@ -143,6 +148,7 @@ pnpm dev
 ```
 
 ### Method 2: Command Line
+
 ```bash
 # Run all tests
 pnpm test
@@ -156,6 +162,7 @@ pnpm test:watch
 ```
 
 ### Method 3: Individual Tests
+
 ```bash
 # Run just one test file
 node --loader ts-node/esm tests/scripts/auth.test.ts
@@ -167,22 +174,23 @@ node --loader ts-node/esm tests/scripts/auth.test.ts
 
 ### Implemented ✅
 
-| Component | Coverage | Tests |
-|-----------|----------|-------|
-| Authentication | 100% | 7 |
-| Event Collection | 100% | 9 |
+| Component             | Coverage | Tests  |
+| --------------------- | -------- | ------ |
+| Authentication        | 100%     | 7      |
+| Event Collection      | 100%     | 9      |
 | **Total Implemented** | **100%** | **16** |
 
 ### In Progress 🔄
 
-| Component | Coverage | Tests |
-|-----------|----------|-------|
-| Website Management | 0% | - |
-| Event Aggregation | 0% | - |
-| Dashboard API | 0% | - |
-| **Total to Implement** | **0%** | **24** |
+| Component              | Coverage | Tests  |
+| ---------------------- | -------- | ------ |
+| Website Management     | 0%       | -      |
+| Event Aggregation      | 0%       | -      |
+| Dashboard API          | 0%       | -      |
+| **Total to Implement** | **0%**   | **24** |
 
 ### Summary
+
 - **Complete:** 16 tests ✅
 - **Remaining:** 24 tests (for Phase 3/4)
 - **Total:** 40 tests planned
@@ -194,6 +202,7 @@ node --loader ts-node/esm tests/scripts/auth.test.ts
 ### `.env.test` - Test Environment Variables
 
 Controls test behavior:
+
 ```
 TEST_API_URL=http://localhost:8080        # API server URL
 TEST_API_TIMEOUT=10000                    # Request timeout (ms)
@@ -205,6 +214,7 @@ TEST_RETRY_COUNT=1                        # Retry failed tests
 ### `package.json` - Test Scripts
 
 Defines how to run tests:
+
 ```json
 {
   "scripts": {
@@ -222,20 +232,26 @@ Defines how to run tests:
 ## 🔗 Integration with Main App
 
 ### Test Admin Route
+
 The test UI is integrated into the main app:
+
 - **Route:** `/test-admin`
 - **Component:** `client/pages/TestAdmin.tsx`
 - **Added to:** `client/App.tsx`
 - **Accessible:** When dev server is running
 
 ### Test Scripts Location
+
 Located outside the main codebase:
+
 - **Path:** `/tests/` (separate folder)
 - **Reason:** Keep tests isolated from production code
 - **Access:** Via CLI or imported by test admin UI
 
 ### Test Data
+
 Uses the production API endpoints:
+
 - Creates real data in the database
 - No mocking required
 - Cleans up after itself
@@ -245,11 +261,13 @@ Uses the production API endpoints:
 ## 📈 Testing Workflow
 
 ### Before Making Changes
+
 ```bash
 pnpm test  # Run all tests to verify baseline
 ```
 
 ### After Making Changes
+
 ```bash
 # Test specific component
 pnpm test:auth      # If auth changes
@@ -262,6 +280,7 @@ pnpm test
 ```
 
 ### Before Committing
+
 ```bash
 # Run full test suite
 pnpm test
@@ -278,18 +297,21 @@ git commit -m "Feature: xyz"
 ## 🎯 Future Test Additions
 
 ### Phase 3 Tests
+
 - Real-time WebSocket updates
 - Advanced filtering
 - Custom date ranges
 - Period comparisons
 
 ### Phase 4 Tests
+
 - Conversion tracking
 - Funnel analysis
 - Custom dashboards
 - Alerts and notifications
 
 ### Infrastructure Tests
+
 - Database migrations
 - Performance benchmarks
 - Load testing
@@ -300,15 +322,18 @@ git commit -m "Feature: xyz"
 ## 📝 Test Documentation
 
 ### For Users
+
 - **Quick Start:** `tests/QUICK_START.md` - How to run tests
 - **Main Guide:** `tests/README.md` - Comprehensive testing guide
 
 ### For Developers
+
 - **Structure:** `tests/STRUCTURE.md` - This file
 - **Scripts:** Each `.test.ts` file has inline comments
 - **Utils:** `tests/scripts/utils.ts` has documented functions
 
 ### For DevOps
+
 - **Setup:** `tests/.env.test` - Configuration
 - **CI/CD:** Add to your CI pipeline (see `tests/README.md`)
 - **Reports:** Generated as JSON (configurable)
@@ -318,16 +343,19 @@ git commit -m "Feature: xyz"
 ## 🔐 Security Notes
 
 ### Test Data Isolation
+
 - Tests create and delete their own data
 - No shared state between test runs
 - Safe to run multiple times
 
 ### Test Credentials
+
 - Test user email: `test@example.com`
 - Test password: `test123secure`
 - Only for development/testing
 
 ### Cleanup
+
 - All test data is automatically deleted after tests complete
 - Manual reset: `curl -X DELETE http://localhost:8080/api/seed`
 
@@ -352,6 +380,7 @@ When you're new to the project:
 **Last Updated:** January 29, 2025
 
 See also:
+
 - [Quick Start Guide](./QUICK_START.md)
 - [Complete Testing Guide](./README.md)
 - [Main Project README](../README.md)

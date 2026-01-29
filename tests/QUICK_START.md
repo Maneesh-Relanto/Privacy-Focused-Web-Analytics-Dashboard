@@ -13,20 +13,25 @@ The easiest way to test everything is through the web UI:
 ## 📊 What You'll See
 
 ### Test Results Cards
+
 Each test suite shows:
+
 - **Status:** ✅ (passed) ❌ (failed) ⏳ (running) ⭕ (pending)
 - **Duration:** Time taken in milliseconds
 - **Message:** Details about the test result
 - **Run Test Button:** Execute just that test
 
 ### Test Logs
+
 Real-time output showing:
+
 - Timestamps for each action
 - Color-coded results (green = success, red = error, yellow = warning)
 - Detailed request/response information
 - Performance metrics
 
 ### Controls
+
 - **Run All Tests** - Execute all test suites sequentially
 - **Reset** - Clear results and logs
 - **Copy** - Copy all logs to clipboard
@@ -37,7 +42,9 @@ Real-time output showing:
 ## 🧪 What Gets Tested
 
 ### 1️⃣ Authentication Tests
+
 Tests user registration, login, and token validation:
+
 - ✅ User registration with email/password
 - ✅ Duplicate registration rejection
 - ✅ Login with valid credentials
@@ -49,7 +56,9 @@ Tests user registration, login, and token validation:
 **Expected:** 7/7 tests to pass ✅
 
 ### 2️⃣ Event Collection Tests
+
 Tests sending and validating events:
+
 - ✅ Send single pageview event
 - ✅ Send click event
 - ✅ Send custom event
@@ -62,8 +71,10 @@ Tests sending and validating events:
 
 **Expected:** 9/9 tests to pass ✅
 
-### 3️⃣ Dashboard API Tests *(Coming Soon)*
+### 3️⃣ Dashboard API Tests _(Coming Soon)_
+
 Tests metric retrieval and aggregation:
+
 - Get overall metrics
 - Get time-series data
 - Get top pages
@@ -71,8 +82,10 @@ Tests metric retrieval and aggregation:
 - Get device breakdown
 - Calculate trends vs previous period
 
-### 4️⃣ Aggregation Tests *(Coming Soon)*
+### 4️⃣ Aggregation Tests _(Coming Soon)_
+
 Tests metric calculations:
+
 - Count pageviews
 - Count unique visitors
 - Group sessions
@@ -107,7 +120,9 @@ pnpm test:reset
 ## 📝 Test Data Management
 
 ### Automatic Setup
+
 Each test automatically:
+
 1. Creates a test user
 2. Generates an authentication token
 3. Creates a test website
@@ -115,6 +130,7 @@ Each test automatically:
 5. Cleans up after itself
 
 ### Manual Setup
+
 To create test data without running tests:
 
 ```bash
@@ -129,6 +145,7 @@ curl -X POST http://localhost:8080/api/seed
 ```
 
 ### Manual Cleanup
+
 ```bash
 # Clear all test data
 curl -X DELETE http://localhost:8080/api/seed
@@ -139,25 +156,32 @@ curl -X DELETE http://localhost:8080/api/seed
 ## 🔍 Interpreting Test Results
 
 ### ✅ All Green (Success)
+
 ```
 ✅ Authentication Tests
    Passed: 7 | Failed: 0 | Duration: 234ms
 ```
+
 Everything is working correctly!
 
 ### ⚠️ Some Red (Failures)
+
 ```
 ❌ Event Collection Tests
    Passed: 8 | Failed: 1 | Duration: 892ms
 ```
+
 Check the test logs for specific error messages.
 
 ### ❌ All Red (Major Issues)
+
 ```
 ❌ Dashboard API Tests
    Passed: 0 | Failed: 4 | Duration: 1234ms
 ```
+
 Backend might not be running. Check:
+
 1. Is `pnpm dev` running?
 2. Check browser console (F12) for errors
 3. Check terminal logs for backend errors
@@ -167,14 +191,17 @@ Backend might not be running. Check:
 ## 🛠️ Troubleshooting
 
 ### Test Page Shows "Click Run All Tests to Start Testing..."
+
 This is normal! The page is waiting for you to click the button to start tests.
 
 ### Tests Are Slow
+
 - First test run initializes data: This is normal
 - Subsequent runs should be faster
 - Check your internet connection/server latency
 
 ### "Failed to reach API" Error
+
 ```bash
 # Make sure dev server is running:
 pnpm dev
@@ -185,13 +212,17 @@ curl http://localhost:8080/api/ping
 ```
 
 ### "Tracking code not found" Error
+
 This means the test website wasn't created. Check:
+
 1. Is the test user authenticated?
 2. Are there database errors?
 3. Try running `/api/seed` to create fresh test data
 
 ### Tests Time Out
+
 Increase the timeout in `/tests/.env.test`:
+
 ```
 TEST_API_TIMEOUT=20000  # 20 seconds instead of 10
 ```
@@ -235,16 +266,19 @@ Results: 2 passed, 0 failed
 ## 🎯 Common Test Scenarios
 
 ### Scenario 1: Test Event Collection End-to-End
+
 1. Go to `/test-admin` and run "Event Collection Tests"
 2. Go to `/tracker-test` and send some manual events
 3. Go to `/metrics-tester` and verify events appear
 4. Go to `/dashboard` to see the metrics
 
 ### Scenario 2: Test Authentication Flow
+
 1. Go to `/test-admin` and run "Authentication Tests"
 2. All tests should pass including registration, login, token validation
 
 ### Scenario 3: Full System Test
+
 1. Run "Run All Tests" on `/test-admin`
 2. Check that all tests pass (should be 4/4 test suites)
 3. Use `/tracker-test` to send real events
@@ -256,24 +290,31 @@ Results: 2 passed, 0 failed
 ## 🚀 Tips & Tricks
 
 ### Tip 1: Run Tests Frequently
+
 Run tests before committing code to catch issues early:
+
 ```bash
 # Quick test before commit
 pnpm test && git commit -am "Feature X"
 ```
 
 ### Tip 2: Monitor Performance
+
 Each test shows execution time. Track if:
+
 - Tests are getting slower
 - API response times are degrading
 - Database queries need optimization
 
 ### Tip 3: Combine Manual & Automated Testing
+
 - **Automated tests** verify everything works
 - **Manual tests** (/tracker-test, /metrics-tester) let you explore features
 
 ### Tip 4: Use Test Logs for Debugging
+
 The detailed logs show:
+
 - Exact API requests and responses
 - Timing information
 - Error messages and stack traces
@@ -284,18 +325,21 @@ The detailed logs show:
 ## 📞 Getting Help
 
 **Tests not running?**
+
 1. Check that `pnpm dev` is running
 2. Verify port 8080 is accessible
 3. Look at browser console (F12) for errors
 4. Check terminal for backend errors
 
 **Specific test failing?**
+
 1. Check the test logs for error details
 2. Read the test file: `tests/scripts/xxx.test.ts`
 3. Check the API documentation: `docs/API_DOCUMENTATION.md`
 4. Try the endpoint manually with curl
 
 **Need more info?**
+
 - Read `/tests/README.md` for comprehensive guide
 - Check test source code in `/tests/scripts/`
 - Review API docs in `/docs/API_DOCUMENTATION.md`

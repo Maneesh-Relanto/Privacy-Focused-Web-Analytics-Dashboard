@@ -3,11 +3,11 @@
  * Shared functions for making API calls, setup/teardown, logging, etc.
  */
 
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 // Configuration
-const API_URL = process.env.TEST_API_URL || 'http://localhost:8080';
-const API_TIMEOUT = parseInt(process.env.TEST_API_TIMEOUT || '10000');
+const API_URL = process.env.TEST_API_URL || "http://localhost:8080";
+const API_TIMEOUT = parseInt(process.env.TEST_API_TIMEOUT || "10000");
 
 // Test state
 let testContext: TestContext = {
@@ -53,18 +53,18 @@ export async function apiCall(
   endpoint: string,
   body?: any,
   headers?: Record<string, string>,
-  useAuth = true
+  useAuth = true,
 ): Promise<ApiResponse> {
   const url = `${API_URL}${endpoint}`;
   const startTime = Date.now();
 
   try {
     const defaultHeaders: Record<string, string> = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     if (useAuth && testContext.accessToken) {
-      defaultHeaders['Authorization'] = `Bearer ${testContext.accessToken}`;
+      defaultHeaders["Authorization"] = `Bearer ${testContext.accessToken}`;
     }
 
     const options: any = {
@@ -73,7 +73,7 @@ export async function apiCall(
       timeout: API_TIMEOUT,
     };
 
-    if (body && method !== 'GET') {
+    if (body && method !== "GET") {
       options.body = JSON.stringify(body);
     }
 
@@ -94,10 +94,10 @@ export async function apiCall(
     const timing = Date.now() - startTime;
     return {
       status: 0,
-      statusText: 'Error',
+      statusText: "Error",
       data: null,
       headers: {},
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: error instanceof Error ? error.message : "Unknown error",
       timing,
     };
   }
@@ -107,25 +107,25 @@ export async function apiCall(
  * Setup test environment
  */
 export async function setupTest(): Promise<TestContext> {
-  log('Setting up test environment...');
+  log("Setting up test environment...");
 
   try {
     // Register test user
     const registerResponse = await apiCall(
-      'POST',
-      '/api/v1/auth/register',
+      "POST",
+      "/api/v1/auth/register",
       {
         email: `test-${Date.now()}@example.com`,
-        password: 'test123secure',
-        name: 'Test User',
+        password: "test123secure",
+        name: "Test User",
       },
       {},
-      false
+      false,
     );
 
     if (registerResponse.status !== 201) {
       logError(`Failed to register test user: ${registerResponse.statusText}`);
-      throw new Error('User registration failed');
+      throw new Error("User registration failed");
     }
 
     const userId = registerResponse.data.user?.id;
@@ -137,37 +137,33 @@ export async function setupTest(): Promise<TestContext> {
 
     // Login to get token
     const loginResponse = await apiCall(
-      'POST',
-      '/api/v1/auth/login',
+      "POST",
+      "/api/v1/auth/login",
       {
         email: userEmail,
-        password: 'test123secure',
+        password: "test123secure",
       },
       {},
-      false
+      false,
     );
 
     if (loginResponse.status !== 200) {
       logError(`Failed to login: ${loginResponse.statusText}`);
-      throw new Error('Login failed');
+      throw new Error("Login failed");
     }
 
     testContext.accessToken = loginResponse.data.accessToken;
-    logSuccess('Login successful, token obtained');
+    logSuccess("Login successful, token obtained");
 
     // Create test website
-    const websiteResponse = await apiCall(
-      'POST',
-      '/api/v1/websites',
-      {
-        name: `Test Website ${Date.now()}`,
-        domain: `test-${Date.now()}.example.com`,
-      }
-    );
+    const websiteResponse = await apiCall("POST", "/api/v1/websites", {
+      name: `Test Website ${Date.now()}`,
+      domain: `test-${Date.now()}.example.com`,
+    });
 
     if (websiteResponse.status !== 201) {
       logError(`Failed to create website: ${websiteResponse.statusText}`);
-      throw new Error('Website creation failed');
+      throw new Error("Website creation failed");
     }
 
     testContext.testWebsiteId = websiteResponse.data.website?.id;
@@ -175,10 +171,12 @@ export async function setupTest(): Promise<TestContext> {
     testContext.createdIds.websites.push(testContext.testWebsiteId);
     logSuccess(`Test website created: ${testContext.testTrackingCode}`);
 
-    log('Test setup complete ✅');
+    log("Test setup complete ✅");
     return testContext;
   } catch (error) {
-    logError(`Test setup failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    logError(
+      `Test setup failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
     throw error;
   }
 }
@@ -187,19 +185,21 @@ export async function setupTest(): Promise<TestContext> {
  * Teardown test environment
  */
 export async function teardownTest(context: TestContext): Promise<void> {
-  log('Cleaning up test data...');
+  log("Cleaning up test data...");
 
   try {
     // Delete created websites
     for (const websiteId of context.createdIds.websites) {
-      await apiCall('DELETE', `/api/v1/websites/${websiteId}`);
+      await apiCall("DELETE", `/api/v1/websites/${websiteId}`);
     }
     logSuccess(`Deleted ${context.createdIds.websites.length} websites`);
 
     // Note: Users and events cascade delete with websites via Prisma
-    log('Test cleanup complete ✅');
+    log("Test cleanup complete ✅");
   } catch (error) {
-    logWarning(`Cleanup error (continuing): ${error instanceof Error ? error.message : 'Unknown error'}`);
+    logWarning(
+      `Cleanup error (continuing): ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
   }
 }
 
@@ -208,26 +208,20 @@ export async function teardownTest(context: TestContext): Promise<void> {
  */
 export async function sendTestEvent(
   trackingCode: string,
-  eventType: 'pageview' | 'click' | 'custom' = 'pageview',
-  properties?: Record<string, any>
+  eventType: "pageview" | "click" | "custom" = "pageview",
+  properties?: Record<string, any>,
 ): Promise<ApiResponse> {
   const event = {
     trackingCode,
     eventType,
     url: `https://${trackingCode}.example.com/page-${Math.floor(Math.random() * 5) + 1}`,
-    referrer: Math.random() > 0.7 ? 'https://google.com/search' : null,
+    referrer: Math.random() > 0.7 ? "https://google.com/search" : null,
     sessionId: `sess-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
     visitorId: `vis-${Math.random().toString(36).substr(2, 9)}`,
     properties,
   };
 
-  const response = await apiCall(
-    'POST',
-    '/api/v1/events',
-    event,
-    {},
-    false
-  );
+  const response = await apiCall("POST", "/api/v1/events", event, {}, false);
 
   if (response.status === 201) {
     testContext.createdIds.events.push(response.data.id);
@@ -241,26 +235,26 @@ export async function sendTestEvent(
  */
 export async function sendBatchEvents(
   trackingCode: string,
-  count: number = 10
+  count: number = 10,
 ): Promise<ApiResponse> {
   const events = [];
   for (let i = 0; i < count; i++) {
     events.push({
       trackingCode,
-      eventType: 'pageview',
+      eventType: "pageview",
       url: `https://${trackingCode}.example.com/page-${Math.floor(Math.random() * 5) + 1}`,
-      referrer: Math.random() > 0.7 ? 'https://google.com/search' : null,
+      referrer: Math.random() > 0.7 ? "https://google.com/search" : null,
       sessionId: `sess-${Date.now()}-${i}`,
       visitorId: `vis-${Math.floor(Math.random() * 20) + 1}`,
     });
   }
 
   const response = await apiCall(
-    'POST',
-    '/api/v1/events/batch',
+    "POST",
+    "/api/v1/events/batch",
     { events },
     {},
-    false
+    false,
   );
 
   return response;
@@ -297,29 +291,37 @@ export function resetTestContext(): void {
 
 export function log(message: string): void {
   console.log(`[TEST] ${message}`);
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('test:log', { detail: { message, level: 'info' } }));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("test:log", { detail: { message, level: "info" } }),
+    );
   }
 }
 
 export function logSuccess(message: string): void {
   console.log(`✅ ${message}`);
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('test:log', { detail: { message, level: 'success' } }));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("test:log", { detail: { message, level: "success" } }),
+    );
   }
 }
 
 export function logError(message: string): void {
   console.error(`❌ ${message}`);
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('test:log', { detail: { message, level: 'error' } }));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("test:log", { detail: { message, level: "error" } }),
+    );
   }
 }
 
 export function logWarning(message: string): void {
   console.warn(`⚠️ ${message}`);
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('test:log', { detail: { message, level: 'warning' } }));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("test:log", { detail: { message, level: "warning" } }),
+    );
   }
 }
 
@@ -333,9 +335,15 @@ export function assert(condition: boolean, message: string): void {
   }
 }
 
-export function assertEquals(actual: any, expected: any, message: string): void {
+export function assertEquals(
+  actual: any,
+  expected: any,
+  message: string,
+): void {
   if (actual !== expected) {
-    throw new Error(`Assertion failed: ${message}\nExpected: ${expected}\nActual: ${actual}`);
+    throw new Error(
+      `Assertion failed: ${message}\nExpected: ${expected}\nActual: ${actual}`,
+    );
   }
 }
 
@@ -361,7 +369,7 @@ export function sleep(ms: number): Promise<void> {
 
 export async function measure<T>(
   name: string,
-  fn: () => Promise<T>
+  fn: () => Promise<T>,
 ): Promise<T> {
   const startTime = Date.now();
   const result = await fn();

@@ -63,9 +63,11 @@ pnpm test:aggregation
 ## 📋 Available Test Suites
 
 ### Authentication Tests (`scripts/auth.test.ts`)
+
 Tests user registration, login, and token generation
 
 **What it tests:**
+
 - User registration with email/password
 - Login with valid credentials
 - Token generation and validation
@@ -74,9 +76,11 @@ Tests user registration, login, and token generation
 **Run:** `pnpm test:auth`
 
 ### Website Management Tests (`scripts/websites.test.ts`)
+
 Tests CRUD operations for websites
 
 **What it tests:**
+
 - Create website with tracking code
 - List websites for user
 - Retrieve single website
@@ -87,9 +91,11 @@ Tests CRUD operations for websites
 **Run:** `pnpm test:websites`
 
 ### Event Collection Tests (`scripts/events.test.ts`)
+
 Tests single and batch event collection
 
 **What it tests:**
+
 - Send single pageview event
 - Send batch events
 - Event validation (tracking code, URL, required fields)
@@ -99,9 +105,11 @@ Tests single and batch event collection
 **Run:** `pnpm test:events`
 
 ### Aggregation Tests (`scripts/aggregation.test.ts`)
+
 Tests metric calculations from raw events
 
 **What it tests:**
+
 - Page view counting
 - Unique visitor identification
 - Session grouping and duration
@@ -113,9 +121,11 @@ Tests metric calculations from raw events
 **Run:** `pnpm test:aggregation`
 
 ### Dashboard API Tests (`scripts/dashboard.test.ts`)
+
 Tests dashboard data endpoints
 
 **What it tests:**
+
 - Get overall metrics
 - Get time-series pageview data
 - Get top pages list
@@ -134,29 +144,34 @@ Access the test dashboard at `http://localhost:8080/test-admin`
 ### Features
 
 **Test Runner**
+
 - Run individual test suites
 - Run all tests in sequence
 - Real-time test output
 - Color-coded results (✅ pass, ❌ fail, ⚠️ skip)
 
 **Test Controls**
+
 - Setup test environment (seed data)
 - Reset test data
 - Clear logs
 - Export results as JSON
 
 **Results Viewer**
+
 - View detailed test output
 - See error messages and stack traces
 - Timeline of test execution
 - Performance metrics
 
 **Manual Testers**
+
 - Event Collection Tester: Send test events and verify they're stored
 - Dashboard Tester: Call dashboard APIs and view results
 - Authentication Tester: Test login flow
 
 **Logs & Debugging**
+
 - Real-time console logs
 - Request/response bodies
 - Database query logs
@@ -172,10 +187,10 @@ Each test file should follow this pattern:
 
 ```typescript
 // tests/scripts/feature.test.ts
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { apiCall, setupTest, teardownTest } from './utils';
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { apiCall, setupTest, teardownTest } from "./utils";
 
-describe('Feature Tests', () => {
+describe("Feature Tests", () => {
   let testData: any;
 
   beforeAll(async () => {
@@ -186,11 +201,11 @@ describe('Feature Tests', () => {
     await teardownTest(testData);
   });
 
-  it('should do something', async () => {
-    const result = await apiCall('POST', '/api/v1/endpoint', {
-      data: 'test'
+  it("should do something", async () => {
+    const result = await apiCall("POST", "/api/v1/endpoint", {
+      data: "test",
     });
-    
+
     expect(result.status).toBe(200);
     expect(result.data.id).toBeDefined();
   });
@@ -264,17 +279,20 @@ TOTAL: 14/14 tests passed ✅
 ## 🐛 Debugging Failed Tests
 
 ### Check the Test Admin UI
+
 - Navigate to `http://localhost:8080/test-admin`
 - Look at detailed error messages
 - Check request/response bodies
 - Review timing and logs
 
 ### Check the Console
+
 - Open browser DevTools (F12)
 - Check Console tab for errors
 - Check Network tab for API calls
 
 ### Check the Database
+
 ```bash
 # View test data
 sqlite3 db.sqlite
@@ -282,6 +300,7 @@ SELECT * FROM events WHERE websiteId = 'test-website-id';
 ```
 
 ### Run Individual Tests
+
 ```bash
 pnpm test:events  # Just event tests
 pnpm test:events -- --reporter=verbose  # With verbose output
@@ -292,6 +311,7 @@ pnpm test:events -- --reporter=verbose  # With verbose output
 ## 🔄 Test Workflow
 
 ### Development Workflow
+
 1. Make code changes
 2. Run `pnpm test` to verify
 3. Use `/test-admin` UI to manually verify features
@@ -299,6 +319,7 @@ pnpm test:events -- --reporter=verbose  # With verbose output
 5. Commit and push
 
 ### Adding New Features
+
 1. Write test cases first (TDD)
 2. Implement feature code
 3. Run tests to verify
@@ -306,6 +327,7 @@ pnpm test:events -- --reporter=verbose  # With verbose output
 5. Document in feature guide
 
 ### Before Deployment
+
 1. Run full test suite: `pnpm test`
 2. Check test UI at `/test-admin`
 3. Verify all metrics with sample data
@@ -339,14 +361,14 @@ TEST_ENABLE_LOGS=true
 
 ## 🎯 Test Coverage Goals
 
-| Component | Current | Target |
-|-----------|---------|--------|
-| Authentication | 100% | 100% ✅ |
-| Website Management | 100% | 100% ✅ |
-| Event Collection | 95% | 100% |
-| Aggregation | 90% | 100% |
-| Dashboard API | 85% | 100% |
-| Frontend Components | 60% | 80% |
+| Component           | Current | Target  |
+| ------------------- | ------- | ------- |
+| Authentication      | 100%    | 100% ✅ |
+| Website Management  | 100%    | 100% ✅ |
+| Event Collection    | 95%     | 100%    |
+| Aggregation         | 90%     | 100%    |
+| Dashboard API       | 85%     | 100%    |
+| Frontend Components | 60%     | 80%     |
 
 ---
 

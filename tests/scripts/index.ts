@@ -3,8 +3,8 @@
  * Orchestrates all test suites and generates reports
  */
 
-import testAuthentication from './auth.test';
-import testEventCollection from './events.test';
+import testAuthentication from "./auth.test";
+import testEventCollection from "./events.test";
 
 interface TestReport {
   timestamp: string;
@@ -34,16 +34,16 @@ export async function runAllTests(): Promise<TestReport> {
     suites: [],
   };
 
-  console.log('\n');
-  console.log('╔════════════════════════════════════════╗');
-  console.log('║     TEST SUITE - Privacy Analytics      ║');
-  console.log('║        Running All Test Suites         ║');
-  console.log('╚════════════════════════════════════════╝');
-  console.log('\n');
+  console.log("\n");
+  console.log("╔════════════════════════════════════════╗");
+  console.log("║     TEST SUITE - Privacy Analytics      ║");
+  console.log("║        Running All Test Suites         ║");
+  console.log("╚════════════════════════════════════════╝");
+  console.log("\n");
 
   try {
     // Test 1: Authentication
-    console.log('📋 Running Authentication Tests...');
+    console.log("📋 Running Authentication Tests...");
     const authStart = Date.now();
     const authResult = await testAuthentication();
     const authDuration = Date.now() - authStart;
@@ -51,7 +51,7 @@ export async function runAllTests(): Promise<TestReport> {
     if (authResult.success) {
       console.log(`✅ Authentication Tests Passed (${authDuration}ms)\n`);
       report.suites.push({
-        name: 'Authentication',
+        name: "Authentication",
         passed: authResult.testsPassed,
         failed: 0,
         duration: authDuration,
@@ -61,7 +61,7 @@ export async function runAllTests(): Promise<TestReport> {
     } else {
       console.log(`❌ Authentication Tests Failed\n`);
       report.suites.push({
-        name: 'Authentication',
+        name: "Authentication",
         passed: 0,
         failed: 1,
         duration: authDuration,
@@ -71,7 +71,7 @@ export async function runAllTests(): Promise<TestReport> {
     }
 
     // Test 2: Event Collection
-    console.log('📋 Running Event Collection Tests...');
+    console.log("📋 Running Event Collection Tests...");
     const eventsStart = Date.now();
     const eventsResult = await testEventCollection();
     const eventsDuration = Date.now() - eventsStart;
@@ -79,7 +79,7 @@ export async function runAllTests(): Promise<TestReport> {
     if (eventsResult.success) {
       console.log(`✅ Event Collection Tests Passed (${eventsDuration}ms)\n`);
       report.suites.push({
-        name: 'Event Collection',
+        name: "Event Collection",
         passed: eventsResult.testsPassed,
         failed: 0,
         duration: eventsDuration,
@@ -89,7 +89,7 @@ export async function runAllTests(): Promise<TestReport> {
     } else {
       console.log(`❌ Event Collection Tests Failed\n`);
       report.suites.push({
-        name: 'Event Collection',
+        name: "Event Collection",
         passed: 0,
         failed: 1,
         duration: eventsDuration,
@@ -101,31 +101,35 @@ export async function runAllTests(): Promise<TestReport> {
     // Generate report
     report.duration = Date.now() - startTime;
 
-    console.log('╔════════════════════════════════════════╗');
-    console.log('║            TEST REPORT SUMMARY         ║');
-    console.log('╚════════════════════════════════════════╝\n');
+    console.log("╔════════════════════════════════════════╗");
+    console.log("║            TEST REPORT SUMMARY         ║");
+    console.log("╚════════════════════════════════════════╝\n");
 
     for (const suite of report.suites) {
-      const status = suite.failed === 0 ? '✅' : '❌';
+      const status = suite.failed === 0 ? "✅" : "❌";
       console.log(`${status} ${suite.name}`);
-      console.log(`   Passed: ${suite.passed} | Failed: ${suite.failed} | Duration: ${suite.duration}ms`);
+      console.log(
+        `   Passed: ${suite.passed} | Failed: ${suite.failed} | Duration: ${suite.duration}ms`,
+      );
     }
 
-    console.log('\n' + '═'.repeat(40));
-    const totalStatus = report.failed === 0 ? '✅' : '⚠️';
-    console.log(`${totalStatus} Total: ${report.passed}/${report.totalTests} passed`);
+    console.log("\n" + "═".repeat(40));
+    const totalStatus = report.failed === 0 ? "✅" : "⚠️";
+    console.log(
+      `${totalStatus} Total: ${report.passed}/${report.totalTests} passed`,
+    );
     console.log(`⏱️  Total Duration: ${report.duration}ms`);
-    console.log('═'.repeat(40) + '\n');
+    console.log("═".repeat(40) + "\n");
 
     if (report.failed === 0) {
-      console.log('🎉 ALL TESTS PASSED! 🎉\n');
+      console.log("🎉 ALL TESTS PASSED! 🎉\n");
     } else {
       console.log(`⚠️  ${report.failed} test suite(s) failed\n`);
     }
 
     return report;
   } catch (error) {
-    console.error('Fatal error running tests:', error);
+    console.error("Fatal error running tests:", error);
     throw error;
   }
 }
@@ -135,11 +139,11 @@ export async function runAllTests(): Promise<TestReport> {
  */
 export async function runTestSuite(suiteName: string): Promise<any> {
   switch (suiteName.toLowerCase()) {
-    case 'auth':
-    case 'authentication':
+    case "auth":
+    case "authentication":
       return testAuthentication();
-    case 'events':
-    case 'event-collection':
+    case "events":
+    case "event-collection":
       return testEventCollection();
     default:
       throw new Error(`Unknown test suite: ${suiteName}`);

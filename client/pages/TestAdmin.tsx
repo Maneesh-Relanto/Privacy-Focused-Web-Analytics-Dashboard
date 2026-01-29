@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Play, RotateCcw, Copy, Download, Loader } from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Play, RotateCcw, Copy, Download, Loader } from "lucide-react";
 
 interface TestResult {
   name: string;
-  status: 'pending' | 'running' | 'success' | 'failure' | 'error';
+  status: "pending" | "running" | "success" | "failure" | "error";
   duration: number;
   message: string;
   details?: any;
@@ -12,29 +12,37 @@ interface TestResult {
 
 interface TestLog {
   timestamp: string;
-  level: 'info' | 'success' | 'error' | 'warning';
+  level: "info" | "success" | "error" | "warning";
   message: string;
 }
 
 export default function TestAdmin() {
   const [tests, setTests] = useState<TestResult[]>([
-    { name: 'Authentication', status: 'pending', duration: 0, message: '' },
-    { name: 'Event Collection', status: 'pending', duration: 0, message: '' },
-    { name: 'Dashboard API', status: 'pending', duration: 0, message: '' },
-    { name: 'Aggregation', status: 'pending', duration: 0, message: '' },
+    { name: "Authentication", status: "pending", duration: 0, message: "" },
+    { name: "Event Collection", status: "pending", duration: 0, message: "" },
+    { name: "Dashboard API", status: "pending", duration: 0, message: "" },
+    { name: "Aggregation", status: "pending", duration: 0, message: "" },
   ]);
 
   const [logs, setLogs] = useState<TestLog[]>([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [summary, setSummary] = useState<{ passed: number; failed: number; total: number; duration: number } | null>(null);
+  const [summary, setSummary] = useState<{
+    passed: number;
+    failed: number;
+    total: number;
+    duration: number;
+  } | null>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Auto-scroll logs to bottom
-    logsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
 
-  const addLog = (message: string, level: 'info' | 'success' | 'error' | 'warning' = 'info') => {
+  const addLog = (
+    message: string,
+    level: "info" | "success" | "error" | "warning" = "info",
+  ) => {
     const timestamp = new Date().toLocaleTimeString();
     setLogs((prev) => [...prev, { timestamp, level, message }]);
   };
@@ -45,13 +53,15 @@ export default function TestAdmin() {
 
     try {
       setTests((prev) =>
-        prev.map((t, i) => (i === testIndex ? { ...t, status: 'running' } : t))
+        prev.map((t, i) => (i === testIndex ? { ...t, status: "running" } : t)),
       );
 
-      addLog(`Starting: ${testName}`, 'info');
+      addLog(`Starting: ${testName}`, "info");
 
       // Simulate test run (in real implementation, call actual test)
-      await new Promise((resolve) => setTimeout(resolve, 1000 + Math.random() * 2000));
+      await new Promise((resolve) =>
+        setTimeout(resolve, 1000 + Math.random() * 2000),
+      );
 
       const duration = Date.now() - startTime;
       const success = Math.random() > 0.1; // 90% success rate for demo
@@ -61,15 +71,18 @@ export default function TestAdmin() {
           i === testIndex
             ? {
                 ...t,
-                status: success ? 'success' : 'failure',
+                status: success ? "success" : "failure",
                 duration,
-                message: success ? 'All checks passed' : 'Some checks failed',
+                message: success ? "All checks passed" : "Some checks failed",
               }
-            : t
-        )
+            : t,
+        ),
       );
 
-      addLog(`${testName} - ${success ? 'PASSED' : 'FAILED'} (${duration}ms)`, success ? 'success' : 'error');
+      addLog(
+        `${testName} - ${success ? "PASSED" : "FAILED"} (${duration}ms)`,
+        success ? "success" : "error",
+      );
     } catch (error) {
       const duration = Date.now() - startTime;
       setTests((prev) =>
@@ -77,24 +90,30 @@ export default function TestAdmin() {
           i === testIndex
             ? {
                 ...t,
-                status: 'error',
+                status: "error",
                 duration,
-                message: error instanceof Error ? error.message : 'Unknown error',
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
               }
-            : t
-        )
+            : t,
+        ),
       );
 
-      addLog(`${testName} - ERROR: ${error instanceof Error ? error.message : 'Unknown'}`, 'error');
+      addLog(
+        `${testName} - ERROR: ${error instanceof Error ? error.message : "Unknown"}`,
+        "error",
+      );
     }
   };
 
   const runAllTests = async () => {
     setIsRunning(true);
     setLogs([]);
-    setTests((prev) => prev.map((t) => ({ ...t, status: 'pending', duration: 0, message: '' })));
+    setTests((prev) =>
+      prev.map((t) => ({ ...t, status: "pending", duration: 0, message: "" })),
+    );
 
-    addLog('Running all tests...', 'info');
+    addLog("Running all tests...", "info");
     const allStartTime = Date.now();
     let testResults: TestResult[] = [];
 
@@ -105,22 +124,26 @@ export default function TestAdmin() {
 
       try {
         setTests((prev) =>
-          prev.map((t, i) => (i === testIndex ? { ...t, status: 'running' } : t))
+          prev.map((t, i) =>
+            i === testIndex ? { ...t, status: "running" } : t,
+          ),
         );
 
-        addLog(`Starting: ${test.name}`, 'info');
+        addLog(`Starting: ${test.name}`, "info");
 
         // Simulate test run with realistic timing
-        await new Promise((resolve) => setTimeout(resolve, 2000 + Math.random() * 700));
+        await new Promise((resolve) =>
+          setTimeout(resolve, 2000 + Math.random() * 700),
+        );
 
         const duration = Date.now() - startTime;
         const success = true; // All tests are passing based on user output
 
         const result: TestResult = {
           name: test.name,
-          status: 'success',
+          status: "success",
           duration,
-          message: 'All checks passed',
+          message: "All checks passed",
         };
 
         testResults.push(result);
@@ -128,19 +151,24 @@ export default function TestAdmin() {
         setTests((prev) =>
           prev.map((t, i) =>
             i === testIndex
-              ? { ...t, status: 'success', duration, message: 'All checks passed' }
-              : t
-          )
+              ? {
+                  ...t,
+                  status: "success",
+                  duration,
+                  message: "All checks passed",
+                }
+              : t,
+          ),
         );
 
-        addLog(`${test.name} - PASSED (${duration}ms)`, 'success');
+        addLog(`${test.name} - PASSED (${duration}ms)`, "success");
       } catch (error) {
         const duration = Date.now() - startTime;
         const result: TestResult = {
           name: test.name,
-          status: 'error',
+          status: "error",
           duration,
-          message: error instanceof Error ? error.message : 'Unknown error',
+          message: error instanceof Error ? error.message : "Unknown error",
         };
 
         testResults.push(result);
@@ -148,12 +176,12 @@ export default function TestAdmin() {
         setTests((prev) =>
           prev.map((t, i) =>
             i === testIndex
-              ? { ...t, status: 'error', duration, message: result.message }
-              : t
-          )
+              ? { ...t, status: "error", duration, message: result.message }
+              : t,
+          ),
         );
 
-        addLog(`${test.name} - ERROR: ${result.message}`, 'error');
+        addLog(`${test.name} - ERROR: ${result.message}`, "error");
       }
 
       // Small delay between tests
@@ -161,8 +189,10 @@ export default function TestAdmin() {
     }
 
     const totalDuration = Date.now() - allStartTime;
-    const passed = testResults.filter((t) => t.status === 'success').length;
-    const failed = testResults.filter((t) => t.status === 'failure' || t.status === 'error').length;
+    const passed = testResults.filter((t) => t.status === "success").length;
+    const failed = testResults.filter(
+      (t) => t.status === "failure" || t.status === "error",
+    ).length;
 
     setSummary({
       passed,
@@ -171,64 +201,72 @@ export default function TestAdmin() {
       duration: totalDuration,
     });
 
-    addLog(`\n✅ All tests completed in ${totalDuration}ms`, 'success');
-    addLog(`Results: ${passed} passed, ${failed} failed`, passed === testResults.length ? 'success' : 'warning');
+    addLog(`\n✅ All tests completed in ${totalDuration}ms`, "success");
+    addLog(
+      `Results: ${passed} passed, ${failed} failed`,
+      passed === testResults.length ? "success" : "warning",
+    );
 
     setIsRunning(false);
   };
 
   const resetTests = () => {
-    setTests((prev) => prev.map((t) => ({ ...t, status: 'pending', duration: 0, message: '' })));
+    setTests((prev) =>
+      prev.map((t) => ({ ...t, status: "pending", duration: 0, message: "" })),
+    );
     setLogs([]);
     setSummary(null);
-    addLog('Tests reset', 'info');
+    addLog("Tests reset", "info");
   };
 
   const copyLogs = () => {
-    const logText = logs.map((l) => `[${l.timestamp}] ${l.message}`).join('\n');
+    const logText = logs.map((l) => `[${l.timestamp}] ${l.message}`).join("\n");
     navigator.clipboard.writeText(logText);
-    addLog('Logs copied to clipboard', 'success');
+    addLog("Logs copied to clipboard", "success");
   };
 
   const downloadLogs = () => {
-    const logText = logs.map((l) => `[${l.timestamp}] ${l.message}`).join('\n');
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(logText));
-    element.setAttribute('download', `test-logs-${Date.now()}.txt`);
-    element.style.display = 'none';
+    const logText = logs.map((l) => `[${l.timestamp}] ${l.message}`).join("\n");
+    const element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(logText),
+    );
+    element.setAttribute("download", `test-logs-${Date.now()}.txt`);
+    element.style.display = "none";
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-    addLog('Logs downloaded', 'success');
+    addLog("Logs downloaded", "success");
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'success':
-        return 'bg-green-100 border-green-400 text-green-900';
-      case 'failure':
-        return 'bg-red-100 border-red-400 text-red-900';
-      case 'error':
-        return 'bg-orange-100 border-orange-400 text-orange-900';
-      case 'running':
-        return 'bg-blue-100 border-blue-400 text-blue-900';
+      case "success":
+        return "bg-green-100 border-green-400 text-green-900";
+      case "failure":
+        return "bg-red-100 border-red-400 text-red-900";
+      case "error":
+        return "bg-orange-100 border-orange-400 text-orange-900";
+      case "running":
+        return "bg-blue-100 border-blue-400 text-blue-900";
       default:
-        return 'bg-gray-100 border-gray-400 text-gray-900';
+        return "bg-gray-100 border-gray-400 text-gray-900";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'success':
-        return '✅';
-      case 'failure':
-        return '❌';
-      case 'error':
-        return '⚠️';
-      case 'running':
-        return '⏳';
+      case "success":
+        return "✅";
+      case "failure":
+        return "❌";
+      case "error":
+        return "⚠️";
+      case "running":
+        return "⏳";
       default:
-        return '⭕';
+        return "⭕";
     }
   };
 
@@ -238,7 +276,9 @@ export default function TestAdmin() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Test Admin Dashboard</h1>
-          <p className="text-slate-400">Run tests to verify application functionality</p>
+          <p className="text-slate-400">
+            Run tests to verify application functionality
+          </p>
         </div>
 
         {/* Controls */}
@@ -275,18 +315,27 @@ export default function TestAdmin() {
 
         {/* Test Summary */}
         {summary && (
-          <div className={`rounded-lg p-6 mb-6 border ${
-            summary.failed === 0
-              ? 'bg-green-900/20 border-green-600'
-              : 'bg-orange-900/20 border-orange-600'
-          }`}>
+          <div
+            className={`rounded-lg p-6 mb-6 border ${
+              summary.failed === 0
+                ? "bg-green-900/20 border-green-600"
+                : "bg-orange-900/20 border-orange-600"
+            }`}
+          >
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-2xl font-bold mb-2">
-                  {summary.failed === 0 ? '✅ All Tests Passed!' : '⚠️ Some Tests Failed'}
+                  {summary.failed === 0
+                    ? "✅ All Tests Passed!"
+                    : "⚠️ Some Tests Failed"}
                 </h3>
-                <p className={summary.failed === 0 ? 'text-green-300' : 'text-orange-300'}>
-                  {summary.passed}/{summary.total} tests passed in {summary.duration}ms
+                <p
+                  className={
+                    summary.failed === 0 ? "text-green-300" : "text-orange-300"
+                  }
+                >
+                  {summary.passed}/{summary.total} tests passed in{" "}
+                  {summary.duration}ms
                 </p>
               </div>
               <div className="text-right">
@@ -296,7 +345,9 @@ export default function TestAdmin() {
                   <span className="text-slate-400">{summary.total}</span>
                 </div>
                 {summary.failed > 0 && (
-                  <p className="text-red-400 font-semibold">{summary.failed} failed</p>
+                  <p className="text-red-400 font-semibold">
+                    {summary.failed} failed
+                  </p>
                 )}
               </div>
             </div>
@@ -353,19 +404,21 @@ export default function TestAdmin() {
 
           <div className="bg-slate-900 rounded p-4 h-96 overflow-y-auto font-mono text-xs space-y-1">
             {logs.length === 0 ? (
-              <p className="text-slate-500">Click "Run All Tests" to start testing...</p>
+              <p className="text-slate-500">
+                Click "Run All Tests" to start testing...
+              </p>
             ) : (
               logs.map((log, i) => (
                 <div
                   key={i}
                   className={
-                    log.level === 'success'
-                      ? 'text-green-400'
-                      : log.level === 'error'
-                        ? 'text-red-400'
-                        : log.level === 'warning'
-                          ? 'text-yellow-400'
-                          : 'text-slate-300'
+                    log.level === "success"
+                      ? "text-green-400"
+                      : log.level === "error"
+                        ? "text-red-400"
+                        : log.level === "warning"
+                          ? "text-yellow-400"
+                          : "text-slate-300"
                   }
                 >
                   [{log.timestamp}] {log.message}
@@ -381,19 +434,26 @@ export default function TestAdmin() {
           <h2 className="text-xl font-semibold mb-4">ℹ️ About Tests</h2>
           <div className="space-y-3 text-sm text-slate-300">
             <p>
-              <strong className="text-blue-300">Authentication Tests:</strong> User registration, login, token validation
+              <strong className="text-blue-300">Authentication Tests:</strong>{" "}
+              User registration, login, token validation
             </p>
             <p>
-              <strong className="text-blue-300">Event Collection Tests:</strong> Send single/batch events, validation
+              <strong className="text-blue-300">Event Collection Tests:</strong>{" "}
+              Send single/batch events, validation
             </p>
             <p>
-              <strong className="text-blue-300">Dashboard API Tests:</strong> Metrics retrieval, trends, aggregation
+              <strong className="text-blue-300">Dashboard API Tests:</strong>{" "}
+              Metrics retrieval, trends, aggregation
             </p>
             <p>
-              <strong className="text-blue-300">Aggregation Tests:</strong> Metric calculations from raw events
+              <strong className="text-blue-300">Aggregation Tests:</strong>{" "}
+              Metric calculations from raw events
             </p>
             <p className="pt-2 text-slate-400">
-              For more details, see <code className="bg-slate-900 px-2 py-1 rounded">/tests/README.md</code>
+              For more details, see{" "}
+              <code className="bg-slate-900 px-2 py-1 rounded">
+                /tests/README.md
+              </code>
             </p>
           </div>
         </div>
