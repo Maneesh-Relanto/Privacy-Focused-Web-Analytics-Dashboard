@@ -26,6 +26,7 @@ export default function TestAdmin() {
 
   const [logs, setLogs] = useState<TestLog[]>([]);
   const [isRunning, setIsRunning] = useState(false);
+  const [summary, setSummary] = useState<{ passed: number; failed: number; total: number; duration: number } | null>(null);
   const logsEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
