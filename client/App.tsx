@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import TrackerTest from "./pages/tracker-test";
+import MetricsTester from "./pages/MetricsTester";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
