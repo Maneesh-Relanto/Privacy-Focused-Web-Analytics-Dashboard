@@ -292,16 +292,12 @@ router.get("/:id", async (req: Request, res: Response) => {
       id: event.id,
       websiteId: event.websiteId,
       eventType: event.eventType,
-      url: event.url,
+      pageUrl: event.pageUrl,
       referrer: event.referrer,
       sessionId: event.sessionId,
       visitorId: event.visitorId,
-      deviceType: event.deviceType,
-      browser: event.browser,
-      os: event.os,
-      location: event.location,
       properties: event.properties ? JSON.parse(event.properties) : null,
-      createdAt: event.createdAt.toISOString(),
+      timestamp: event.timestamp.toISOString(),
     });
   } catch (error) {
     console.error("Error fetching event:", error);
