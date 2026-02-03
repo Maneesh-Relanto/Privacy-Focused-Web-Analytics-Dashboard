@@ -35,8 +35,8 @@ COPY package.json pnpm-lock.yaml ./
 # Copy Prisma schema BEFORE installing (needed for postinstall script)
 COPY prisma ./prisma
 
-# Install production dependencies only (this triggers postinstall -> prisma generate)
-RUN pnpm install --frozen-lockfile --prod
+# Install all dependencies (including dev deps like tsx needed for runtime)
+RUN pnpm install --frozen-lockfile
 
 # Copy built frontend and source code from builder
 COPY --from=builder /app/dist/spa ./dist/spa
