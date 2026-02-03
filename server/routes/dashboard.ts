@@ -10,7 +10,6 @@ import aggregation from "../services/aggregation";
 import { authMiddleware } from "../middleware/auth";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * Verify user owns the website

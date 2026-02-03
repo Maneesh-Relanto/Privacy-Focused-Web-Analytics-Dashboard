@@ -10,7 +10,6 @@ import {
 import { generateTrackingCode } from "../services/websites";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * POST /api/v1/websites
