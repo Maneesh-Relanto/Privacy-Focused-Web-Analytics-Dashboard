@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrivacyMetrics Tracking Test Page</title>
+    
+    <!-- PrivacyMetrics Tracking Script -->
+    <!-- REPLACE 'pm-your-tracking-code' with your actual tracking code -->
+    <script 
+        src="/pm-tracker.js" 
+        data-tracking-code="pm-your-tracking-code"
+        data-api-endpoint="http://localhost:3000/api/v1/track"
+        data-debug="true"
+    ></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .status {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        
+        .status.success {
+            background: #f0fdf4;
+            border-left-color: #16a34a;
+        }
+        
+        .status.error {
+            background: #fef2f2;
+            border-left-color: #dc2626;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #374151;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        
+        .button:hover {
+            background: #5568d3;
+        }
+        
+        .button.secondary {
+            background: #6b7280;
+        }
+        
+        .button.secondary:hover {
+            background: #4b5563;
+        }
+        
+        .info-box {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .info-box strong {
+            color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .log {
+            background: #1f2937;
+            color: #10b981;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .navigation {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 PrivacyMetrics Test Page</h1>
+        <p class="subtitle">Test your tracking script installation and see events in real-time</p>
+        
+        <div id="status" class="status">
+            ⏳ Initializing tracking script...
+        </div>
+        
+        <!-- Tracking Info Section -->
+        <div class="section">
+            <h2>📊 Tracking Information</h2>
+            <div class="info-box">
+                <strong>Tracking Code:</strong> <span id="trackingCode">Detecting...</span><br>
+                <strong>Session ID:</strong> <span id="sessionId">Detecting...</span><br>
+                <strong>Visitor ID:</strong> <span id="visitorId">Detecting...</span><br>
+                <strong>Opt-out Status:</strong> <span id="optoutStatus">Detecting...</span>
+            </div>
+        </div>
+        
+        <!-- Custom Event Tracking Section -->
+        <div class="section">
+            <h2>🎯 Test Custom Events</h2>
+            <p>Click buttons below to track custom events:</p>
+            <div class="button-group">
+                <button class="button" id="btn-signup">Track "Signup Click"</button>
+                <button class="button" id="btn-download">Track "Download Click"</button>
+                <button class="button" id="btn-purchase">Track "Purchase Intent"</button>
+                <button class="button secondary" id="btn-custom">Track Custom Event</button>
+            </div>
+        </div>
+        
+        <!-- Privacy Controls Section -->
+        <div class="section">
+            <h2>🔒 Privacy Controls</h2>
+            <p>Test the opt-out functionality:</p>
+            <div class="button-group">
+                <button class="button" id="btn-optout">Opt Out of Tracking</button>
+                <button class="button" id="btn-optin">Opt In to Tracking</button>
+            </div>
+        </div>
+        
+        <!-- Navigation Test Section -->
+        <div class="section">
+            <h2>🧭 Multi-Page Tracking Test</h2>
+            <p>Test page view tracking across multiple pages:</p>
+            <div class="navigation">
+                <a href="test-page-2.html" class="button">Go to Test Page 2</a>
+                <a href="test-page-3.html" class="button">Go to Test Page 3</a>
+            </div>
+        </div>
+        
+        <!-- Console Log Section -->
+        <div class="section">
+            <h2>📝 Event Log</h2>
+            <p>Check your browser console for detailed logs (F12), or see basic info below:</p>
+            <div class="log" id="eventLog">Waiting for events...\n</div>
+        </div>
+        
+        <!-- Setup Instructions -->
+        <div class="section">
+            <h2>⚙️ Setup Instructions</h2>
+            <ol style="line-height: 2;">
+                <li>Create a website in your PrivacyMetrics dashboard</li>
+                <li>Copy your tracking code (format: <code>pm-xxx-xxx</code>)</li>
+                <li>Replace <code>pm-your-tracking-code</code> in this file's <code>&lt;script&gt;</code> tag</li>
+                <li>Make sure your PrivacyMetrics server is running</li>
+                <li>Reload this page</li>
+                <li>Check your dashboard for real-time analytics!</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Wait for PrivacyMetrics to load
+        window.addEventListener('load', function() {
+            const statusDiv = document.getElementById('status');
+            const eventLog = document.getElementById('eventLog');
+            
+            function log(message) {
+                const timestamp = new Date().toLocaleTimeString();
+                eventLog.textContent += `[${timestamp}] ${message}\n`;
+                eventLog.scrollTop = eventLog.scrollHeight;
+            }
+            
+            // Check if PrivacyMetrics loaded
+            setTimeout(function() {
+                if (typeof window.PrivacyMetrics !== 'undefined') {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = '✅ Tracking script loaded successfully!';
+                    
+                    // Display tracking info
+                    const trackingCodeElement = document.currentScript || document.querySelector('script[data-tracking-code]');
+                    const trackingCode = trackingCodeElement ? trackingCodeElement.getAttribute('data-tracking-code') : 'Not found';
+                    
+                    document.getElementById('trackingCode').textContent = trackingCode;
+                    document.getElementById('sessionId').textContent = window.PrivacyMetrics.getSessionId();
+                    document.getElementById('visitorId').textContent = window.PrivacyMetrics.getVisitorId();
+                    document.getElementById('optoutStatus').textContent = window.PrivacyMetrics.isOptedOut() ? '❌ Opted Out' : '✅ Opted In';
+                    
+                    log('✅ PrivacyMetrics initialized');
+                    log(`📍 Session ID: ${window.PrivacyMetrics.getSessionId()}`);
+                    log(`👤 Visitor ID: ${window.PrivacyMetrics.getVisitorId()}`);
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.innerHTML = '❌ Failed to load tracking script. Check console for errors.';
+                    log('❌ PrivacyMetrics not found');
+                }
+            }, 1000);
+            
+            // Signup button
+            document.getElementById('btn-signup').addEventListener('click', function() {
+                window.PrivacyMetrics.trackEvent('signup_button_clicked', {
+                    location: 'test_page',
+                    buttonText: 'Track Signup Click'
+                });
+                log('🎯 Tracked: signup_button_clicked');
+            });
+            
+            // Download button
+            document.getElementById('btn-download').addEventListener('click', function() {
+                window.PrivacyMetrics.trackEvent('download_clicked', {
+                    fileName: 'test-document.pdf',
+                    fileSize: '2.5MB'
+                });
+                log('🎯 Tracked: download_clicked');
+            });
+            
+            // Purchase button
+            document.getElementById('btn-purchase').addEventListener('click', function() {
+                window.PrivacyMetrics.trackEvent('purchase_intent', {
+                    product: 'Premium Plan',
+                    price: 49.99
+                });
+                log('🎯 Tracked: purchase_intent');
+            });
+            
+            // Custom event button
+            document.getElementById('btn-custom').addEventListener('click', function() {
+                const eventName = prompt('Enter custom event name:', 'my_custom_event');
+                if (eventName) {
+                    window.PrivacyMetrics.trackEvent(eventName, {
+                        timestamp: Date.now(),
+                        custom: true
+                    });
+                    log(`🎯 Tracked: ${eventName}`);
+                }
+            });
+            
+            // Opt-out button
+            document.getElementById('btn-optout').addEventListener('click', function() {
+                window.PrivacyMetrics.optOut();
+                document.getElementById('optoutStatus').textContent = '❌ Opted Out';
+                log('🔒 User opted out of tracking');
+                alert('You have opted out of tracking. Reload the page to see the effect.');
+            });
+            
+            // Opt-in button
+            document.getElementById('btn-optin').addEventListener('click', function() {
+                window.PrivacyMetrics.optIn();
+                document.getElementById('optoutStatus').textContent = '✅ Opted In';
+                log('✅ User opted in to tracking');
+                alert('You have opted in to tracking. Reload the page to start tracking again.');
+            });
+        });
+    </script>
+</body>
+</html>

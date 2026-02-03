@@ -18,8 +18,11 @@ A development-stage analytics dashboard built with React, Express, and modern we
 PrivacyMetrics is a **dashboard interface for analytics data**. It provides:
 
 - A modern, responsive dashboard UI for displaying analytics metrics
+- **Privacy-first tracking script** for real website analytics
 - Backend API structure for serving analytics data
+- **Real-time event processing** and data ingestion
 - Authentication system (registration and login)
+- **Custom event tracking** API
 - TypeScript-based frontend and backend
 - SQLite database integration
 
@@ -27,13 +30,12 @@ PrivacyMetrics is a **dashboard interface for analytics data**. It provides:
 
 This is a **work-in-progress MVP**. The following are not yet implemented:
 
-- ❌ Data collection/tracking script for websites
-- ❌ Real analytics data ingestion from live websites
-- ❌ Production-ready API documentation
-- ❌ Custom event tracking
-- ❌ Data export functionality
-- ❌ Advanced analytics features
+- ❌ Advanced analytics features (funnels, cohorts, retention)
+- ❌ Data export functionality (CSV, JSON exports)
+- ❌ Team collaboration features
+- ❌ Advanced segmentation and filtering
 - ❌ Webhook integrations
+- ❌ Email alerts and notifications
 
 ---
 
@@ -60,9 +62,27 @@ The dashboard displays the following metrics:
 - Device distribution (mobile/desktop/tablet)
 - Geographic data (top locations)
 
+### 🎯 Privacy-First Tracking Script
+
+- **Lightweight JavaScript tracker** (< 5KB minified)
+- **No cookies**: Uses sessionStorage/localStorage only
+- **Privacy-focused**: Hashes IP addresses, no personal data
+- **Automatic page view tracking**
+- **Custom event tracking** for buttons, forms, downloads
+- **User opt-out support** built-in
+- **Works with all frameworks**: React, Vue, Angular, Next.js, etc.
+- **Ad-blocker friendly**: Respectful tracking that won't get blocked
+
+**Quick Install**: Add one line to your website:
+```html
+<script src="https://your-domain.com/pm-tracker.js" data-tracking-code="pm-xxx"></script>
+```
+
 ### Backend Infrastructure
 
 - **User Authentication**: Register and login endpoints
+- **Website Management**: Create and manage multiple tracked websites
+- **Real-time Event Processing**: Ingests and stores analytics events
 - **API Routes**: Dashboard data endpoints with Bearer token authentication
 - **Database**: SQLite with Prisma ORM for data persistence
 - **Type Safety**: Full TypeScript implementation
@@ -111,6 +131,20 @@ pnpm dev
 
 - **Landing Page**: http://localhost:8080
 - **Dashboard**: http://localhost:8080/dashboard (requires login)
+
+### 5. Install Tracking Script on Your Website
+
+1. **Register and create a website** in the dashboard
+2. **Copy your tracking code** (format: `pm-xxx-xxx`)
+3. **Add this to your website's `<head>`**:
+
+```html
+<script src="http://localhost:8080/pm-tracker.js" data-tracking-code="pm-xxx-xxx"></script>
+```
+
+4. **Visit your website** and check the dashboard for real-time analytics!
+
+📖 **Full Installation Guide**: See [TRACKING_SCRIPT_INSTALLATION.md](./docs/TRACKING_SCRIPT_INSTALLATION.md) for detailed instructions for React, Vue, Next.js, WordPress, and more.
 
 ---
 
