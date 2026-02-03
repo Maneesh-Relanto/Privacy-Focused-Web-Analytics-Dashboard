@@ -38,10 +38,10 @@ COPY prisma ./prisma
 # Generate Prisma client in production
 RUN pnpm exec prisma generate
 
-# Copy built frontend and source code
+# Copy built frontend and source code from builder
 COPY --from=builder /app/dist/spa ./dist/spa
-COPY server ./server
-COPY shared ./shared
+COPY --from=builder /app/server ./server
+COPY --from=builder /app/shared ./shared
 
 # Expose port
 EXPOSE 3000
