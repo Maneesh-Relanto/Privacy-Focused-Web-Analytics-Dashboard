@@ -17,7 +17,7 @@ async function initializeDatabase() {
   try {
     console.log("🗄️ Initializing database...");
     // Run Prisma migrations
-    await execAsync("npx prisma migrate deploy --skip-generate");
+    await execAsync("npx prisma migrate deploy");
     console.log("✅ Database migrations completed");
   } catch (err) {
     console.warn("⚠️ Database migration warning:", err instanceof Error ? err.message : String(err));
