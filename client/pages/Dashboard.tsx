@@ -45,12 +45,46 @@ import { DeviceDistributionChart } from "@/components/dashboard/DeviceDistributi
 import { ReferrerChart } from "@/components/dashboard/ReferrerChart";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
   const [dateRange, setDateRange] = useState("7d");
 
   // Get websiteId from localStorage (set when user selects a website)
   // In future, this could come from URL params or routing context
   const websiteId = localStorage.getItem("selectedWebsiteId");
+
+  // Redirect to website management if no website selected
+  if (!websiteId) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
+        <Card className="max-w-md border-primary/20">
+          <CardContent className="pt-8 text-center space-y-6">
+            <div>
+              <BarChart3 className="h-12 w-12 text-primary mx-auto mb-4" />
+              <h2 className="text-2xl font-bold mb-2">No Website Selected</h2>
+              <p className="text-muted-foreground">
+                You need to create or select a website to view analytics
+              </p>
+            </div>
+            <Button
+              onClick={() => navigate("/websites")}
+              size="lg"
+              className="w-full"
+            >
+              Manage Websites
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate("/")}
+              className="w-full"
+            >
+              Back to Home
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const {
     data: dashboardData,
@@ -99,10 +133,10 @@ export default function Dashboard() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild className="text-base">
-                  <a href="#" className="flex items-center gap-2">
+                  <Link to="/websites" className="flex items-center gap-2">
                     <BarChart3 className="h-5 w-5" />
-                    <span>Analytics</span>
-                  </a>
+                    <span>Websites</span>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>

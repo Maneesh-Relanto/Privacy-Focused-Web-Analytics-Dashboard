@@ -34,9 +34,14 @@ export default function Index() {
             >
               Features
             </a>
-            <Link to="/dashboard">
-              <Button variant="outline" size="sm">
-                Demo
+            <Link to="/login">
+              <Button variant="ghost" size="sm">
+                Sign In
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button size="sm">
+                Get Started
               </Button>
             </Link>
           </div>
