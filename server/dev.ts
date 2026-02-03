@@ -16,12 +16,13 @@ let server: any = null;
 async function initializeDatabase() {
   try {
     console.log("🗄️ Initializing database...");
-    // Run Prisma migrations
-    await execAsync("npx prisma migrate deploy");
-    console.log("✅ Database migrations completed");
+    // For SQLite in production, use db push instead of migrate deploy
+    // This creates the database and applies schema in one step
+    await execAsync("npx prisma db push --skip-generate");
+    console.log("✅ Database initialized successfully");
   } catch (err) {
-    console.warn("⚠️ Database migration warning:", err instanceof Error ? err.message : String(err));
-    // Continue even if migrations fail - the schema might already exist
+    console.warn("⚠️ Database initialization warning:", err instanceof Error ? err.message : String(err));
+    // Continue - the database might already be initialized
   }
 }
 
