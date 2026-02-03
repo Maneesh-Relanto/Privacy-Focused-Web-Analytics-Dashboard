@@ -48,6 +48,7 @@ RUN pnpm install --frozen-lockfile
 COPY --from=builder /app/dist/spa ./dist/spa
 COPY --from=builder /app/server ./server
 COPY --from=builder /app/shared ./shared
+COPY --from=builder /app/prisma/migrations ./prisma/migrations
 
 # Expose port
 EXPOSE 3000
