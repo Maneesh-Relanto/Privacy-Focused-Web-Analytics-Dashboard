@@ -26,17 +26,14 @@ WORKDIR /app
 # Install pnpm
 RUN npm install -g pnpm
 
-# Copy package files
+# Copy package files FIRST
 COPY package.json pnpm-lock.yaml ./
 
-# Install production dependencies only
-RUN pnpm install --frozen-lockfile --prod
-
-# Copy Prisma files
+# Copy Prisma schema BEFORE installing (needed for postinstall script)
 COPY prisma ./prisma
 
-# Generate Prisma client in production
-RUN pnpm exec prisma generate
+# Install production dependencies only (this triggers postinstall -> prisma generate)
+RUN pnpm install --frozen-lockfile --prod
 
 # Copy built frontend and source code from builder
 COPY --from=builder /app/dist/spa ./dist/spa
