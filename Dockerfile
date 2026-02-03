@@ -6,13 +6,16 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
+# Copy prisma schema FIRST (needed for postinstall script)
+COPY prisma ./prisma
+
 # Install pnpm and dependencies
 RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
-# Copy source code
+# Copy rest of source code
 COPY . .
 
-# Generate Prisma client
+# Generate Prisma client (if not already done by postinstall)
 RUN pnpm exec prisma generate
 
 # Build frontend
