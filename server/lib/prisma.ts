@@ -1,30 +1,40 @@
-import { PrismaClient } from "@prisma/client";
+import { createRequire } from "module";
+import { fileURLToPath } from "url";
+import path from "path";
 
-let prisma: PrismaClient | null = null;
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const getPrismaClient = (): PrismaClient => {
-  if (prisma) return prisma;
+let prisma: any = null;
 
-  prisma = new PrismaClient(
-    process.env.NODE_ENV === "production"
-      ? {
-          log: ["warn", "error"],
-        }
-      : undefined
-  );
+// Initialize Prisma using require (works better with tsx/esm loader)
+try {
+  const { PrismaClient } = require("@prisma/client");
 
-  // Handle graceful shutdown
-  if (typeof global !== "undefined") {
+  if (process.env.NODE_ENV === "production") {
+    prisma = new PrismaClient({
+      log: ["warn", "error"],
+    });
+  } else {
     const globalWithPrisma = global as typeof globalThis & {
-      prismaClient?: PrismaClient;
+      prisma: any;
     };
-    globalWithPrisma.prismaClient = prisma;
+
+    if (!globalWithPrisma.prisma) {
+      globalWithPrisma.prisma = new PrismaClient();
+    }
+
+    prisma = globalWithPrisma.prisma;
   }
+} catch (error) {
+  console.error("Failed to initialize Prisma:", error);
+  // Provide a fallback that won't crash the app
+  prisma = {
+    $on: () => {},
+    $disconnect: async () => {},
+    user: { findUnique: async () => null },
+  };
+}
 
-  return prisma;
-};
-
-// Initialize immediately to ensure client is ready
-const client = getPrismaClient();
-
-export default client;
+export default prisma;

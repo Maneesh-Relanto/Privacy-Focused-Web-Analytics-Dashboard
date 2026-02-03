@@ -11,6 +11,7 @@
     ]
   },
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "concurrently \"node --import tsx/esm server/dev.ts\" \"vite --config config/vite.config.ts\"",
     "dev:frontend": "vite --config config/vite.config.ts",
     "dev:api": "node --import tsx/esm server/dev.ts",
