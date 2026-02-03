@@ -3,8 +3,8 @@ FROM node:22 AS builder
 
 WORKDIR /app
 
-# Force Prisma to generate for linux instead of linux-musl (Alpine)
-ENV PRISMA_CLI_BINARY_TARGETS=linux
+# Force Prisma to generate for Debian OpenSSL 3.0.x
+ENV PRISMA_CLI_BINARY_TARGETS=debian-openssl-3.0.x
 
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
@@ -29,8 +29,8 @@ FROM node:22
 
 WORKDIR /app
 
-# Force Prisma to generate for linux instead of linux-musl (Alpine)
-ENV PRISMA_CLI_BINARY_TARGETS=linux
+# Force Prisma to generate for Debian OpenSSL 3.0.x
+ENV PRISMA_CLI_BINARY_TARGETS=debian-openssl-3.0.x
 
 # Install pnpm
 RUN npm install -g pnpm
