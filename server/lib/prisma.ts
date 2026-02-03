@@ -1,20 +1,30 @@
-import { createRequire } from "module";
+import { PrismaClient } from "@prisma/client";
 
-const require = createRequire(import.meta.url);
-const { PrismaClient } = require("@prisma/client");
+let prisma: PrismaClient | null = null;
 
-let prisma: any;
+const getPrismaClient = (): PrismaClient => {
+  if (prisma) return prisma;
 
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  let globalWithPrisma = global as typeof globalThis & {
-    prisma: any;
-  };
-  if (!globalWithPrisma.prisma) {
-    globalWithPrisma.prisma = new PrismaClient();
+  prisma = new PrismaClient(
+    process.env.NODE_ENV === "production"
+      ? {
+          log: ["warn", "error"],
+        }
+      : undefined
+  );
+
+  // Handle graceful shutdown
+  if (typeof global !== "undefined") {
+    const globalWithPrisma = global as typeof globalThis & {
+      prismaClient?: PrismaClient;
+    };
+    globalWithPrisma.prismaClient = prisma;
   }
-  prisma = globalWithPrisma.prisma;
-}
 
-export default prisma;
+  return prisma;
+};
+
+// Initialize immediately to ensure client is ready
+const client = getPrismaClient();
+
+export default client;
