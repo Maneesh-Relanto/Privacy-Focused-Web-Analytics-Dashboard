@@ -19,6 +19,10 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Health check
+  app.get("/health", (_req, res) => {
+    res.json({ status: "ok" });
+  });
+
   app.get("/api/ping", (_req, res) => {
     const ping = process.env.PING_MESSAGE ?? "ping";
     res.json({ message: ping });
