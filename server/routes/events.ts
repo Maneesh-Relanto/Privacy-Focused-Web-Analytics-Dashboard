@@ -1,10 +1,9 @@
 import { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import { createEventSchema, batchEventSchema } from "../schemas/events";
 import { z } from "zod";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * Helper function to find website by tracking code

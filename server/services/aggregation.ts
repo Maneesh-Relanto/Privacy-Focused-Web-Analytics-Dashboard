@@ -4,9 +4,7 @@
  * Handles: pageviews, unique visitors, bounce rate, session duration, traffic sources, etc.
  */
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from '../lib/prisma';
 
 /**
  * Interface for aggregated metrics response

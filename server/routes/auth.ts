@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma";
 import {
   registerSchema,
   loginSchema,
@@ -15,7 +15,6 @@ import {
 } from "../services/auth";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * POST /api/v1/auth/register
