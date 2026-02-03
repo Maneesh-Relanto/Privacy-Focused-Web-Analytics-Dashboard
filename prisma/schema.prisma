@@ -35,6 +35,7 @@ model Website {
   userId    String
   name      String    // e.g., "My Blog", "Company Site"
   domain    String    @unique // e.g., "myblog.com"
+  description String?  // optional description
   trackingCode String @unique // unique identifier for tracking script
   publicUrl String?   // public dashboard URL if shared
   createdAt DateTime  @default(now())

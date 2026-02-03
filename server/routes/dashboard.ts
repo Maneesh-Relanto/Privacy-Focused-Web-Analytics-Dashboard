@@ -7,7 +7,7 @@
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import aggregation from "../services/aggregation";
-import { authenticateToken } from "../middleware/auth";
+import { authMiddleware } from "../middleware/auth";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -33,7 +33,7 @@ async function verifyWebsiteOwnership(
  * Get overall dashboard metrics (pageviews, visitors, sessions, bounce rate, avg duration)
  * Query params: websiteId, days (default: 7)
  */
-router.get("/metrics", authenticateToken, async (req: Request, res: Response) => {
+router.get("/metrics", authMiddleware, async (req: Request, res: Response) => {
   try {
     const { websiteId, days = "7" } = req.query;
     const userId = (req as any).user?.id;
@@ -72,7 +72,7 @@ router.get("/metrics", authenticateToken, async (req: Request, res: Response) =>
  */
 router.get(
   "/pageviews",
-  authenticateToken,
+  authMiddleware,
   async (req: Request, res: Response) => {
     try {
       const { websiteId, days = "7" } = req.query;
@@ -142,7 +142,7 @@ router.get(
  */
 router.get(
   "/top-pages",
-  authenticateToken,
+  authMiddleware,
   async (req: Request, res: Response) => {
     try {
       const { websiteId, limit = "10", days = "7" } = req.query;
@@ -191,7 +191,7 @@ router.get(
  */
 router.get(
   "/referrers",
-  authenticateToken,
+  authMiddleware,
   async (req: Request, res: Response) => {
     try {
       const { websiteId, limit = "10", days = "7" } = req.query;
@@ -238,7 +238,7 @@ router.get(
  * Get device breakdown statistics
  * Query params: websiteId, days
  */
-router.get("/devices", authenticateToken, async (req: Request, res: Response) => {
+router.get("/devices", authMiddleware, async (req: Request, res: Response) => {
   try {
     const { websiteId, days = "7" } = req.query;
     const userId = (req as any).user?.id;
