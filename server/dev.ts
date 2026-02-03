@@ -58,7 +58,9 @@ async function startServer() {
 }
 
 // Start the server
-startServer();
+(async () => {
+  await startServer();
+})();
 
 // Graceful shutdown
 process.on("SIGTERM", () => {
