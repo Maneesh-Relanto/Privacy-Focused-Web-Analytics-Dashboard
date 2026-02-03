@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import prisma from "../lib/prisma";
 
 const router = Router();
-const prisma = new PrismaClient();
 
 /**
  * POST /api/seed
