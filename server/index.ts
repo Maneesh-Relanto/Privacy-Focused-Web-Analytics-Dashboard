@@ -7,6 +7,7 @@ import dashboardRoutes from "./routes/dashboard";
 import websiteRoutes from "./routes/websites";
 import eventsRoutes from "./routes/events";
 import seedRoutes from "./routes/seed";
+import trackingRoutes from "./routes/tracking";
 import { authMiddleware } from "./middleware/auth";
 
 export function createServer() {
@@ -31,6 +32,9 @@ export function createServer() {
 
   // Authentication routes (public)
   app.use("/api/v1/auth", authRoutes);
+
+  // Tracking routes (public - no auth required, validates tracking code)
+  app.use("/api/v1/track", trackingRoutes);
 
   // Dashboard routes (protected)
   app.use("/api/v1/dashboard", dashboardRoutes);

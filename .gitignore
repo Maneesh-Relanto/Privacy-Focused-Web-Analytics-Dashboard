@@ -24,7 +24,32 @@ dist-ssr
 *.sw?
 
 .config/
-!.env
+
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.production
+.env.staging
+*.env
 
 # Confidential internal files - NOT for git
 .confidential/
+.confidential/*
+
+# Database files (contains user data)
+prisma/dev.db
+prisma/dev.db-journal
+*.db
+*.db-journal
+
+# Secrets and keys
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+.secrets/
+
+# Local test data
+test-data/
+*.local.json
