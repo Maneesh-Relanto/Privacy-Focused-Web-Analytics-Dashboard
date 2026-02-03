@@ -3,6 +3,9 @@ FROM node:22 AS builder
 
 WORKDIR /app
 
+# Force Prisma to generate for linux (glibc) instead of linux-musl (Alpine)
+ENV PRISMA_CLI_BINARY_TARGETS=linux-glibc
+
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
@@ -25,6 +28,9 @@ RUN pnpm run build:client
 FROM node:22
 
 WORKDIR /app
+
+# Force Prisma to generate for linux (glibc) instead of linux-musl (Alpine)
+ENV PRISMA_CLI_BINARY_TARGETS=linux-glibc
 
 # Install pnpm
 RUN npm install -g pnpm
