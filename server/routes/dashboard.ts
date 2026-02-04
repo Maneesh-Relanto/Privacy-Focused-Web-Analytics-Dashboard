@@ -37,20 +37,32 @@ router.get("/metrics", authMiddleware, async (req: Request, res: Response) => {
     const { websiteId, days = "7" } = req.query;
     const userId = (req as any).user?.id;
 
+    console.log('[Dashboard] /metrics request:', {
+      websiteId,
+      userId,
+      days
+    });
+
     if (!websiteId || typeof websiteId !== "string") {
+      console.log('[Dashboard] Missing websiteId');
       res.status(400).json({ error: "websiteId is required" });
       return;
     }
 
     // Verify ownership
     const isOwner = await verifyWebsiteOwnership(websiteId, userId);
+    console.log('[Dashboard] Ownership check:', { websiteId, userId, isOwner });
+    
     if (!isOwner) {
+      console.log('[Dashboard] User does not own this website');
       res.status(403).json({ error: "Unauthorized access to website" });
       return;
     }
 
     const daysNum = Math.max(1, parseInt(days as string) || 7);
     const metrics = await aggregation.getDashboardMetrics(websiteId, daysNum);
+    
+    console.log('[Dashboard] Metrics result:', { websiteId, pageviews: metrics?.pageviews });
 
     res.json({
       success: true,

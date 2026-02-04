@@ -14,10 +14,10 @@ export default function TrackerTest() {
 
   // Load tracking code from localStorage or use default
   useEffect(() => {
-    const stored = localStorage.getItem('selectedWebsiteId');
-    if (stored) {
-      setInputTrackingCode(stored);
-      setTrackingCode(stored);
+    const storedCode = localStorage.getItem('selectedWebsiteTrackingCode');
+    if (storedCode) {
+      setInputTrackingCode(storedCode);
+      setTrackingCode(storedCode);
     }
     
     addLog('Tracker test page initialized');

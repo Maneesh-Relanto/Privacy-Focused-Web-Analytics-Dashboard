@@ -1,6 +1,18 @@
 import prisma from '../lib/prisma';
 import crypto from 'crypto';
 
+// Simple event interface
+interface SimpleTrackingEvent {
+  trackingCode: string;
+  sessionId: string;
+  visitorId: string;
+  url: string;
+  referrer: string | null;
+  timestamp: Date;
+  clientIp: string;
+  userAgent: string;
+}
+
 interface TrackingEvent {
   trackingCode: string;
   sessionId: string;
@@ -89,6 +101,104 @@ function estimateLocation(timezone?: string): { country: string; region: string 
  * Process incoming tracking event
  */
 export const trackingService = {
+  /**
+   * Simple, fast event processing - minimal overhead
+   */
+  async processSimpleEvent(event: SimpleTrackingEvent): Promise<void> {
+    try {
+      // 1. Verify tracking code
+      const website = await prisma.website.findUnique({
+        where: { trackingCode: event.trackingCode },
+        select: { id: true, userId: true, isActive: true }
+      });
+
+      if (!website) {
+        console.warn(`[Track] Invalid code: ${event.trackingCode}`);
+        return;
+      }
+      
+      if (!website.isActive) {
+        console.warn(`[Track] Website inactive: ${event.trackingCode}`);
+        return;
+      }
+
+      // 2. Create or update visitor (first-time vs returning)
+      const hashedIp = hashIp(event.clientIp);
+      let visitor = await prisma.visitor.findFirst({
+        where: {
+          websiteId: website.id,
+          fingerprint: hashedIp
+        }
+      });
+
+      if (!visitor) {
+        visitor = await prisma.visitor.create({
+          data: {
+            websiteId: website.id,
+            fingerprint: hashedIp,
+            firstSeen: event.timestamp,
+            pageViews: 1
+          }
+        });
+      } else {
+        await prisma.visitor.update({
+          where: { id: visitor.id },
+          data: {
+            pageViews: { increment: 1 }
+          }
+        });
+      }
+
+      // 3. Create or update session
+      let session = await prisma.session.findFirst({
+        where: {
+          websiteId: website.id,
+          visitorId: visitor.id,
+          id: event.sessionId
+        }
+      });
+
+      if (!session) {
+        session = await prisma.session.create({
+          data: {
+            id: event.sessionId,
+            websiteId: website.id,
+            userId: website.userId,
+            visitorId: visitor.id,
+            startTime: event.timestamp,
+            pageCount: 1
+          }
+        });
+      } else {
+        await prisma.session.update({
+          where: { id: session.id },
+          data: {
+            endTime: event.timestamp,
+            pageCount: { increment: 1 }
+          }
+        });
+      }
+
+      // 4. Store the event
+      await prisma.event.create({
+        data: {
+          websiteId: website.id,
+          sessionId: session.id,
+          visitorId: visitor.id,
+          eventType: 'pageview',
+          pageUrl: event.url,
+          referrer: event.referrer,
+          timestamp: event.timestamp
+        }
+      });
+
+      console.log(`[Track] ✓ ${event.url}`);
+    } catch (error) {
+      console.error('[Track] Error:', error);
+      throw error;
+    }
+  },
+
   async processEvent(event: TrackingEvent): Promise<void> {
     try {
       // 1. Find website by tracking code

@@ -2,204 +2,177 @@
 
 > Privacy-Focused Web Analytics Dashboard
 
-A development-stage analytics dashboard built with React, Express, and modern web technologies. This is an MVP (Minimum Viable Product) focused on core dashboard functionality.
+A self-hosted analytics solution with privacy at its core. Zero cookies, zero fingerprinting, and complete data ownership.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react)](https://react.dev)
 [![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)](https://nodejs.org)
 
-**[📚 Documentation Index](#-documentation-hub)** | **[🚀 Quick Start](#-quick-start)** | **[🛠️ Tech Stack](#-tech-stack)**
-
----
-
-## 📋 What This Project Is
-
-PrivacyMetrics is a **dashboard interface for analytics data**. It provides:
-
-- A modern, responsive dashboard UI for displaying analytics metrics
-- **Privacy-first tracking script** for real website analytics
-- Backend API structure for serving analytics data
-- **Real-time event processing** and data ingestion
-- Authentication system (registration and login)
-- **Custom event tracking** API
-- TypeScript-based frontend and backend
-- SQLite database integration
-
-## ⚠️ What This Project Is NOT (Yet)
-
-This is a **work-in-progress MVP**. The following are not yet implemented:
-
-- ❌ Advanced analytics features (funnels, cohorts, retention)
-- ❌ Data export functionality (CSV, JSON exports)
-- ❌ Team collaboration features
-- ❌ Advanced segmentation and filtering
-- ❌ Webhook integrations
-- ❌ Email alerts and notifications
-
----
-
-## 🎯 Current Features
-
-### Dashboard UI
-
-- **Clean Dashboard Interface**: Modern design with metric cards displaying analytics data
-- **Responsive Layout**: Works on desktop, tablet, and mobile devices
-- **Dark Mode Support**: Toggle between light and dark themes
-- **Date Range Filtering**: UI to select different time periods
-- **Chart Visualizations**: Line charts for trends, bar charts for comparisons, pie charts for distributions
-
-### Displayed Metrics
-
-The dashboard displays the following metrics:
-
-- Page Views (with trend percentage)
-- Unique Visitors (with trend percentage)
-- Average Session Duration (with trend percentage)
-- Bounce Rate (with trend percentage)
-- Top Pages by view count
-- Traffic sources/referrers
-- Device distribution (mobile/desktop/tablet)
-- Geographic data (top locations)
-
-### 🎯 Privacy-First Tracking Script
-
-- **Lightweight JavaScript tracker** (< 5KB minified)
-- **No cookies**: Uses sessionStorage/localStorage only
-- **Privacy-focused**: Hashes IP addresses, no personal data
-- **Automatic page view tracking**
-- **Custom event tracking** for buttons, forms, downloads
-- **User opt-out support** built-in
-- **Works with all frameworks**: React, Vue, Angular, Next.js, etc.
-- **Ad-blocker friendly**: Respectful tracking that won't get blocked
-
-**Quick Install**: Add one line to your website:
-```html
-<script src="https://your-domain.com/pm-tracker.js" data-tracking-code="pm-xxx"></script>
-```
-
-### Backend Infrastructure
-
-- **User Authentication**: Register and login endpoints
-- **Website Management**: Create and manage multiple tracked websites
-- **Real-time Event Processing**: Ingests and stores analytics events
-- **API Routes**: Dashboard data endpoints with Bearer token authentication
-- **Database**: SQLite with Prisma ORM for data persistence
-- **Type Safety**: Full TypeScript implementation
-
-### Development Features
-
-- **React 18**: Modern component architecture
-- **Vite**: Fast development server with hot reload
-- **TypeScript**: Full type safety throughout
-- **Tailwind CSS & Radix UI**: Styling and component library
-- **Express.js**: Backend server framework
-- **Open Source**: MIT licensed
-
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+**New to PrivacyMetrics?** Start here: **[📖 DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)**
 
-- Node.js 22+
-- pnpm 10.14.0+
-
-### 1. Installation
-
-```bash
-git clone <repository>
-cd privacy-metrics
-pnpm install
-```
-
-### 2. Database Setup
-
-```bash
-# Initialize SQLite database
-npx prisma migrate dev --name init
-```
-
-### 3. Start Development
-
-```bash
-# Frontend (port 5173) and Backend (port 3000)
-pnpm dev
-```
-
-### 4. Access the Application
-
-- **Landing Page**: http://localhost:8080
-- **Dashboard**: http://localhost:8080/dashboard (requires login)
-
-### 5. Install Tracking Script on Your Website
-
-1. **Register and create a website** in the dashboard
-2. **Copy your tracking code** (format: `pm-xxx-xxx`)
-3. **Add this to your website's `<head>`**:
-
-```html
-<script src="http://localhost:8080/pm-tracker.js" data-tracking-code="pm-xxx-xxx"></script>
-```
-
-4. **Visit your website** and check the dashboard for real-time analytics!
-
-📖 **Full Installation Guide**: See [TRACKING_SCRIPT_INSTALLATION.md](./docs/TRACKING_SCRIPT_INSTALLATION.md) for detailed instructions for React, Vue, Next.js, WordPress, and more.
+Everything you need to get started in one document:
+- Installation & setup
+- Testing locally
+- Integration examples
+- Troubleshooting
+- Deployment guides
 
 ---
 
+## ✨ Features
+
+- **One-Line Integration** - Add a single script tag to your website
+- **Privacy-First** - No cookies, no fingerprinting, no personal data collection
+- **Self-Hosted** - Own your data completely
+- **Real-Time Analytics** - See visitor activity as it happens
+- **Simple Dashboard** - Clean, intuitive interface
+- **Multiple Websites** - Manage analytics for unlimited sites
+- **GDPR Compliant** - No consent required
+- **Open Source** - MIT License
+
+---
+
+## 📊 What Gets Tracked
+
+✅ Page views  
+✅ Unique visitors  
+✅ Session duration  
+✅ Referrer sources  
+✅ Device type  
+✅ Browser/OS  
+
+❌ No cookies  
+❌ No fingerprinting  
+❌ No personal data
+
+---
+
+## 🏗️ Tech Stack
+
+- **Frontend**: React 18 + TypeScript + Tailwind CSS
+- **Backend**: Express.js + TypeScript
+- **Database**: SQLite + Prisma ORM
+- **Tracking**: Vanilla JavaScript (2KB, zero dependencies)
+
+---
+
+## 📁 Project Structure
+
+```
+├── client/          # React frontend
+├── server/          # Express backend
+├── public/          # Static files + tracking script
+├── prisma/          # Database schema
+└── DEVELOPER_GUIDE.md  # Complete developer documentation
+```
+
+---
+
+## 🔧 Development
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
+
+### Setup
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start dev servers (frontend + backend)
+pnpm dev
+```
+
+**Access:**
+- Frontend: http://localhost:8080
+- Backend: http://localhost:3000
+- Database: SQLite at `prisma/dev.db`
+
+---
+
+## 📖 Full Documentation
+
+**All you need is in one place:** **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)**
+
+This includes:
+- Complete setup instructions
+- Testing procedures
+- Integration examples (React, Vue, plain HTML, etc.)
+- API endpoints
+- Deployment guides
+- Troubleshooting
+
+**For internal notes and old docs:** See `confidential_docs/` folder (not committed to git)
+
+---
+
+## 🔐 Security & Privacy
+
+✅ **Privacy by Design**
+- No cookies or fingerprinting
+- IP addresses are hashed one-way
+- Session storage only (expires when browser closes)
+- No cross-site tracking
+
+✅ **Secure Backend**
+- JWT authentication
+- Password hashing with bcrypt
+- Proper CORS configuration
+- Protected API endpoints
+
+---
+
+## 📦 Deployment
+
+Ready to deploy? See deployment section in [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md):
+
+- Railway
+- Netlify
+- Docker
+- Self-hosted
+
+---
+
+## 🐛 Issues & Support
+
+- **GitHub Issues**: Report bugs and request features
+- **Discussions**: Ask questions and share ideas
+- **Security**: Report security vulnerabilities privately
+
 ## 📚 Documentation Hub
 
-### 🎯 Start Here (Choose Your Path)
+**All documentation is in one place:** [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)
 
-**New to this project?** Start with one of these based on your role:
+**For internal notes and older docs:** See `confidential_docs/` folder
 
-| Role | Start With | Then Read | Time |
-|------|-----------|-----------|------|
-| **Complete Beginner** | [📖 Developer Guide](./docs/DEVELOPER_GUIDE.md) | [🚀 Quick Start Auth](./docs/QUICK_START_AUTHENTICATION.md) | 30 min |
-| **Backend Developer** | [🗄️ Backend Setup](./docs/BACKEND_SETUP_GUIDE.md) | [📡 API Docs](./docs/API_DOCUMENTATION.md) | 45 min |
-| **Frontend Developer** | [📁 Project Structure](./docs/PROJECT_STRUCTURE.md) | [🔗 Integration Guide](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | 40 min |
-| **DevOps/Deployment** | [🚀 GitHub Pages](./docs/GITHUB_PAGES_DEPLOYMENT.md) | [🔍 Code Quality](./docs/CODE_QUALITY_SCANNING_GUIDE.md) | 30 min |
+---
 
-### 📖 Full Documentation Index
+## 📝 License
 
-#### **Getting Started**
-- **[📚 Documentation Index](./docs/INDEX.md)** - Master navigation guide for all documentation
-- **[📖 Developer Guide](./docs/DEVELOPER_GUIDE.md)** - Complete setup, API usage, integration examples
-- **[🚀 Quick Start - Authentication](./docs/QUICK_START_AUTHENTICATION.md)** - 5-minute auth setup
+MIT License - See LICENSE file for details
 
-#### **API & Backend**
-- **[📡 API Documentation](./docs/API_DOCUMENTATION.md)** - Complete API reference with all endpoints
-- **[📊 Event Collection Guide](./docs/EVENT_COLLECTION_GUIDE.md)** - Event tracking API and examples
-- **[📝 Tracking Script Guide](./docs/TRACKING_SCRIPT_GUIDE.md)** - Lightweight tracking script installation and usage
-- **[📈 Real Data Integration Guide](./docs/REAL_DATA_INTEGRATION_GUIDE.md)** - Connect dashboard to real analytics data
-- **[🗄️ Backend Setup Guide](./docs/BACKEND_SETUP_GUIDE.md)** - Database and Express.js configuration
-- **[🌐 Website Management Guide](./docs/WEBSITE_MANAGEMENT_GUIDE.md)** - Website CRUD operations and examples
+---
 
-#### **Frontend & Architecture**
-- **[📁 Project Structure](./docs/PROJECT_STRUCTURE.md)** - Folder organization and code architecture
-- **[🔗 Frontend-Backend Integration](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md)** - How frontend connects to backend API
+## 🙌 Contributing
 
-#### **Deployment & Infrastructure**
-- **[🚀 GitHub Pages Deployment](./docs/GITHUB_PAGES_DEPLOYMENT.md)** - Deploy landing page to GitHub Pages
-- **[🔍 Code Quality Scanning](./docs/CODE_QUALITY_SCANNING_GUIDE.md)** - SonarCloud and code quality setup
+Contributions welcome! 
 
-#### **Reference & Notes**
-- **[📝 File Organization Notes](./docs/FILE_ORGANIZATION_NOTES.md)** - Notes about file structure and organization
-- **[📚 Fusion Starter Notes](./docs/FUSION_STARTER.md)** - Original Fusion starter template reference
-- **[🗺️ Documentation Structure](./docs/DOCUMENTATION_STRUCTURE.md)** - Complete documentation map and navigation guide
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-feature`)
+3. Commit changes (`git commit -am 'Add feature'`)
+4. Push to branch (`git push origin feature/my-feature`)
+5. Open a Pull Request
 
-### 🔍 Quick Document Overview
+---
 
-| Document | Purpose | Best For |
-|----------|---------|----------|
-| [docs/INDEX.md](./docs/INDEX.md) | Navigation hub for all docs | Finding what to read |
-| [docs/DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) | Complete setup & usage guide | Getting up and running |
-| [docs/API_DOCUMENTATION.md](./docs/API_DOCUMENTATION.md) | All API endpoints & examples | API integration |
-| [docs/EVENT_COLLECTION_GUIDE.md](./docs/EVENT_COLLECTION_GUIDE.md) | Event tracking API | Event collection |
-| [docs/TRACKING_SCRIPT_GUIDE.md](./docs/TRACKING_SCRIPT_GUIDE.md) | Lightweight tracking script | Website tracking setup |
-| [docs/BACKEND_SETUP_GUIDE.md](./docs/BACKEND_SETUP_GUIDE.md) | Database & server setup | Backend developers |
-| [docs/PROJECT_STRUCTURE.md](./docs/PROJECT_STRUCTURE.md) | Code organization & architecture | Understanding codebase |
+**Questions?** Check [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) or open an issue. 🚀
 | [docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md](./docs/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) | Frontend-API integration | Frontend developers |
 | [docs/WEBSITE_MANAGEMENT_GUIDE.md](./docs/WEBSITE_MANAGEMENT_GUIDE.md) | Website CRUD with examples | Website operations |
 | [docs/QUICK_START_AUTHENTICATION.md](./docs/QUICK_START_AUTHENTICATION.md) | Fast auth setup | Quick testing |
