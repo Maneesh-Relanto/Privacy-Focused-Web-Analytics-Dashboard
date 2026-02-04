@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { AlertCircle, CheckCircle, AlertTriangle, Copy } from 'lucide-react';
+import { AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function TrackerTest() {
   const [trackingCode, setTrackingCode] = useState('');
@@ -100,7 +100,7 @@ export default function TrackerTest() {
           eventType: 'pageview',
           url: window.location.href,
           sessionId: 'verify-' + Date.now(),
-          visitorId: 'verify-' + Math.random().toString(36).substr(2, 9),
+          visitorId: 'verify-' + Math.random().toString(36).substring(2, 11),
         }),
       });
 

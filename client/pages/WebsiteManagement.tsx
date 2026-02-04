@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { BarChart3, Plus, Copy, Check, ExternalLink, Loader2, Trash2, Home, Settings, FileText, ArrowLeft } from "lucide-react";
+import { BarChart3, Plus, Copy, Check, ExternalLink, Loader2, Trash2, Settings, FileText, ArrowLeft } from "lucide-react";
 
 interface Website {
   id: string;
@@ -212,10 +212,11 @@ export default function WebsiteManagement() {
                 <CardContent>
                   <form onSubmit={handleCreateWebsite} className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label htmlFor="website-name" className="block text-sm font-medium mb-2">
                         Website Name *
                       </label>
                       <Input
+                        id="website-name"
                         placeholder="e.g., My Blog, Company Site"
                         value={formData.name}
                         onChange={(e) =>
@@ -227,10 +228,11 @@ export default function WebsiteManagement() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2">
+                      <label htmlFor="website-domain" className="block text-sm font-medium mb-2">
                         Domain (with https://) *
                       </label>
                       <Input
+                        id="website-domain"
                         placeholder="e.g., https://myblog.com"
                         value={formData.domain}
                         onChange={(e) =>
@@ -241,10 +243,11 @@ export default function WebsiteManagement() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
+                    <div>htmlFor="website-description" className="block text-sm font-medium mb-2">
                         Description (optional)
                       </label>
+                      <Input
+                        id="website-description"l>
                       <Input
                         placeholder="e.g., My personal tech blog"
                         value={formData.description}
@@ -372,10 +375,10 @@ export default function WebsiteManagement() {
                         </Alert>
                       )}
 
-                      <div>
-                        <label className="text-sm font-medium block mb-2">
+                      <div>htmlFor="tracking-code-display" className="text-sm font-medium block mb-2">
                           Tracking Code
                         </label>
+                        <div id="tracking-code-display"bel>
                         <div className="flex items-center gap-2 bg-muted p-3 rounded-lg">
                           <code className="flex-1 font-mono text-sm break-all">
                             {website.trackingCode}

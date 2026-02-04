@@ -29,14 +29,11 @@ import {
   BookOpen,
   LogOut,
   RefreshCw,
-  Moon,
-  Sun,
   TrendingUp,
   Users,
   Eye,
   Clock,
   MapPin,
-  Monitor,
 } from "lucide-react";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { PageViewsChart } from "@/components/dashboard/PageViewsChart";
