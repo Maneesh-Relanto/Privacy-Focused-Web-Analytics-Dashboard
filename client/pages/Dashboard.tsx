@@ -55,6 +55,23 @@ export default function Dashboard() {
   // In future, this could come from URL params or routing context
   const websiteId = localStorage.getItem("selectedWebsiteId");
 
+  // Call hooks BEFORE any conditional logic (React Rules of Hooks)
+  const {
+    data: dashboardData,
+    loading,
+    error,
+  } = useDashboardData(dateRange, websiteId || undefined);
+
+  // Simulate dark mode by adding/removing class
+  useMemo(() => {
+    const html = document.documentElement;
+    if (darkMode) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   // Fetch websites list
   useEffect(() => {
     const fetchWebsites = async () => {
@@ -84,6 +101,10 @@ export default function Dashboard() {
       localStorage.setItem("selectedWebsiteTrackingCode", website.trackingCode);
     }
     // Reload to show new website's data
+    window.location.reload();
+  };
+
+  const handleRefresh = () => {
     window.location.reload();
   };
 
@@ -119,26 +140,6 @@ export default function Dashboard() {
       </div>
     );
   }
-
-  const {
-    data: dashboardData,
-    loading,
-    error,
-  } = useDashboardData(dateRange, websiteId || undefined);
-
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-
-  // Simulate dark mode by adding/removing class
-  useMemo(() => {
-    const html = document.documentElement;
-    if (darkMode) {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   return (
     <SidebarProvider>

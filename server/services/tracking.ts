@@ -1,5 +1,5 @@
 import prisma from '../lib/prisma';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 // Simple event interface
 interface SimpleTrackingEvent {
@@ -199,6 +199,156 @@ export const trackingService = {
     }
   },
 
+  // Helper: Find or create visitor
+  async findOrCreateVisitor(
+    websiteId: string,
+    visitorId: string,
+    hashedIp: string,
+    event: TrackingEvent
+  ) {
+    const visitorFingerprint = crypto.createHash('sha256')
+      .update(visitorId + websiteId + hashedIp)
+      .digest('hex');
+
+    let visitor = await prisma.visitor.findFirst({
+      where: {
+        websiteId,
+        fingerprint: visitorFingerprint
+      }
+    });
+
+    if (!visitor) {
+      const location = estimateLocation(event.timezone);
+      visitor = await prisma.visitor.create({
+        data: {
+          websiteId,
+          fingerprint: visitorFingerprint,
+          firstSeenAt: new Date(event.timestamp),
+          lastSeenAt: new Date(event.timestamp),
+          country: location.country,
+          region: location.region,
+          language: event.language || 'unknown',
+          timezone: event.timezone || 'unknown'
+        }
+      });
+    } else {
+      await prisma.visitor.update({
+        where: { id: visitor.id },
+        data: { lastSeenAt: new Date(event.timestamp) }
+      });
+    }
+
+    return visitor;
+  },
+
+  // Helper: Find or create session
+  async findOrCreateSession(
+    website: any,
+    event: TrackingEvent,
+    visitor: any
+  ) {
+    let session = await prisma.session.findFirst({
+      where: {
+        websiteId: website.id,
+        visitorId: visitor.id,
+        sessionIdentifier: event.sessionId,
+        endedAt: null
+      }
+    });
+
+    if (!session) {
+      session = await prisma.session.create({
+        data: {
+          websiteId: website.id,
+          userId: website.userId,
+          visitorId: visitor.id,
+          sessionIdentifier: event.sessionId,
+          startedAt: new Date(event.timestamp),
+          device: event.device.type,
+          browser: event.device.browser,
+          os: event.device.os,
+          referrer: event.page.referrer || null,
+          utmSource: event.page.queryParams?.utm_source || null,
+          utmMedium: event.page.queryParams?.utm_medium || null,
+          utmCampaign: event.page.queryParams?.utm_campaign || null,
+          pageViews: 0,
+          duration: 0
+        }
+      });
+    }
+
+    return session;
+  },
+
+  // Helper: Handle pageview event
+  async handlePageviewEvent(
+    website: any,
+    visitor: any,
+    session: any,
+    event: TrackingEvent
+  ) {
+    await prisma.session.update({
+      where: { id: session.id },
+      data: {
+        pageViews: { increment: 1 },
+        lastActivityAt: new Date(event.timestamp)
+      }
+    });
+
+    const existingPageAnalytics = await prisma.pageAnalytics.findFirst({
+      where: {
+        websiteId: website.id,
+        pagePath: event.page.path
+      }
+    });
+
+    if (existingPageAnalytics) {
+      await prisma.pageAnalytics.update({
+        where: { id: existingPageAnalytics.id },
+        data: {
+          views: { increment: 1 },
+          lastViewedAt: new Date(event.timestamp)
+        }
+      });
+    } else {
+      await prisma.pageAnalytics.create({
+        data: {
+          websiteId: website.id,
+          pagePath: event.page.path,
+          pageTitle: event.page.title,
+          views: 1,
+          lastViewedAt: new Date(event.timestamp)
+        }
+      });
+    }
+
+    // Update stats for pageview
+    await this.updateAggregatedMetrics(website.id, event);
+    await this.updateDeviceStats(website.id, event);
+    if (event.page.referrer) {
+      await this.updateReferrerStats(website.id, event);
+    }
+    await this.updateLocationStats(website.id, visitor, event);
+  },
+
+  // Helper: Handle page leave event
+  async handlePageLeaveEvent(
+    session: any,
+    event: TrackingEvent
+  ) {
+    if (!event.eventData?.duration) return;
+
+    const duration = Math.floor(event.eventData.duration / 1000);
+    await prisma.session.update({
+      where: { id: session.id },
+      data: {
+        duration: { increment: duration },
+        endedAt: new Date(event.timestamp),
+        lastActivityAt: new Date(event.timestamp)
+      }
+    });
+  },
+
   async processEvent(event: TrackingEvent): Promise<void> {
     try {
       // 1. Find website by tracking code
@@ -206,78 +356,24 @@ export const trackingService = {
         where: { trackingCode: event.trackingCode }
       });
 
-      if (!website || !website.isActive) {
+      if (!website?.isActive) {
         console.warn(`[Tracking] Invalid or inactive tracking code: ${event.trackingCode}`);
-        return; // Silently ignore invalid tracking codes
+        return;
       }
 
       // 2. Hash sensitive data
       const hashedIp = hashIp(event.clientIp);
-      const visitorFingerprint = crypto.createHash('sha256')
-        .update(event.visitorId + website.id + hashedIp)
-        .digest('hex');
 
       // 3. Find or create visitor
-      let visitor = await prisma.visitor.findFirst({
-        where: {
-          websiteId: website.id,
-          fingerprint: visitorFingerprint
-        }
-      });
-
-      if (!visitor) {
-        const location = estimateLocation(event.timezone);
-        
-        visitor = await prisma.visitor.create({
-          data: {
-            websiteId: website.id,
-            fingerprint: visitorFingerprint,
-            firstSeenAt: new Date(event.timestamp),
-            lastSeenAt: new Date(event.timestamp),
-            country: location.country,
-            region: location.region,
-            language: event.language || 'unknown',
-            timezone: event.timezone || 'unknown'
-          }
-        });
-      } else {
-        // Update last seen
-        await prisma.visitor.update({
-          where: { id: visitor.id },
-          data: { lastSeenAt: new Date(event.timestamp) }
-        });
-      }
+      const visitor = await this.findOrCreateVisitor(
+        website.id,
+        event.visitorId,
+        hashedIp,
+        event
+      );
 
       // 4. Find or create session
-      let session = await prisma.session.findFirst({
-        where: {
-          websiteId: website.id,
-          visitorId: visitor.id,
-          sessionIdentifier: event.sessionId,
-          endedAt: null // Active session
-        }
-      });
-
-      if (!session) {
-        session = await prisma.session.create({
-          data: {
-            websiteId: website.id,
-            userId: website.userId,
-            visitorId: visitor.id,
-            sessionIdentifier: event.sessionId,
-            startedAt: new Date(event.timestamp),
-            device: event.device.type,
-            browser: event.device.browser,
-            os: event.device.os,
-            referrer: event.page.referrer || null,
-            utmSource: event.page.queryParams?.utm_source || null,
-            utmMedium: event.page.queryParams?.utm_medium || null,
-            utmCampaign: event.page.queryParams?.utm_campaign || null,
-            pageViews: 0,
-            duration: 0
-          }
-        });
-      }
+      const session = await this.findOrCreateSession(website, event, visitor);
 
       // 5. Create event record
       await prisma.event.create({
@@ -286,8 +382,8 @@ export const trackingService = {
           visitorId: visitor.id,
           sessionId: session.id,
           eventType: event.eventType,
-          eventName: event.eventType === 'custom_event' 
-            ? (event.eventData?.eventName || 'custom') 
+          eventName: event.eventType === 'custom_event'
+            ? (event.eventData?.eventName || 'custom')
             : event.eventType,
           pageUrl: event.page.url,
           pagePath: event.page.path,
@@ -306,73 +402,11 @@ export const trackingService = {
         }
       });
 
-      // 6. Update session stats based on event type
+      // 6. Handle event-specific logic
       if (event.eventType === 'pageview') {
-        await prisma.session.update({
-          where: { id: session.id },
-          data: {
-            pageViews: { increment: 1 },
-            lastActivityAt: new Date(event.timestamp)
-          }
-        });
-
-        // Update or create page analytics
-        const existingPageAnalytics = await prisma.pageAnalytics.findFirst({
-          where: {
-            websiteId: website.id,
-            pagePath: event.page.path
-          }
-        });
-
-        if (existingPageAnalytics) {
-          await prisma.pageAnalytics.update({
-            where: { id: existingPageAnalytics.id },
-            data: {
-              views: { increment: 1 },
-              lastViewedAt: new Date(event.timestamp)
-            }
-          });
-        } else {
-          await prisma.pageAnalytics.create({
-            data: {
-              websiteId: website.id,
-              pagePath: event.page.path,
-              pageTitle: event.page.title,
-              views: 1,
-              lastViewedAt: new Date(event.timestamp)
-            }
-          });
-        }
-      }
-
-      if (event.eventType === 'page_leave' && event.eventData?.duration) {
-        const duration = Math.floor(event.eventData.duration / 1000); // Convert to seconds
-        await prisma.session.update({
-          where: { id: session.id },
-          data: {
-            duration: { increment: duration },
-            endedAt: new Date(event.timestamp),
-            lastActivityAt: new Date(event.timestamp)
-          }
-        });
-      }
-
-      // 7. Update aggregated metrics (daily stats)
-      await this.updateAggregatedMetrics(website.id, event);
-
-      // 8. Update device stats
-      if (event.eventType === 'pageview') {
-        await this.updateDeviceStats(website.id, event);
-      }
-
-      // 9. Update referrer stats
-      if (event.eventType === 'pageview' && event.page.referrer) {
-        await this.updateReferrerStats(website.id, event);
-      }
-
-      // 10. Update location stats
-      if (event.eventType === 'pageview') {
-        await this.updateLocationStats(website.id, visitor, event);
+        await this.handlePageviewEvent(website, visitor, session, event);
+      } else if (event.eventType === 'page_leave') {
+        await this.handlePageLeaveEvent(session, event);
       }
 
       console.log(`[Tracking] Successfully processed ${event.eventType} for ${website.domain}`);
