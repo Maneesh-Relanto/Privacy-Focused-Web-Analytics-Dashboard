@@ -59,7 +59,7 @@ router.get("/metrics", authMiddleware, async (req: Request, res: Response) => {
       return;
     }
 
-    const daysNum = Math.max(1, parseInt(days as string) || 7);
+    const daysNum = Math.max(1, Number.parseInt(days as string) || 7);
     const metrics = await aggregation.getDashboardMetrics(websiteId, daysNum);
     
     console.log('[Dashboard] Metrics result:', { websiteId, pageviews: metrics?.pageviews });
@@ -101,7 +101,7 @@ router.get(
         return;
       }
 
-      const daysNum = Math.max(1, parseInt(days as string) || 7);
+      const daysNum = Math.max(1, Number.parseInt(days as string) || 7);
       const endDate = new Date();
       const startDate = new Date(endDate.getTime() - daysNum * 24 * 60 * 60 * 1000);
 
@@ -171,8 +171,8 @@ router.get(
         return;
       }
 
-      const limitNum = Math.max(1, parseInt(limit as string) || 10);
-      const daysNum = Math.max(1, parseInt(days as string) || 7);
+      const limitNum = Math.max(1, Number.parseInt(limit as string) || 10);
+      const daysNum = Math.max(1, Number.parseInt(days as string) || 7);
       const endDate = new Date();
       const startDate = new Date(endDate.getTime() - daysNum * 24 * 60 * 60 * 1000);
 
@@ -220,8 +220,8 @@ router.get(
         return;
       }
 
-      const limitNum = Math.max(1, parseInt(limit as string) || 10);
-      const daysNum = Math.max(1, parseInt(days as string) || 7);
+      const limitNum = Math.max(1, Number.parseInt(limit as string) || 10);
+      const daysNum = Math.max(1, Number.parseInt(days as string) || 7);
       const endDate = new Date();
       const startDate = new Date(endDate.getTime() - daysNum * 24 * 60 * 60 * 1000);
 
@@ -266,7 +266,7 @@ router.get("/devices", authMiddleware, async (req: Request, res: Response) => {
       return;
     }
 
-    const daysNum = Math.max(1, parseInt(days as string) || 7);
+    const daysNum = Math.max(1, Number.parseInt(days as string) || 7);
     const endDate = new Date();
     const startDate = new Date(endDate.getTime() - daysNum * 24 * 60 * 60 * 1000);
 
