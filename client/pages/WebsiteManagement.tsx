@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { BarChart3, Plus, Copy, Check, ExternalLink, Loader2 } from "lucide-react";
+import { BarChart3, Plus, Copy, Check, ExternalLink, Loader2, Trash2, Home, Settings, FileText, ArrowLeft } from "lucide-react";
 
 interface Website {
   id: string;
@@ -27,6 +27,8 @@ export default function WebsiteManagement() {
     description: "",
   });
   const [creating, setCreating] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
   // Fetch websites on mount
   useEffect(() => {
@@ -91,7 +93,39 @@ export default function WebsiteManagement() {
 
   const handleSelectWebsite = (website: Website) => {
     localStorage.setItem("selectedWebsiteId", website.id);
+    localStorage.setItem("selectedWebsiteTrackingCode", website.trackingCode);
     navigate("/dashboard");
+  };
+
+  const handleDeleteWebsite = async (websiteId: string) => {
+    setDeleting(websiteId);
+    setError("");
+
+    try {
+      const token = localStorage.getItem("accessToken");
+      const response = await fetch(`/api/v1/websites/${websiteId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to delete website");
+      }
+
+      // Remove from local state
+      setWebsites(websites.filter((w) => w.id !== websiteId));
+      setDeleteConfirm(null);
+      
+      // Clear selected website if it was deleted
+      if (localStorage.getItem("selectedWebsiteId") === websiteId) {
+        localStorage.removeItem("selectedWebsiteId");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete website");
+    } finally {
+      setDeleting(null);
+    }
   };
 
   const copyToClipboard = (code: string) => {
@@ -103,6 +137,34 @@ export default function WebsiteManagement() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+        {/* Navigation */}
+        <div className="mb-6 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Home</span>
+          </Link>
+          <div className="flex gap-2">
+            <Link to="/dashboard">
+              <Button variant="ghost" size="sm">
+                <BarChart3 className="mr-2 h-4 w-4" />
+                Dashboard
+              </Button>
+            </Link>
+            <Link to="/documentation">
+              <Button variant="ghost" size="sm">
+                <FileText className="mr-2 h-4 w-4" />
+                Docs
+              </Button>
+            </Link>
+            <Link to="/settings">
+              <Button variant="ghost" size="sm">
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
+              </Button>
+            </Link>
+          </div>
+        </div>
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
@@ -252,16 +314,64 @@ export default function WebsiteManagement() {
                             {website.domain}
                           </CardDescription>
                         </div>
-                        <Button
-                          onClick={() => handleSelectWebsite(website)}
-                          size="sm"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          View Dashboard
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => handleSelectWebsite(website)}
+                            size="sm"
+                          >
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Dashboard
+                          </Button>
+                          <Button
+                            onClick={() => setDeleteConfirm(website.id)}
+                            size="sm"
+                            variant="destructive"
+                            disabled={deleting === website.id}
+                          >
+                            {deleting === website.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Trash2 className="h-4 w-4" />
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
+                      {deleteConfirm === website.id && (
+                        <Alert variant="destructive" className="mb-4">
+                          <AlertDescription>
+                            <p className="font-semibold mb-2">Are you sure you want to delete this website?</p>
+                            <p className="text-sm mb-4">This will permanently delete all analytics data for {website.name}. This action cannot be undone.</p>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => handleDeleteWebsite(website.id)}
+                                disabled={deleting === website.id}
+                              >
+                                {deleting === website.id ? (
+                                  <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Deleting...
+                                  </>
+                                ) : (
+                                  "Yes, Delete"
+                                )}
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => setDeleteConfirm(null)}
+                                disabled={deleting === website.id}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          </AlertDescription>
+                        </Alert>
+                      )}
+
                       <div>
                         <label className="text-sm font-medium block mb-2">
                           Tracking Code

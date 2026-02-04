@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrivacyMetrics - Simple Test</title>
+    
+    <!-- PrivacyMetrics Tracking - Simple Version -->
+    <script src="/pm.js" data-code="REPLACE_WITH_YOUR_CODE" data-api="http://localhost:3000/api/v1/track"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+        .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 6px; margin: 20px 0; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 14px; }
+        .step { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #667eea; }
+        .button { background: #667eea; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; }
+        .button:hover { background: #5568d3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 PrivacyMetrics - Simple Test Page</h1>
+        
+        <div class="success">
+            ✅ <strong>Tracking Active!</strong> This page is now being tracked.
+        </div>
+        
+        <div class="step">
+            <h2>Step 1: Setup Test Data & Get Code</h2>
+            <p>Open the debug page to setup test data:</p>
+            <p><code>http://localhost:3000/test-debug.html</code></p>
+            <p>Click "Setup Test Data" button to create test credentials, then copy the tracking code.</p>
+        </div>
+
+        <div class="step">
+            <h2>Step 2: Replace the Code</h2>
+            <p>In the <code>&lt;script&gt;</code> tag at the top, replace:</p>
+            <p><code>data-code="REPLACE_WITH_YOUR_CODE"</code></p>
+            <p>with your actual code from step 1.</p>
+        </div>
+
+        <div class="step">
+            <h2>Step 3: Test It</h2>
+            <p>Reload this page and open DevTools → Network tab → Look for POST to <code>/api/v1/track</code></p>
+        </div>
+        
+        <div class="step">
+            <h2>Step 4: View Dashboard</h2>
+            <p>Go to <code>http://localhost:8080/dashboard</code> to see your analytics!</p>
+        </div>
+        
+        <h2 style="margin-top: 30px;">What We're Tracking:</h2>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+            <li>✅ Page URL</li>
+            <li>✅ Referrer (where you came from)</li>
+            <li>✅ Timestamp</li>
+            <li>✅ Session ID (temporary, no cookies)</li>
+            <li>❌ NO personal data</li>
+            <li>❌ NO cookies</li>
+            <li>❌ NO fingerprinting</li>
+        </ul>
+        
+        <button class="button" onclick="testCustomEvent()" style="margin-top: 30px;">
+            Test Custom Event
+        </button>
+        
+        <p style="margin-top: 20px; color: #666; font-size: 14px;">
+            <strong>Privacy-First:</strong> We only track what you need to improve your site. 
+            No invasive tracking, no selling data, no BS.
+        </p>
+    </div>
+    
+    <script>
+        function testCustomEvent() {
+            if (window.pm) {
+                window.pm.track();
+                alert('✓ Custom event tracked! Check your dashboard.');
+            } else {
+                alert('❌ Tracking not initialized. Check console.');
+            }
+        }
+        
+        // Log initialization
+        console.log('%c[PrivacyMetrics] 🎯 Tracking initialized', 'color: #667eea; font-weight: bold');
+        console.log('Session ID:', sessionStorage.getItem('_pm_sid'));
+        console.log('Visitor ID:', sessionStorage.getItem('_pm_vid'));
+    </script>
+</body>
+</html>

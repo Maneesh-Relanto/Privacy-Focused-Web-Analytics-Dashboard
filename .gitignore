@@ -35,6 +35,8 @@ dist-ssr
 # Confidential internal files - NOT for git
 .confidential/
 .confidential/*
+confidential_docs/
+confidential_docs/*
 
 # Database files (contains user data)
 prisma/dev.db

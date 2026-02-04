@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import type { DashboardMetrics } from "@shared/types/dashboard";
@@ -48,10 +48,44 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
   const [dateRange, setDateRange] = useState("7d");
+  const [websites, setWebsites] = useState<{ id: string; name: string; trackingCode: string }[]>([]);
+  const [loadingWebsites, setLoadingWebsites] = useState(true);
 
   // Get websiteId from localStorage (set when user selects a website)
   // In future, this could come from URL params or routing context
   const websiteId = localStorage.getItem("selectedWebsiteId");
+
+  // Fetch websites list
+  useEffect(() => {
+    const fetchWebsites = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        const response = await fetch("/api/v1/websites", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setWebsites(data.websites || []);
+        }
+      } catch (err) {
+        console.error("Failed to fetch websites", err);
+      } finally {
+        setLoadingWebsites(false);
+      }
+    };
+    fetchWebsites();
+  }, []);
+
+  const handleWebsiteChange = (newWebsiteId: string) => {
+    localStorage.setItem("selectedWebsiteId", newWebsiteId);
+    // Find the tracking code for this website
+    const website = websites.find(w => w.id === newWebsiteId);
+    if (website) {
+      localStorage.setItem("selectedWebsiteTrackingCode", website.trackingCode);
+    }
+    // Reload to show new website's data
+    window.location.reload();
+  };
 
   // Redirect to website management if no website selected
   if (!websiteId) {
@@ -183,11 +217,24 @@ export default function Dashboard() {
           {/* Top Bar */}
           <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-4 sticky top-0 z-10">
             <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-1">
                 <SidebarTrigger className="md:hidden" />
                 <h1 className="text-2xl font-bold hidden sm:block">
                   Dashboard Overview
                 </h1>
+                {/* Website Selector */}
+                <Select value={websiteId || ""} onValueChange={handleWebsiteChange} disabled={loadingWebsites}>
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Select website..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {websites.map((site) => (
+                      <SelectItem key={site.id} value={site.id}>
+                        {site.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="flex items-center gap-3 flex-wrap">
                 <Select value={dateRange} onValueChange={setDateRange}>

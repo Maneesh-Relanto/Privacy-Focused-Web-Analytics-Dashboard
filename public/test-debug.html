@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrivacyMetrics - Debug Test</title>
+    
+    <style>
+        body {
+            font-family: system-ui;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .status {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #666;
+        }
+        .success { border-color: #22c55e; background: #f0fdf4; }
+        .error { border-color: #ef4444; background: #fef2f2; }
+        .warning { border-color: #f59e0b; background: #fffbeb; }
+        code { background: #e5e7eb; padding: 2px 6px; border-radius: 3px; }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #2563eb; }
+        pre { background: #1f2937; color: #e5e7eb; padding: 15px; border-radius: 6px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔍 PrivacyMetrics Tracker Debug</h1>
+    
+    <div id="status"></div>
+    
+    <button onclick="checkStatus()">Check Status</button>
+    <button onclick="manualTrack()">Send Manual Track</button>
+    <button onclick="testAPI()">Test API Directly</button>
+    
+    <h2>How to Test (Simple 3 Steps):</h2>
+    <ol>
+        <li><strong>Create a website:</strong> Go to http://localhost:8080 → Login/Register → Websites → Create website → Copy tracking code</li>
+        <li><strong>Paste the code below</strong> in the script tag where it says <code>REPLACE_WITH_YOUR_CODE</code> then reload this page</li>
+        <li><strong>Check dashboard:</strong> http://localhost:8080/dashboard should show updated metrics</li>
+    </ol>
+    
+    <div id="logs"></div>
+    
+    <!-- PrivacyMetrics Tracking Script -->
+    <script src="/pm.js" 
+            data-code="pm-bqxmg5-1770220300155" 
+            data-api="http://localhost:3000/api/v1/track">
+    </script>
+    
+    <script>
+        function log(message, type = 'info') {
+            const logsDiv = document.getElementById('logs');
+            const logEntry = document.createElement('pre');
+            logEntry.textContent = `[${new Date().toISOString()}] ${message}`;
+            logsDiv.appendChild(logEntry);
+            console.log(message);
+        }
+        
+        function checkStatus() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = '';
+            
+            // Check 1: Is pm.js loaded?
+            const pmExists = typeof window.pm !== 'undefined';
+            statusDiv.innerHTML += `
+                <div class="status ${pmExists ? 'success' : 'error'}">
+                    ${pmExists ? '✅' : '❌'} <strong>pm.js loaded:</strong> ${pmExists ? 'YES' : 'NO - Check console for errors'}
+                </div>
+            `;
+            
+            if (pmExists) {
+                statusDiv.innerHTML += `
+                    <div class="status success">
+                        ✅ <strong>Version:</strong> ${window.pm.version || 'unknown'}
+                    </div>
+                `;
+            }
+            
+            // Check 2: Session ID
+            const sessionId = sessionStorage.getItem('_pm_sid');
+            statusDiv.innerHTML += `
+                <div class="status ${sessionId ? 'success' : 'warning'}">
+                    ${sessionId ? '✅' : '⚠️'} <strong>Session ID:</strong> ${sessionId || 'Not set yet'}
+                </div>
+            `;
+            
+            // Check 3: Visitor ID
+            const visitorId = sessionStorage.getItem('_pm_vid');
+            statusDiv.innerHTML += `
+                <div class="status ${visitorId ? 'success' : 'warning'}">
+                    ${visitorId ? '✅' : '⚠️'} <strong>Visitor ID:</strong> ${visitorId || 'Not set yet'}
+                </div>
+            `;
+            
+            // Check 4: Script tag
+            const scriptTag = document.querySelector('script[data-code]');
+            const trackingCode = scriptTag ? scriptTag.getAttribute('data-code') : null;
+            const apiUrl = scriptTag ? scriptTag.getAttribute('data-api') : null;
+            
+            statusDiv.innerHTML += `
+                <div class="status ${trackingCode && trackingCode !== 'YOUR_TRACKING_CODE' ? 'success' : 'error'}">
+                    ${trackingCode && trackingCode !== 'YOUR_TRACKING_CODE' ? '✅' : '❌'} <strong>Tracking Code:</strong> 
+                    ${trackingCode || 'Missing'} 
+                    ${trackingCode === 'YOUR_TRACKING_CODE' ? '<br><strong>⚠️ Please replace with your actual code!</strong>' : ''}
+                </div>
+            `;
+            
+            statusDiv.innerHTML += `
+                <div class="status success">
+                    ✅ <strong>API Endpoint:</strong> ${apiUrl}
+                </div>
+            `;
+            
+            log('Status check completed');
+        }
+        
+        function manualTrack() {
+            if (typeof window.pm !== 'undefined') {
+                log('Sending manual track event...');
+                window.pm.track();
+                log('Manual track sent! Check Network tab for POST to /api/v1/track');
+                alert('✓ Event sent! Check Network tab (F12) for POST request.');
+            } else {
+                log('ERROR: window.pm not found', 'error');
+                alert('❌ Tracking not initialized. pm.js did not load correctly.');
+            }
+        }
+        
+        async function testAPI() {
+            const apiUrl = 'http://localhost:3000/api/v1/track';
+            log(`Testing API directly: ${apiUrl}`);
+            
+            const testData = {
+                code: 'pm-test-debug',
+                sid: 'pm_test_session_' + Date.now(),
+                vid: 'pm_test_visitor_' + Date.now(),
+                url: window.location.href,
+                ref: null,
+                t: Date.now()
+            };
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(testData)
+                });
+                
+                log(`API Response: ${response.status} ${response.statusText}`);
+                
+                if (response.status === 204) {
+                    alert('✅ API is working! Status: 204 No Content');
+                } else {
+                    const text = await response.text();
+                    alert(`⚠️ Unexpected response: ${response.status}\n${text}`);
+                }
+            } catch (error) {
+                log(`API Error: ${error.message}`, 'error');
+                alert(`❌ API Error: ${error.message}\n\nMake sure backend is running on port 3000`);
+            }
+        }
+        
+        // Auto-check on load
+        window.addEventListener('load', () => {
+            setTimeout(checkStatus, 500);
+            log('Page loaded, auto-checking status...');
+        });
+        
+        // Log any console errors
+        window.addEventListener('error', (event) => {
+            log(`ERROR: ${event.message} at ${event.filename}:${event.lineno}`, 'error');
+        });
+    </script>
+</body>
+</html>
