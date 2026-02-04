@@ -19,7 +19,7 @@ const SimpleTrackingSchema = z.object({
  * Simple, privacy-first event tracking
  * No auth required - uses tracking code only
  */
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response): Promise<void> => {
   try {
     // Log raw request
     console.log('[Track] Raw request body:', JSON.stringify(req.body));

@@ -29,7 +29,7 @@ const router = Router();
  *   tokens: { accessToken, refreshToken, expiresIn }
  * }
  */
-router.post("/register", async (req: Request, res: Response) => {
+router.post("/register", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = registerSchema.safeParse(req.body);
@@ -123,7 +123,7 @@ router.post("/register", async (req: Request, res: Response) => {
  *   tokens: { accessToken, refreshToken, expiresIn }
  * }
  */
-router.post("/login", async (req: Request, res: Response) => {
+router.post("/login", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = loginSchema.safeParse(req.body);
@@ -209,7 +209,7 @@ router.post("/login", async (req: Request, res: Response) => {
  *
  * @returns Current user data
  */
-router.get("/me", async (req: Request, res: Response) => {
+router.get("/me", async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.user) {
       res.status(401).json({
