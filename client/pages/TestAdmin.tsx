@@ -7,7 +7,7 @@ interface TestResult {
   status: "pending" | "running" | "success" | "failure" | "error";
   duration: number;
   message: string;
-  details?: any;
+  details?: Record<string, unknown>;
 }
 
 interface TestLog {
