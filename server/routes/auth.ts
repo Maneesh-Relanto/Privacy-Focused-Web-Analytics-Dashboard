@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import prisma from "../lib/prisma";
+import { ERROR_CODES, HTTP_STATUS } from "../lib/error-codes";
 import {
   registerSchema,
   loginSchema,
@@ -29,13 +30,13 @@ const router = Router();
  *   tokens: { accessToken, refreshToken, expiresIn }
  * }
  */
-router.post("/register", async (req: Request, res: Response) => {
+router.post("/register", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = registerSchema.safeParse(req.body);
     if (!validation.success) {
-      res.status(400).json({
-        error: "VALIDATION_ERROR",
+      res.status(HTTP_STATUS.BAD_REQUEST).json({
+        error: ERROR_CODES.VALIDATION_ERROR,
         message: "Invalid request body",
         details: validation.error.flatten(),
       });
@@ -123,7 +124,7 @@ router.post("/register", async (req: Request, res: Response) => {
  *   tokens: { accessToken, refreshToken, expiresIn }
  * }
  */
-router.post("/login", async (req: Request, res: Response) => {
+router.post("/login", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = loginSchema.safeParse(req.body);
@@ -209,7 +210,7 @@ router.post("/login", async (req: Request, res: Response) => {
  *
  * @returns Current user data
  */
-router.get("/me", async (req: Request, res: Response) => {
+router.get("/me", async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.user) {
       res.status(401).json({

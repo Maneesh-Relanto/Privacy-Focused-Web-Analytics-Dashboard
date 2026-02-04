@@ -11,6 +11,8 @@ import { authMiddleware } from "../middleware/auth";
 
 const router = Router();
 
+const DEFAULT_DAYS = 7;
+
 /**
  * Verify user owns the website
  */
@@ -32,9 +34,9 @@ async function verifyWebsiteOwnership(
  * Get overall dashboard metrics (pageviews, visitors, sessions, bounce rate, avg duration)
  * Query params: websiteId, days (default: 7)
  */
-router.get("/metrics", authMiddleware, async (req: Request, res: Response) => {
+router.get("/metrics", authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
-    const { websiteId, days = "7" } = req.query;
+    const { websiteId, days = String(DEFAULT_DAYS) } = req.query;
     const userId = (req as any).user?.id;
 
     console.log('[Dashboard] /metrics request:', {
@@ -154,9 +156,9 @@ router.get(
 router.get(
   "/top-pages",
   authMiddleware,
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response): Promise<void> => {
     try {
-      const { websiteId, limit = "10", days = "7" } = req.query;
+      const { websiteId, limit = "10", days = String(DEFAULT_DAYS) } = req.query;
       const userId = (req as any).user?.id;
 
       if (!websiteId || typeof websiteId !== "string") {
@@ -203,9 +205,9 @@ router.get(
 router.get(
   "/referrers",
   authMiddleware,
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response): Promise<void> => {
     try {
-      const { websiteId, limit = "10", days = "7" } = req.query;
+      const { websiteId, limit = "10", days = String(DEFAULT_DAYS) } = req.query;
       const userId = (req as any).user?.id;
 
       if (!websiteId || typeof websiteId !== "string") {
@@ -249,9 +251,9 @@ router.get(
  * Get device breakdown statistics
  * Query params: websiteId, days
  */
-router.get("/devices", authMiddleware, async (req: Request, res: Response) => {
+router.get("/pageviews", authMiddleware, async (req: Request, res: Response): Promise<void> => {
   try {
-    const { websiteId, days = "7" } = req.query;
+    const { websiteId, days = String(DEFAULT_DAYS) } = req.query;
     const userId = (req as any).user?.id;
 
     if (!websiteId || typeof websiteId !== "string") {

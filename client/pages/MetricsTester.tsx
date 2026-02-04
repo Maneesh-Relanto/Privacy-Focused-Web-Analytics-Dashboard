@@ -173,7 +173,7 @@ export default function MetricsTester() {
     title: string;
     value: string;
     change: number;
-    icon: any;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   }) => (
     <Card>
       <CardContent className="pt-6">

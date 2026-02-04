@@ -12,7 +12,7 @@ const router = Router();
  * - A test website with tracking code
  * - Sample events to test aggregation
  */
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     // Check if test data already exists
     const existingUser = await prisma.user.findUnique({
@@ -141,7 +141,7 @@ router.post("/", async (req: Request, res: Response) => {
  * DELETE /api/seed
  * Reset/clear all test data
  */
-router.delete("/", async (req: Request, res: Response) => {
+router.delete("/", async (req: Request, res: Response): Promise<void> => {
   try {
     // Delete test user and all related data (cascade)
     const user = await prisma.user.delete({

@@ -34,7 +34,7 @@ async function findWebsiteByTrackingCode(trackingCode: string) {
  *   properties?: {}
  * }
  */
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = createEventSchema.safeParse(req.body);
@@ -106,7 +106,7 @@ router.post("/", async (req: Request, res: Response) => {
  *   ]
  * }
  */
-router.post("/batch", async (req: Request, res: Response) => {
+router.post("/batch", async (req: Request, res: Response): Promise<void> => {
   try {
     // Validate request body
     const validation = batchEventSchema.safeParse(req.body);
