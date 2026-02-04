@@ -243,12 +243,12 @@ export default function WebsiteManagement() {
                       />
                     </div>
 
-                    <div>htmlFor="website-description" className="block text-sm font-medium mb-2">
+                    <div>
+                      <label htmlFor="website-description" className="block text-sm font-medium mb-2">
                         Description (optional)
                       </label>
                       <Input
-                        id="website-description"l>
-                      <Input
+                        id="website-description"
                         placeholder="e.g., My personal tech blog"
                         value={formData.description}
                         onChange={(e) =>
@@ -375,11 +375,11 @@ export default function WebsiteManagement() {
                         </Alert>
                       )}
 
-                      <div>htmlFor="tracking-code-display" className="text-sm font-medium block mb-2">
+                      <div>
+                        <label htmlFor="tracking-code-display" className="text-sm font-medium block mb-2">
                           Tracking Code
                         </label>
-                        <div id="tracking-code-display"bel>
-                        <div className="flex items-center gap-2 bg-muted p-3 rounded-lg">
+                        <div id="tracking-code-display" className="flex items-center gap-2 bg-muted p-3 rounded-lg">
                           <code className="flex-1 font-mono text-sm break-all">
                             {website.trackingCode}
                           </code>
