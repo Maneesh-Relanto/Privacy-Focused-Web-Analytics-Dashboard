@@ -28,6 +28,19 @@ Complete setup guide with:
 
 ---
 
+## 💬 Did This Work for You?
+
+If you cloned this repo and tried it out — we'd love to hear from you!
+
+- ✅ **It worked great** → [Tell us what you built](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/show-and-tell)
+- ❓ **Ran into a problem** → [Ask for help](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/q-a)
+- 💡 **Have a feature idea** → [Share it](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/ideas)
+- 🐛 **Found a bug** → [Open an issue](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/issues/new)
+
+> Your feedback directly shapes what gets built next. Even a short "it worked!" helps.
+
+---
+
 ## ✨ Current Features (v1.0.0-beta.1)
 
 ### ✅ Implemented & Tested
@@ -293,6 +306,21 @@ MIT License - See [LICENSE](./LICENSE) file for full details
 
 ---
 
+## 📣 Give Feedback
+
+Discussions are open — this is the best place to share thoughts, ask questions, or suggest improvements.
+
+| Channel | Use it for |
+|---|---|
+| [💡 Ideas](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/ideas) | Feature requests and suggestions |
+| [🙋 Q&A](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/q-a) | Setup help and how-to questions |
+| [🎉 Show & Tell](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/categories/show-and-tell) | Share what you built with it |
+| [💬 General](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions) | Anything else |
+
+**[→ Open a Discussion](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions/new)**
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! To contribute:
@@ -344,4 +372,4 @@ PrivacyMetrics is built on the principle that analytics don't require invasive t
 
 **Made with ❤️ for privacy-conscious developers**
 
-Questions? Start with [DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md) or [open an issue](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/issues). 🚀
+Questions? Start with [DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md), [join the discussion](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/discussions), or [open an issue](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/issues). 🚀
