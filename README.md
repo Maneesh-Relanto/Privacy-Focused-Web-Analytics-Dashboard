@@ -15,7 +15,15 @@ A self-hosted analytics solution designed with privacy at its core. Complete dat
 
 ---
 
-## 🚀 Quick Start
+## �️ Dashboard Preview
+
+![PrivacyMetrics Dashboard](docs/images/dashboard-preview.png)
+
+> **Screenshot coming soon.** To see it live: run `pnpm dev` and open [http://localhost:8080](http://localhost:8080).
+
+---
+
+## �🚀 Quick Start
 
 **Get started in minutes:** **[📖 DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)**
 
@@ -68,6 +76,31 @@ If you cloned this repo and tried it out — we'd love to hear from you!
 - Personal identifiable information (names, emails from tracking)
 - Cross-site user tracking
 - Device details (browser, OS tracking not implemented yet)
+
+---
+
+## ⚖️ How it Compares
+
+PrivacyMetrics vs the most popular privacy-focused analytics tools:
+
+| Feature | PrivacyMetrics | Plausible CE | Umami | Fathom |
+|---|:---:|:---:|:---:|:---:|
+| Open Source | ✅ | ✅ | ✅ | ❌ |
+| Self-Hosted | ✅ | ✅ | ✅ | ❌ |
+| Completely Free | ✅ | ✅ | ✅ | 💰 |
+| No Cookies | ✅ | ✅ | ✅ | ✅ |
+| No PII Collected | ✅ | ✅ | ✅ | ✅ |
+| GDPR Compliant | ✅ | ✅ | ✅ | ✅ |
+| Multi-site Support | ✅ | ✅ | ✅ | ✅ |
+| Tracking Script Size | **2KB** | ~1KB | ~2KB | ~1KB |
+| Database | SQLite | PostgreSQL + ClickHouse | PostgreSQL / MySQL | Proprietary |
+| Setup Time | **~5 min** | ~30 min | ~15 min | N/A |
+| Tech Stack | Node.js + React | Elixir + Phoenix | Next.js | Ruby |
+| Custom Events | ❌ (roadmap) | ✅ | ✅ | ✅ |
+| Data Export | ❌ (roadmap) | ✅ | ✅ | ✅ |
+| Email Reports | ❌ (roadmap) | ✅ | ❌ | ✅ |
+
+> PrivacyMetrics is the **simplest to self-host** — SQLite means zero database server setup. Clone → install → run.
 
 ---
 
@@ -323,19 +356,12 @@ Discussions are open — this is the best place to share thoughts, ask questions
 
 ## 🤝 Contributing
 
-Contributions are welcome! To contribute:
+Contributions are welcome! Read the full guide: **[CONTRIBUTING.md](CONTRIBUTING.md)**
 
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/my-feature`
-3. **Commit** changes: `git commit -am 'Add my feature'`
-4. **Push** to branch: `git push origin feature/my-feature`
-5. **Open** a Pull Request
+Quick steps:
+1. Fork → create a branch → make changes → `pnpm quality-check` → open a PR
 
-**Before contributing:**
-- Read [DEVELOPER_GUIDE.md](./docs/DEVELOPER_GUIDE.md)
-- Ensure code passes quality checks: `pnpm quality-check`
-- Add tests for new features
-- Update documentation as needed
+Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 ---
 
@@ -344,6 +370,9 @@ Contributions are welcome! To contribute:
 **Repository:**
 - [GitHub Repository](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard)
 - [GitHub Releases](https://github.com/Maneesh-Relanto/Privacy-Focused-Web-Analytics-Dashboard/releases)
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 
 **Documentation:**
 - [Documentation Index](./docs/INDEX.md)
